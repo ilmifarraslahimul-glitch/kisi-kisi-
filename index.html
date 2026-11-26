@@ -3,27 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asesmen PSAS Sejarah XII — Latihan &amp; Pembahasan</title>
+  <meta name="theme-color" content="#4338ca" />
+  <meta name="description" content="Platform latihan soal terpadu berdasarkan kisi-kisi — Website by Rasfarilmi" />
+  <title>Ruang Belajar — Website by Rasfarilmi</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
   <style>
     :root {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-muted: #f3f1ec;
+      --surface-soft: #f8fafc;
+      --text: #18181b;
+      --text-secondary: #52525b;
+      --muted: #71717a;
+      --border: #e4e2dd;
+      --border-strong: #d4d1ca;
       --primary: #4338ca;
-      --primary-dark: #1e1b4b;
-      --primary-light: #e0e7ff;
+      --primary-hover: #3730a3;
+      --primary-soft: #eef2ff;
+      --primary-ink: #312e81;
       --accent: #0f766e;
-      --accent-light: #ccfbf1;
-      --bg: #f5f3ff;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #c7d2fe;
+      --accent-soft: #ccfbf1;
+      --banner-bg: #18181b;
+      --banner-ink: #faf8f5;
+      --banner-accent: #fbbf24;
       --success: #15803d;
       --success-bg: #dcfce7;
-      --danger: #475569;
-      --danger-bg: #e2e8f0;
+      --danger: #b91c1c;
+      --danger-bg: #fee2e2;
+      --wrong-neutral: #475569;
+      --wrong-neutral-bg: #e2e8f0;
       --info: #0369a1;
       --info-bg: #e0f2fe;
-      --radius: 14px;
-      --shadow: 0 8px 24px rgba(67, 56, 202, 0.09);
+      --shadow-sm: 0 1px 3px rgba(24, 24, 27, 0.05);
+      --shadow-md: 0 10px 30px rgba(24, 24, 27, 0.06);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-sans: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #111216;
+      --surface: #181a20;
+      --surface-muted: #20232b;
+      --surface-soft: #1e2129;
+      --text: #f4f4f5;
+      --text-secondary: #d4d4d8;
+      --muted: #a1a1aa;
+      --border: #2a2d37;
+      --border-strong: #3a3e4c;
+      --primary: #818cf8;
+      --primary-hover: #6366f1;
+      --primary-soft: rgba(129, 140, 248, 0.14);
+      --primary-ink: #e0e7ff;
+      --accent: #2dd4bf;
+      --accent-soft: rgba(45, 212, 191, 0.14);
+      --banner-bg: #242138;
+      --banner-ink: #f8fafc;
+      --banner-accent: #fcd34d;
+      --success: #4ade80;
+      --success-bg: rgba(34, 197, 94, 0.16);
+      --danger: #f87171;
+      --danger-bg: rgba(239, 68, 68, 0.16);
+      --wrong-neutral: #cbd5e1;
+      --wrong-neutral-bg: rgba(148, 163, 184, 0.16);
+      --info: #38bdf8;
+      --info-bg: rgba(56, 189, 248, 0.15);
+      --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.38);
     }
 
     * {
@@ -32,155 +83,705 @@
       padding: 0;
     }
 
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      min-height: 100vh;
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* Header */
-    .topbar {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: #fff;
-      padding: 18px 24px;
-      box-shadow: 0 4px 16px rgba(30, 27, 75, 0.24);
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 0.24s var(--ease), color 0.24s var(--ease);
+    }
+
+    button, input {
+      font-family: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+
+    /* ================= OPENING SCREEN ================= */
+    .opening-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 1;
+      transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
+    }
+
+    .opening-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-inner {
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      padding: 36px 28px;
+      border-radius: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      animation: openBgIn 0.35s var(--ease) both;
+    }
+
+    .opening-mascot-wrap {
+      position: relative;
+      width: 170px;
+      height: 160px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      animation: mascotScaleIn 0.4s 0.1s var(--ease) both;
+    }
+
+    .opening-props {
+      animation: fadeUpSoft 0.32s 0.22s var(--ease) both;
+    }
+
+    .opening-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      animation: fadeUpSoft 0.28s 0.26s var(--ease) both;
+    }
+
+    .opening-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      color: var(--text);
+      animation: fadeUpSoft 0.28s 0.34s var(--ease) both;
+    }
+
+    .opening-tagline {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      margin-bottom: 24px;
+      animation: fadeUpSoft 0.28s 0.4s var(--ease) both;
+    }
+
+    .opening-cta {
+      animation: fadeUpSoft 0.28s 0.48s var(--ease) both;
+    }
+
+    .mascot-eye {
+      transform-origin: center;
+      animation: owlBlink 4.8s infinite;
+    }
+
+    @keyframes openBgIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes mascotScaleIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeUpSoft {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes owlBlink {
+      0%, 94%, 100% { transform: scaleY(1); }
+      97% { transform: scaleY(0.1); }
+    }
+
+    /* ================= HEADER & NAV ================= */
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .topbar-inner {
-      max-width: 1240px;
+    [data-theme="dark"] .site-header {
+      background: rgba(17, 18, 22, 0.88);
+    }
+
+    .header-inner {
+      max-width: 1180px;
       margin: 0 auto;
+      padding: 12px 20px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    .nav-link:hover {
+      background: var(--surface-muted);
+      color: var(--text);
+    }
+
+    .nav-link.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.16s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.96);
+    }
+
+    .install-pill {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .install-pill.visible {
+      display: inline-flex;
+    }
+
+    /* Mobile bottom nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .mobile-nav-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      padding: 6px 4px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .mobile-nav-btn.active {
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    @media (max-width: 760px) {
+      .main-nav {
+        display: none;
+      }
+      .mobile-nav {
+        display: grid;
+      }
+      body {
+        padding-bottom: 68px;
+      }
+    }
+
+    /* ================= MAIN CONTAINER & BUTTONS ================= */
+    .app-main {
+      flex: 1;
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    .view {
+      display: none;
+      animation: viewEnter 0.24s var(--ease) both;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    @keyframes viewEnter {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      min-height: 44px;
+      border-radius: 11px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s var(--ease), background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--surface-muted);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn-accent {
+      background: var(--accent-soft);
+      border-color: transparent;
+      color: var(--accent);
+    }
+
+    [data-theme="dark"] .btn-accent {
+      color: var(--accent);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      border-radius: 9px;
+    }
+
+    /* ================= BERANDA: HERO & KISI-KISI ================= */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 32px;
+      align-items: center;
+      padding: 20px 0 32px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.4vw, 3.1rem);
+      font-weight: 700;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 54ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 12px;
     }
 
-    .brand-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 8px;
+      }
+      .hero-visual {
+        order: -1;
+        padding: 20px;
+      }
+    }
+
+    /* KISI-KISI EDITORIAL BANNER */
+    .kisikisi-banner {
+      background: var(--banner-bg);
+      color: var(--banner-ink);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin: 8px 0 36px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    .kisikisi-badge {
+      display: inline-block;
+      background: var(--banner-accent);
+      color: #18181b;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .kisikisi-heading {
+      font-size: clamp(1.35rem, 3.1vw, 2.05rem);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .kisikisi-sub {
+      font-size: 0.98rem;
+      color: rgba(250, 248, 245, 0.86);
+      max-width: 62ch;
+    }
+
+    /* Section header */
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ================= SUBJECT GRID & CARDS ================= */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .subject-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+
+    .subject-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .subject-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .subject-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--primary-soft);
+      color: var(--primary);
       display: grid;
       place-items: center;
-      font-size: 17px;
-      font-weight: 800;
-      color: #c7d2fe;
+      flex-shrink: 0;
     }
 
-    .brand h1 {
-      font-size: 1.15rem;
+    .subject-count {
+      font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.2px;
+      color: var(--text-secondary);
+      background: var(--surface-muted);
+      padding: 5px 12px;
+      border-radius: 999px;
     }
 
-    .brand p {
+    .subject-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .subject-meta {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .subject-draft {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
       font-size: 0.82rem;
-      opacity: 0.92;
+      color: var(--text-secondary);
     }
 
-    .topbar-actions {
+    .subject-draft-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .subject-draft-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .subject-actions {
       display: flex;
-      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .pill {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      display: inline-flex;
+    .subject-actions .btn-primary {
+      flex: 1;
+    }
+
+    /* ================= QUIZ WORKSPACE ================= */
+    .quiz-topbar {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .mode-btn {
-      background: #fff;
-      color: var(--primary-dark);
-      border: none;
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
+    .quiz-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .mode-btn:hover {
-      background: #c7d2fe;
-    }
-
-    /* Layout */
-    .container {
-      max-width: 1240px;
-      margin: 24px auto;
-      padding: 0 18px 48px;
+    .quiz-layout {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr 290px;
       gap: 24px;
       align-items: start;
     }
 
     @media (max-width: 960px) {
-      .container {
+      .quiz-layout {
         grid-template-columns: 1fr;
       }
     }
 
-    /* Cards */
-    .card {
-      background: var(--card);
-      border: 1px solid #cbd5e1;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
       padding: 26px;
+      box-shadow: var(--shadow-sm);
     }
 
-    /* Progress Bar */
+    @media (max-width: 600px) {
+      .quiz-card {
+        padding: 18px;
+      }
+    }
+
     .progress-wrap {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .progress-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
       color: var(--muted);
       margin-bottom: 6px;
     }
 
     .progress-track {
-      height: 10px;
-      background: #e2e8f0;
+      height: 8px;
+      background: var(--surface-muted);
       border-radius: 999px;
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), #0d9488);
+      background: var(--primary);
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.25s var(--ease);
     }
 
-    /* Question Meta */
     .q-meta {
       display: flex;
       flex-wrap: wrap;
@@ -189,22 +790,20 @@
     }
 
     .tag {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 700;
       padding: 4px 11px;
       border-radius: 999px;
-      letter-spacing: 0.2px;
     }
 
     .tag-num {
       background: var(--primary);
-      color: #fff;
+      color: #ffffff;
     }
 
     .tag-type {
-      background: #ccfbf1;
-      color: #115e59;
-      border: 1px solid #99f6e4;
+      background: var(--accent-soft);
+      color: var(--accent);
     }
 
     .tag-cog {
@@ -213,47 +812,83 @@
     }
 
     .tag-topic {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid var(--border);
+      background: var(--surface-muted);
+      color: var(--text-secondary);
     }
 
     .q-narasi {
-      background: #f8fafc;
-      border-left: 4px solid var(--primary);
-      padding: 16px 18px;
+      background: var(--surface-soft);
+      border-left: 3px solid var(--primary);
+      padding: 15px 18px;
       border-radius: 0 12px 12px 0;
       margin-bottom: 18px;
-      font-size: 0.97rem;
-      color: #334155;
-      line-height: 1.85;
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
     }
 
     .q-text {
       font-size: 1.04rem;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 20px;
-      font-weight: 600;
-      line-height: 1.8;
+      line-height: 1.75;
+    }
+
+    /* Preserved components from source files */
+    .math {
+      font-family: 'Cambria Math', 'Times New Roman', Georgia, serif;
+      font-size: 1.05em;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.9em;
+      line-height: 1.15;
+    }
+
+    .frac .num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 2px;
+      text-align: center;
+    }
+
+    .frac .den {
+      padding: 2px 4px 0;
+      text-align: center;
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: baseline;
+    }
+
+    .sqrt-rad {
+      border-top: 1.5px solid currentColor;
+      padding: 0 3px;
+      margin-left: 1px;
     }
 
     .quote-box {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-left: 4px solid var(--accent);
       border-radius: 0 10px 10px 0;
       padding: 12px 16px;
       margin: 10px 0;
       font-style: italic;
-      color: #1e293b;
+      color: var(--text);
     }
 
-    /* Timeline 14 */
     .timeline-box {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       margin: 12px 0 4px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -267,38 +902,36 @@
     }
 
     .tl-item {
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid var(--border);
       border-radius: 10px;
       padding: 12px;
       text-align: center;
-      background: #f8fafc;
-      color: #475569;
+      background: var(--surface-soft);
+      color: var(--text-secondary);
     }
 
     .tl-item.active-bold {
-      border: 2.5px solid var(--primary);
-      background: var(--primary-light);
-      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary-ink);
       font-weight: 800;
-      box-shadow: 0 4px 12px rgba(67, 56, 202, 0.14);
     }
 
     .tl-year {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 800;
       margin-bottom: 4px;
     }
 
     .tl-label {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
     }
 
-    /* Archival Photo Slot (for authentic historical images) */
     .archival-slot {
-      background: #ffffff;
-      border: 1.5px dashed #818cf8;
+      background: var(--surface);
+      border: 1.5px dashed var(--primary);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       margin: 12px 0 4px;
       text-align: center;
     }
@@ -307,7 +940,7 @@
       max-width: 100%;
       max-height: 290px;
       border-radius: 8px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--border);
       display: none;
       margin: 0 auto 10px;
       object-fit: contain;
@@ -318,13 +951,13 @@
     }
 
     .archival-placeholder {
-      background: #f5f3ff;
-      border: 1px solid #ddd6fe;
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 18px 14px;
-      color: #312e81;
-      font-size: 0.9rem;
-      line-height: 1.65;
+      padding: 16px 14px;
+      color: var(--primary-ink);
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
     .upload-label {
@@ -337,66 +970,88 @@
       font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.15s;
-    }
-
-    .upload-label:hover {
-      background: var(--primary-dark);
     }
 
     .upload-input {
       display: none;
     }
 
-    /* Options PG */
+    /* Keep Physics SVG legible in both Light & Dark Mode */
+    .visual-box {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 12px 0 4px;
+      text-align: center;
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: #334155;
+      background: #f5f3ff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /* Options PG & Check */
     .options-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .option-item {
+    .option-item,
+    .check-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 18px;
-      border: 1.5px solid #cbd5e1;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border-strong);
       border-radius: 12px;
       cursor: pointer;
-      transition: all 0.18s ease;
-      background: #fff;
-      line-height: 1.75;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.7;
+      transition: border-color 0.16s var(--ease), background-color 0.16s var(--ease);
     }
 
-    .option-item:hover {
+    .option-item:hover,
+    .check-item:hover {
       border-color: var(--primary);
-      background: var(--bg);
+      background: var(--surface-soft);
     }
 
-    .option-item.selected {
+    .option-item.selected,
+    .check-item.selected {
       border-color: var(--primary);
-      background: var(--primary-light);
-      box-shadow: 0 0 0 2px rgba(67, 56, 202, 0.16);
+      background: var(--primary-soft);
     }
 
-    .option-item.correct {
+    .option-item.correct,
+    .check-item.correct {
       border-color: var(--success);
       background: var(--success-bg);
     }
 
-    .option-item.wrong {
-      border-color: var(--danger);
-      background: var(--danger-bg);
+    .option-item.wrong,
+    .check-item.wrong {
+      border-color: var(--wrong-neutral);
+      background: var(--wrong-neutral-bg);
     }
 
     .option-letter {
       width: 28px;
       height: 28px;
       border-radius: 8px;
-      background: #f1f5f9;
+      background: var(--surface-muted);
       color: var(--text);
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       display: grid;
       place-items: center;
       flex-shrink: 0;
@@ -414,112 +1069,15 @@
     }
 
     .option-item.wrong .option-letter {
-      background: var(--danger);
+      background: var(--wrong-neutral);
       color: #fff;
-    }
-
-    /* PGK Benar/Salah Table */
-    .bs-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #cbd5e1;
-    }
-
-    .bs-table th {
-      background: var(--primary-dark);
-      color: #fff;
-      padding: 12px 14px;
-      font-size: 0.86rem;
-      text-align: left;
-    }
-
-    .bs-table th.center,
-    .bs-table td.center {
-      text-align: center;
-      width: 82px;
-    }
-
-    .bs-table td {
-      padding: 14px;
-      border-top: 1px solid #e2e8f0;
-      font-size: 0.95rem;
-      vertical-align: middle;
-      line-height: 1.75;
-    }
-
-    .bs-table tr.row-correct {
-      background: var(--success-bg);
-    }
-
-    .bs-table tr.row-wrong {
-      background: var(--danger-bg);
-    }
-
-    .bs-btn {
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1.5px solid #cbd5e1;
-      background: #fff;
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: 0.15s;
-    }
-
-    .bs-btn.active-b {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .bs-btn.active-s {
-      background: #334155;
-      color: #fff;
-      border-color: #334155;
-    }
-
-    /* PGK Checklist */
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 14px 18px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.18s;
-      background: #fff;
-      line-height: 1.75;
-    }
-
-    .check-item:hover {
-      border-color: var(--primary);
-      background: var(--bg);
-    }
-
-    .check-item.selected {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .check-item.correct {
-      border-color: var(--success);
-      background: var(--success-bg);
-    }
-
-    .check-item.wrong {
-      border-color: var(--danger);
-      background: var(--danger-bg);
     }
 
     .check-box {
       width: 22px;
       height: 22px;
       border-radius: 6px;
-      border: 2px solid #94a3b8;
+      border: 2px solid var(--muted);
       display: grid;
       place-items: center;
       flex-shrink: 0;
@@ -534,49 +1092,114 @@
       border-color: var(--primary);
     }
 
+    /* Benar / Salah Table */
+    .bs-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+    }
+
+    .bs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .bs-table th {
+      background: var(--surface-muted);
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .bs-table th.center,
+    .bs-table td.center {
+      text-align: center;
+      width: 72px;
+    }
+
+    .bs-table td {
+      padding: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.94rem;
+      vertical-align: middle;
+      line-height: 1.7;
+    }
+
+    .bs-table tr.row-correct {
+      background: var(--success-bg);
+    }
+
+    .bs-table tr.row-wrong {
+      background: var(--wrong-neutral-bg);
+    }
+
+    .bs-btn {
+      min-width: 40px;
+      min-height: 36px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .bs-btn.active-b {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .bs-btn.active-s {
+      background: var(--text);
+      color: var(--surface);
+      border-color: var(--text);
+    }
+
     /* Pembahasan Box */
     .bahas-box {
       margin-top: 22px;
-      padding: 20px;
+      padding: 18px 20px;
       border-radius: 12px;
-      background: #eef2ff;
-      border: 1.5px solid #a5b4fc;
+      background: var(--primary-soft);
+      border: 1px solid var(--border-strong);
       display: none;
-      animation: fadeIn 0.25s ease;
     }
 
     .bahas-box.show {
       display: block;
+      animation: viewEnter 0.2s var(--ease) both;
     }
 
     .bahas-title {
       font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.98rem;
+      color: var(--primary-ink);
+      margin-bottom: 8px;
+      font-size: 0.96rem;
     }
 
     .bahas-key {
       display: inline-block;
       background: var(--primary);
-      color: #fff;
+      color: #ffffff;
       padding: 4px 12px;
       border-radius: 6px;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 700;
       margin-bottom: 10px;
     }
 
     .bahas-text {
-      font-size: 0.95rem;
-      color: #1e293b;
-      line-height: 1.9;
+      font-size: 0.94rem;
+      color: var(--text);
+      line-height: 1.85;
     }
 
-    /* Action Footer */
     .q-footer {
       display: flex;
       flex-wrap: wrap;
@@ -585,7 +1208,7 @@
       gap: 12px;
       margin-top: 24px;
       padding-top: 18px;
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--border);
     }
 
     .btn-group {
@@ -594,72 +1217,26 @@
       flex-wrap: wrap;
     }
 
-    .btn {
-      padding: 10px 18px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
-      background: #fff;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.18s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn:hover:not(:disabled) {
-      background: #f1f5f9;
-    }
-
-    .btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background: var(--primary-dark);
-    }
-
-    .btn-bahas {
-      background: var(--accent-light);
-      color: #115e59;
-      border-color: #2dd4bf;
-    }
-
-    .btn-bahas:hover:not(:disabled) {
-      background: #99f6e4;
-    }
-
-    .btn-finish {
-      background: #0f766e;
-      color: #fff;
-      border-color: #0f766e;
-    }
-
-    .btn-finish:hover:not(:disabled) {
-      background: #115e59;
-    }
-
     /* Sidebar Navigator */
+    .sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      position: sticky;
+      top: 84px;
+    }
+
     .sidebar-card h3 {
-      font-size: 1rem;
+      font-size: 0.96rem;
       margin-bottom: 10px;
-      color: var(--primary-dark);
     }
 
     .legend {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--muted);
       margin-bottom: 14px;
     }
@@ -671,8 +1248,8 @@
     }
 
     .dot {
-      width: 11px;
-      height: 11px;
+      width: 10px;
+      height: 10px;
       border-radius: 3px;
       display: inline-block;
     }
@@ -680,31 +1257,24 @@
     .nav-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 7px;
     }
 
     .nav-btn {
-      height: 38px;
-      border-radius: 9px;
-      border: 1.5px solid #cbd5e1;
-      background: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.15s;
+      height: 36px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
       color: var(--text);
-    }
-
-    .nav-btn:hover {
-      border-color: var(--primary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
     }
 
     .nav-btn.current {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(67, 56, 202, 0.25);
-      background: var(--primary-light);
-      color: var(--primary-dark);
+      background: var(--primary-soft);
+      color: var(--primary);
     }
 
     .nav-btn.answered {
@@ -720,140 +1290,608 @@
     }
 
     .nav-btn.eval-wrong {
-      background: var(--danger);
+      background: var(--wrong-neutral);
       color: #fff;
-      border-color: var(--danger);
+      border-color: var(--wrong-neutral);
     }
 
-    .summary-banner {
-      display: none;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #1e1b4b, #4338ca);
-      color: #fff;
-      border-radius: var(--radius);
-      padding: 22px 24px;
-      box-shadow: var(--shadow);
+    /* ================= RESULT VIEW ================= */
+    .result-card {
+      max-width: 720px;
+      margin: 12px auto 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 30px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
     }
 
-    .summary-banner.show {
+    .result-score-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 16px auto 20px;
+      background: var(--primary-soft);
+      border: 6px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-score-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .result-score-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+
+    @media (max-width: 600px) {
+      .result-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 10px;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .stat-box span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .result-actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ================= RIWAYAT & PENGATURAN ================= */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .overview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .overview-card span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .overview-card strong {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .history-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .history-score {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .settings-stack {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
       gap: 16px;
     }
 
-    .score-big {
-      font-size: 2.3rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: #c7d2fe;
+    .setting-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
+    .setting-row h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .setting-row p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      max-width: 48ch;
+    }
+
+    .empty-state {
+      background: var(--surface);
+      border: 1px dashed var(--border-strong);
+      border-radius: 16px;
+      padding: 36px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ================= FOOTER ================= */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .site-footer strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-badge">SEJ</div>
-        <div>
-          <h1>Asesmen PSAS Ganjil Sejarah — Kelas XII/F</h1>
-          <p>Perjuangan Kemerdekaan, Demokrasi Liberal &amp; Demokrasi Terpimpin • 40 Soal (PG, PGK, Benar/Salah)</p>
-        </div>
+  <!-- ================= OPENING SCREEN ================= -->
+  <div id="openingScreen" class="opening-screen hidden" role="dialog" aria-modal="true" aria-labelledby="openingTitle">
+    <div class="opening-inner">
+      <div class="opening-mascot-wrap">
+        <!-- Maskot Edukasi Imut (Lumi Si Burung Hantu Belajar) + Buku & Pensil -->
+        <svg width="164" height="154" viewBox="0 0 180 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Dekorasi buku & pensil di sekitar maskot -->
+          <g class="opening-props">
+            <rect x="12" y="114" width="38" height="28" rx="5" transform="rotate(-10 12 114)" fill="#E0E7FF" stroke="#4338CA" stroke-width="2.2"/>
+            <line x1="19" y1="122" x2="40" y2="118" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="129" x2="36" y2="126" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/>
+            <g transform="translate(132 104) rotate(18)">
+              <rect x="0" y="6" width="12" height="32" rx="3" fill="#FDE68A" stroke="#B45309" stroke-width="2"/>
+              <polygon points="0,6 12,6 6,-4" fill="#FEF3C7" stroke="#B45309" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="6" cy="-1" r="1.5" fill="#18181B"/>
+            </g>
+            <circle cx="28" cy="40" r="4" fill="#FBBF24"/>
+            <circle cx="152" cy="36" r="5" fill="#A5B4FC"/>
+          </g>
+          <!-- Badan Maskot -->
+          <ellipse cx="90" cy="144" rx="44" ry="8" fill="#E4E2DD" opacity="0.7"/>
+          <rect x="46" y="42" width="88" height="92" rx="44" fill="#4338CA"/>
+          <!-- Telinga kecil -->
+          <path d="M56 50 L44 30 L68 42 Z" fill="#3730A3"/>
+          <path d="M124 50 L136 30 L112 42 Z" fill="#3730A3"/>
+          <!-- Perut lembut -->
+          <ellipse cx="90" cy="108" rx="28" ry="24" fill="#EEF2FF"/>
+          <!-- Wajah / Lingkar mata -->
+          <circle cx="74" cy="70" r="15" fill="#FFFFFF"/>
+          <circle cx="106" cy="70" r="15" fill="#FFFFFF"/>
+          <!-- Kacamata bulat -->
+          <circle cx="74" cy="70" r="16" stroke="#18181B" stroke-width="2.4"/>
+          <circle cx="106" cy="70" r="16" stroke="#18181B" stroke-width="2.4"/>
+          <line x1="90" y1="70" x2="90" y2="70" stroke="#18181B" stroke-width="2.4"/>
+          <path d="M90 69 Q90 67 90 69" stroke="#18181B" stroke-width="2.4"/>
+          <!-- Pupil mata berkedip -->
+          <g class="mascot-eye">
+            <circle cx="75" cy="70" r="6" fill="#18181B"/>
+            <circle cx="77" cy="68" r="2" fill="#FFFFFF"/>
+            <circle cx="105" cy="70" r="6" fill="#18181B"/>
+            <circle cx="107" cy="68" r="2" fill="#FFFFFF"/>
+          </g>
+          <!-- Paruh & pipi merona -->
+          <polygon points="85,78 95,78 90,85" fill="#F59E0B"/>
+          <ellipse cx="59" cy="82" rx="5" ry="3" fill="#FDA4AF" opacity="0.8"/>
+          <ellipse cx="121" cy="82" rx="5" ry="3" fill="#FDA4AF" opacity="0.8"/>
+          <!-- Buku terbuka di depan dada -->
+          <path d="M58 106 Q74 100 90 108 Q106 100 122 106 L122 132 Q106 126 90 134 Q74 126 58 132 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="2.2" stroke-linejoin="round"/>
+          <line x1="90" y1="108" x2="90" y2="134" stroke="#18181B" stroke-width="2"/>
+        </svg>
       </div>
-      <div class="topbar-actions">
-        <span class="pill" id="answeredCount">Terjawab: 0 / 40</span>
-        <button class="mode-btn" id="toggleAutoBahas" onclick="toggleModeBahas()">
-          Mode Bahas Langsung: OFF
+      <span class="opening-badge">Platform Latihan Terpadu</span>
+      <h1 id="openingTitle" class="opening-title">Website by Rasfarilmi</h1>
+      <p class="opening-tagline">Latihan soal terstruktur berdasarkan kisi-kisi untuk belajar lebih tenang, terarah, dan terukur.</p>
+      <div class="opening-cta">
+        <button class="btn btn-primary" onclick="dismissOpening()">Mulai Belajar →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="brand" onclick="navigate('home')" aria-label="Kembali ke Beranda">
+        <div class="brand-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <strong>Ruang Belajar</strong>
+          <span>Website by Rasfarilmi</span>
+        </div>
+      </button>
+
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <button class="nav-link active" data-nav="home" onclick="navigate('home')">Beranda</button>
+        <button class="nav-link" data-nav="subjects" onclick="navigate('subjects')">Mata Pelajaran</button>
+        <button class="nav-link" data-nav="history" onclick="navigate('history')">Riwayat</button>
+        <button class="nav-link" data-nav="settings" onclick="navigate('settings')">Pengaturan</button>
+      </nav>
+
+      <div class="header-tools">
+        <button id="installBtn" class="install-pill" onclick="triggerInstall()" title="Instal Aplikasi">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Instal
+        </button>
+        <button id="themeBtn" class="icon-btn" onclick="toggleTheme()" aria-label="Ubah Tema Terang atau Gelap" title="Ubah Tema">
+          <span id="themeIcon">🌙</span>
         </button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <div>
-      <!-- Hasil Akhir Banner -->
-      <section class="summary-banner" id="summaryBanner">
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="app-main">
+
+    <!-- VIEW 1: BERANDA -->
+    <section id="view-home" class="view active">
+      <div class="hero">
         <div>
-          <div style="font-size:0.85rem; opacity:0.9; font-weight:600;">HASIL EVALUASI ASESMEN SEJARAH</div>
-          <div class="score-big" id="finalScoreText">0 / 100</div>
-          <div style="font-size:0.9rem; margin-top:4px;" id="finalDetailText">Benar: 0 dari 40 soal</div>
+          <div class="hero-eyebrow">
+            <span>✦ Platform Latihan Soal Terpadu</span>
+          </div>
+          <h1 class="hero-title">Belajar Lebih Mudah, Persiapan Lebih Terarah.</h1>
+          <p class="hero-desc">Pilih mata pelajaran, kerjakan soal, dan ukur pemahamanmu melalui latihan yang telah disiapkan.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="navigate('subjects')">Pilih Mata Pelajaran →</button>
+            <button class="btn" onclick="navigate('history')">Lihat Riwayat</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <svg width="210" height="180" viewBox="0 0 220 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi maskot belajar">
+            <rect x="20" y="138" width="44" height="30" rx="6" transform="rotate(-8 20 138)" fill="#E0E7FF" stroke="#4338CA" stroke-width="2.2"/>
+            <line x1="28" y1="148" x2="52" y2="144" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/>
+            <g transform="translate(166 122) rotate(14)">
+              <rect x="0" y="8" width="13" height="36" rx="3" fill="#FDE68A" stroke="#B45309" stroke-width="2"/>
+              <polygon points="0,8 13,8 6.5,-3" fill="#FEF3C7" stroke="#B45309" stroke-width="2" stroke-linejoin="round"/>
+            </g>
+            <ellipse cx="110" cy="166" rx="54" ry="9" fill="#E4E2DD" opacity="0.65"/>
+            <rect x="62" y="42" width="96" height="104" rx="48" fill="#4338CA"/>
+            <path d="M72 52 L58 28 L86 43 Z" fill="#3730A3"/>
+            <path d="M148 52 L162 28 L134 43 Z" fill="#3730A3"/>
+            <ellipse cx="110" cy="116" rx="32" ry="26" fill="#EEF2FF"/>
+            <circle cx="92" cy="74" r="16" fill="#FFFFFF"/>
+            <circle cx="128" cy="74" r="16" fill="#FFFFFF"/>
+            <circle cx="92" cy="74" r="17" stroke="#18181B" stroke-width="2.5"/>
+            <circle cx="128" cy="74" r="17" stroke="#18181B" stroke-width="2.5"/>
+            <g class="mascot-eye">
+              <circle cx="93" cy="74" r="6.5" fill="#18181B"/>
+              <circle cx="95" cy="71.5" r="2.2" fill="#FFFFFF"/>
+              <circle cx="127" cy="74" r="6.5" fill="#18181B"/>
+              <circle cx="129" cy="71.5" r="2.2" fill="#FFFFFF"/>
+            </g>
+            <polygon points="105,83 115,83 110,91" fill="#F59E0B"/>
+            <ellipse cx="75" cy="87" rx="5.5" ry="3.2" fill="#FDA4AF" opacity="0.8"/>
+            <ellipse cx="145" cy="87" rx="5.5" ry="3.2" fill="#FDA4AF" opacity="0.8"/>
+            <path d="M76 114 Q93 107 110 116 Q127 107 144 114 L144 142 Q127 135 110 144 Q93 135 76 142 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="2.2" stroke-linejoin="round"/>
+            <line x1="110" y1="116" x2="110" y2="144" stroke="#18181B" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- BANNER PENTING KISI-KISI -->
+      <aside class="kisikisi-banner" aria-label="Informasi Kisi-Kisi">
+        <div>
+          <span class="kisikisi-badge">Informasi Penting</span>
+          <h2 class="kisikisi-heading">SOAL INI DIBUAT BERDASARKAN KISI-KISI</h2>
+          <p class="kisikisi-sub">Soal-soal dalam website ini disusun berdasarkan kisi-kisi sebagai panduan latihan dan persiapan belajar.</p>
+        </div>
+        <button class="btn btn-primary" onclick="navigate('subjects')">Mulai Latihan</button>
+      </aside>
+
+      <!-- RINGKASAN MATA PELAJARAN -->
+      <div class="section-head">
+        <div>
+          <h2>Pilih Mata Pelajaran</h2>
+          <p>Pilih mata pelajaran yang tersedia untuk mulai mengerjakan atau melanjutkan progres.</p>
+        </div>
+        <button class="btn btn-sm" onclick="navigate('subjects')">Lihat Semua →</button>
+      </div>
+      <div id="homeSubjectGrid" class="subject-grid"></div>
+    </section>
+
+    <!-- VIEW 2: MATA PELAJARAN -->
+    <section id="view-subjects" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Pilih Mata Pelajaran</h2>
+          <p>Seluruh bank soal terintegrasi otomatis dari file mata pelajaran Anda.</p>
+        </div>
+      </div>
+      <div id="subjectsGrid" class="subject-grid"></div>
+    </section>
+
+    <!-- VIEW 3: PENGERJAAN SOAL -->
+    <section id="view-quiz" class="view">
+      <div class="quiz-topbar">
+        <div class="quiz-title-group">
+          <button class="btn btn-sm" onclick="exitQuizToSubjects()">← Mata Pelajaran</button>
+          <div>
+            <h2 id="quizSubjectTitle" style="font-family: var(--font-serif); font-size: 1.35rem; line-height:1.2;"></h2>
+            <span id="quizAnsweredCount" style="font-size: 0.82rem; color: var(--muted); font-weight: 600;">Terjawab: 0 / 0</span>
+          </div>
         </div>
         <div class="btn-group">
-          <button class="btn" onclick="resetQuiz()">Ulangi Latihan</button>
-          <button class="btn btn-bahas" onclick="showAllBahasMode()">Buka Semua Pembahasan</button>
+          <button id="toggleAutoBahasBtn" class="btn btn-sm" onclick="toggleAutoBahas()">Mode Bahas Langsung: OFF</button>
+          <button id="finishQuizTopBtn" class="btn btn-sm btn-primary" onclick="finishQuiz()">Selesai &amp; Nilai</button>
         </div>
-      </section>
-
-      <!-- Card Soal Utama -->
-      <section class="card" id="questionCard">
-        <div class="progress-wrap">
-          <div class="progress-header">
-            <span id="progressLabel">Soal 1 dari 40</span>
-            <span id="progressPercent">2.5%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-        </div>
-
-        <div class="q-meta" id="qMeta"></div>
-        <div class="q-narasi" id="qNarasi"></div>
-        <div class="q-text" id="qText"></div>
-
-        <div id="qInputArea"></div>
-
-        <!-- Fitur Bahas -->
-        <div class="bahas-box" id="bahasBox">
-          <div class="bahas-title">📜 Pembahasan Soal</div>
-          <div class="bahas-key" id="bahasKey"></div>
-          <div class="bahas-text" id="bahasText"></div>
-        </div>
-
-        <div class="q-footer">
-          <div class="btn-group">
-            <button class="btn" id="prevBtn" onclick="goTo(currentIndex - 1)">← Sebelumnya</button>
-            <button class="btn btn-primary" id="nextBtn" onclick="goTo(currentIndex + 1)">Selanjutnya →</button>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-bahas" id="bahasBtn" onclick="toggleBahas()">💡 Bahas Soal Ini</button>
-            <button class="btn btn-finish" onclick="finishQuiz()">✅ Selesai &amp; Nilai</button>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Sidebar Navigasi -->
-    <aside class="card sidebar-card">
-      <h3>Navigasi Soal (1–40)</h3>
-      <div class="legend">
-        <span><i class="dot" style="background:#fff; border:1.5px solid #cbd5e1;"></i> Belum</span>
-        <span><i class="dot" style="background:var(--primary);"></i> Dijawab</span>
-        <span><i class="dot" style="background:var(--success);"></i> Benar</span>
-        <span><i class="dot" style="background:var(--danger);"></i> Salah</span>
       </div>
-      <div class="nav-grid" id="navGrid"></div>
-      <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">
-        <strong>Struktur Kisi-Kisi Sejarah:</strong><br />
-        • No. 1–30: Pilihan Ganda (PG)<br />
-        • No. 31–35: PG Kompleks (Checklist 3 jawaban)<br />
-        • No. 36–40: Benar / Salah
+
+      <div class="quiz-layout">
+        <div>
+          <div class="quiz-card">
+            <div class="progress-wrap">
+              <div class="progress-header">
+                <span id="progressLabel">Soal 1</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-track">
+                <div id="progressFill" class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div id="qMeta" class="q-meta"></div>
+            <div id="qNarasi" class="q-narasi"></div>
+            <div id="qText" class="q-text"></div>
+            <div id="qInputArea"></div>
+
+            <div id="bahasBox" class="bahas-box">
+              <div class="bahas-title">Pembahasan Soal</div>
+              <div id="bahasKey" class="bahas-key"></div>
+              <div id="bahasText" class="bahas-text"></div>
+            </div>
+
+            <div class="q-footer">
+              <div class="btn-group">
+                <button id="prevBtn" class="btn" onclick="goToQuestion(currentQIdx - 1)">← Sebelumnya</button>
+                <button id="nextBtn" class="btn btn-primary" onclick="goToQuestion(currentQIdx + 1)">Berikutnya →</button>
+              </div>
+              <div class="btn-group">
+                <button id="bahasBtn" class="btn btn-accent" onclick="toggleBahasCurrent()">Bahas Soal Ini</button>
+                <button id="finishQuizBtn" class="btn btn-primary" onclick="finishQuiz()">Selesai</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidebar-card">
+          <h3>Navigasi Nomor Soal</h3>
+          <div class="legend">
+            <span><i class="dot" style="background:var(--surface); border:1.5px solid var(--border-strong);"></i> Belum</span>
+            <span><i class="dot" style="background:var(--primary);"></i> Dijawab</span>
+            <span><i class="dot" style="background:var(--success);"></i> Benar</span>
+            <span><i class="dot" style="background:var(--wrong-neutral);"></i> Salah</span>
+          </div>
+          <div id="navGrid" class="nav-grid"></div>
+        </aside>
       </div>
-    </aside>
+    </section>
+
+    <!-- VIEW 4: HASIL PENGERJAAN -->
+    <section id="view-result" class="view">
+      <div class="result-card">
+        <span id="resultSubjectBadge" class="tag tag-type" style="font-size:0.82rem;">Hasil Latihan</span>
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; margin-top: 10px;">Evaluasi Pengerjaan Soal</h2>
+
+        <div class="result-score-ring">
+          <div id="resultScoreNum" class="result-score-num">0</div>
+          <div id="resultPercentText" class="result-score-label">0% Benar</div>
+        </div>
+
+        <div class="result-stats">
+          <div class="stat-box">
+            <strong id="resCorrect" style="color: var(--success);">0</strong>
+            <span>Benar</span>
+          </div>
+          <div class="stat-box">
+            <strong id="resWrong" style="color: var(--danger);">0</strong>
+            <span>Salah</span>
+          </div>
+          <div class="stat-box">
+            <strong id="resUnanswered">0</strong>
+            <span>Tidak Dijawab</span>
+          </div>
+          <div class="stat-box">
+            <strong id="resPercent">0%</strong>
+            <span>Keberhasilan</span>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="openReviewFromResult()">Lihat Pembahasan</button>
+          <button class="btn" onclick="retakeFromResult()">Ulangi Soal</button>
+          <button class="btn" onclick="navigate('home')">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: RIWAYAT & PROGRES -->
+    <section id="view-history" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Riwayat &amp; Progres Belajar</h2>
+          <p>Rekam jejak latihan Anda tersimpan otomatis secara lokal di perangkat ini.</p>
+        </div>
+      </div>
+
+      <div id="historyOverview" class="overview-grid"></div>
+
+      <div class="section-head" style="margin-top: 8px;">
+        <div>
+          <h3 style="font-size: 1.1rem;">Progres Per Mata Pelajaran</h3>
+        </div>
+      </div>
+      <div id="subjectProgressList" class="subject-grid" style="margin-bottom: 28px;"></div>
+
+      <div class="section-head">
+        <div>
+          <h3 style="font-size: 1.1rem;">Riwayat Pengerjaan</h3>
+        </div>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <!-- VIEW 6: PENGATURAN -->
+    <section id="view-settings" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Pengaturan</h2>
+          <p>Sesuaikan tampilan, pengalaman pembuka, dan kelola data lokal Anda.</p>
+        </div>
+      </div>
+
+      <div class="settings-stack">
+        <div class="setting-row">
+          <div>
+            <h3>Mode Tampilan (Terang / Gelap)</h3>
+            <p>Ubah tema warna antarmuka. Pilihan tema tersimpan otomatis.</p>
+          </div>
+          <button id="settingThemeBtn" class="btn" onclick="toggleTheme()">Tema: Terang</button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>Layar Pembuka (Opening Screen)</h3>
+            <p>Secara default layar pembuka hanya tampil saat pertama kali mengunjungi website.</p>
+          </div>
+          <button class="btn" onclick="showOpeningPreview()">Tampilkan Opening</button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>Instal sebagai Aplikasi (PWA)</h3>
+            <p id="pwaSettingDesc">Pasang platform ini ke layar utama HP atau desktop untuk akses cepat dan dukungan offline.</p>
+          </div>
+          <button id="settingInstallBtn" class="btn btn-primary" onclick="triggerInstall()" disabled>Siapkan Aplikasi</button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>Penyimpanan Data Lokal</h3>
+            <p>Progres pengerjaan dan riwayat nilai tersimpan aman di perangkat dan tidak terhapus saat pembaruan.</p>
+          </div>
+          <button class="btn" style="color: var(--danger);" onclick="confirmClearHistory()">Hapus Riwayat Nilai</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- ================= MOBILE NAVIGATION ================= -->
+  <nav class="mobile-nav" aria-label="Navigasi seluler">
+    <button class="mobile-nav-btn active" data-nav="home" onclick="navigate('home')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Beranda
+    </button>
+    <button class="mobile-nav-btn" data-nav="subjects" onclick="navigate('subjects')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Mapel
+    </button>
+    <button class="mobile-nav-btn" data-nav="history" onclick="navigate('history')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Riwayat
+    </button>
+    <button class="mobile-nav-btn" data-nav="settings" onclick="navigate('settings')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Pengaturan
+    </button>
+  </nav>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <strong>Website by Rasfarilmi</strong>
+  </footer>
+
   <script>
-    // Simpan DataURL foto arsip asli yang diunggah pengguna (khusus No. 6 & No. 15)
-    const uploadedImages = {
-      6: null,
-      15: null
-    };
+    /* ============================================================
+       1. HELPER NAMA MATA PELAJARAN & KOMPONEN SUMBER ASLI
+    ============================================================ */
+    function formatSubjectName(filename) {
+      let clean = String(filename)
+        .replace(/\.html?$/i, "")
+        .replace(/^(sas|psas|pas|pts|uas|uts)\s+/i, "")
+        .replace(/[_-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      return clean.split(" ").map(word => {
+        if (/^b\.$/i.test(word)) return "B.";
+        if (/^[a-z]\.[a-z]+$/i.test(word)) {
+          const parts = word.split(".");
+          return parts[0].toUpperCase() + "." + parts[1].charAt(0).toUpperCase() + parts[1].slice(1).toLowerCase();
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      }).join(" ");
+    }
+
+    // Helper khusus dari file sejarah.html (Slot arsip foto No. 6 & 15)
+    const uploadedImages = { 6: null, 15: null };
 
     function buildArchivalSlot(qNo, defaultFile, title, note) {
       const customSrc = uploadedImages[qNo];
@@ -870,8 +1908,8 @@
           />
           <div id="archivalPh-${qNo}" class="archival-placeholder" style="${customSrc ? 'display:none;' : ''}">
             <strong>📁 Slot Dokumen / Foto Arsip Asli: ${title}</strong><br/>
-            <span style="font-size:0.84rem; color:#475569;">${note}</span><br/>
-            <span style="font-size:0.8rem; color:#64748b;">Letakkan file <code>${defaultFile}</code> di folder yang sama dengan file HTML ini, atau unggah foto arsip aslinya langsung di bawah ini:</span>
+            <span style="font-size:0.84rem;">${note}</span><br/>
+            <span style="font-size:0.8rem; opacity:0.85;">Letakkan file <code>${defaultFile}</code> di folder yang sama, atau unggah foto arsip aslinya langsung di bawah ini:</span>
           </div>
           <label class="upload-label">
             📂 Pilih / Unggah Foto Asli (${defaultFile})
@@ -892,13 +1930,134 @@
       reader.readAsDataURL(file);
     }
 
-    const QUESTIONS = [
-      // ===================== SOAL 1 - 30 (PILIHAN GANDA) =====================
+    // Helper matematika & SVG khusus dari file fisika.html
+    const frac = (n, d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+    const sqrt = (inner) => `<span class="sqrt">√<span class="sqrt-rad">${inner}</span></span>`;
+
+    const SVG_Q4 = `
+      <div class="visual-box">
+        <svg width="500" height="235" viewBox="0 0 500 235" style="width:100%; max-width:500px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="aI" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#6d28d9"/></marker>
+            <marker id="aF" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#0d9488"/></marker>
+            <marker id="aB" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#0369a1"/></marker>
+          </defs>
+          <rect x="8" y="8" width="234" height="104" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+          <text x="18" y="25" font-size="11" font-weight="bold" fill="#3b0764">Ilustrasi (1)</text>
+          <text x="188" y="30" font-size="11" font-weight="bold" fill="#0369a1">B: ⊗ ⊗</text>
+          <text x="188" y="48" font-size="11" font-weight="bold" fill="#0369a1">    ⊗ ⊗</text>
+          <line x1="88" y1="95" x2="88" y2="38" stroke="#6d28d9" stroke-width="2.6" marker-end="url(#aI)"/>
+          <text x="74" y="46" font-size="11" font-weight="bold" fill="#6d28d9">I</text>
+          <line x1="88" y1="68" x2="146" y2="68" stroke="#0d9488" stroke-width="2.6" marker-end="url(#aF)"/>
+          <text x="150" y="72" font-size="11" font-weight="bold" fill="#0d9488">F</text>
+
+          <rect x="256" y="8" width="234" height="104" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+          <text x="266" y="25" font-size="11" font-weight="bold" fill="#3b0764">Ilustrasi (2)</text>
+          <text x="436" y="30" font-size="11" font-weight="bold" fill="#0369a1">B: ⊗ ⊗</text>
+          <text x="436" y="48" font-size="11" font-weight="bold" fill="#0369a1">    ⊗ ⊗</text>
+          <line x1="305" y1="84" x2="395" y2="84" stroke="#6d28d9" stroke-width="2.6" marker-end="url(#aI)"/>
+          <text x="399" y="88" font-size="11" font-weight="bold" fill="#6d28d9">I</text>
+          <line x1="350" y1="84" x2="350" y2="34" stroke="#0d9488" stroke-width="2.6" marker-end="url(#aF)"/>
+          <text x="357" y="42" font-size="11" font-weight="bold" fill="#0d9488">F</text>
+
+          <rect x="8" y="122" width="234" height="104" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+          <text x="18" y="139" font-size="11" font-weight="bold" fill="#3b0764">Ilustrasi (3)</text>
+          <line x1="82" y1="210" x2="82" y2="152" stroke="#6d28d9" stroke-width="2.6" marker-end="url(#aI)"/>
+          <text x="68" y="158" font-size="11" font-weight="bold" fill="#6d28d9">I</text>
+          <line x1="82" y1="184" x2="148" y2="184" stroke="#0369a1" stroke-width="2.4" marker-end="url(#aB)"/>
+          <text x="152" y="188" font-size="11" font-weight="bold" fill="#0369a1">B</text>
+          <circle cx="198" cy="176" r="11" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.8"/>
+          <circle cx="198" cy="176" r="3" fill="#0d9488"/>
+          <text x="186" y="204" font-size="11" font-weight="bold" fill="#0d9488">F (⊙)</text>
+
+          <rect x="256" y="122" width="234" height="104" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+          <text x="266" y="139" font-size="11" font-weight="bold" fill="#3b0764">Ilustrasi (4)</text>
+          <text x="436" y="144" font-size="11" font-weight="bold" fill="#0369a1">B: ⊙ ⊙</text>
+          <text x="436" y="162" font-size="11" font-weight="bold" fill="#0369a1">    ⊙ ⊙</text>
+          <line x1="395" y1="164" x2="305" y2="164" stroke="#6d28d9" stroke-width="2.6" marker-end="url(#aI)"/>
+          <text x="292" y="168" font-size="11" font-weight="bold" fill="#6d28d9">I</text>
+          <line x1="350" y1="164" x2="350" y2="212" stroke="#0d9488" stroke-width="2.6" marker-end="url(#aF)"/>
+          <text x="358" y="212" font-size="11" font-weight="bold" fill="#0d9488">F</text>
+        </svg>
+        <div class="visual-caption"><b>Keterangan Simbol:</b> Tanda <b>⊗</b> menyatakan arah medan/gaya <b>masuk tegak lurus bidang gambar</b>, sedangkan tanda <b>⊙</b> menyatakan arah <b>keluar tegak lurus bidang gambar</b>.</div>
+      </div>
+    `;
+
+    const SVG_Q25 = `
+      <div class="visual-box">
+        <svg width="390" height="170" viewBox="0 0 390 170" style="width:100%; max-width:390px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="a25" markerWidth="8" markerHeight="8" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L8,3.5 z" fill="#6d28d9"/></marker>
+          </defs>
+          <line x1="105" y1="145" x2="105" y2="22" stroke="#6d28d9" stroke-width="3" marker-end="url(#a25)"/>
+          <text x="62" y="34" font-size="11.5" font-weight="bold" fill="#3b0764">Kawat A</text>
+          <text x="58" y="50" font-size="11" font-weight="bold" fill="#6d28d9">I_A = 4 A</text>
+          <line x1="285" y1="22" x2="285" y2="145" stroke="#6d28d9" stroke-width="3" marker-end="url(#a25)"/>
+          <text x="296" y="34" font-size="11.5" font-weight="bold" fill="#3b0764">Kawat B</text>
+          <text x="296" y="50" font-size="11" font-weight="bold" fill="#6d28d9">I_B = 4 A</text>
+          <line x1="105" y1="90" x2="285" y2="90" stroke="#64748b" stroke-dasharray="4 3" stroke-width="1.5"/>
+          <circle cx="195" cy="90" r="4.5" fill="#0d9488"/>
+          <text x="190" y="78" font-size="12" font-weight="bold" fill="#0f766e">P</text>
+          <text x="145" y="106" font-size="11" fill="#334155">d</text>
+          <text x="237" y="106" font-size="11" fill="#334155">d</text>
+        </svg>
+        <div class="visual-caption"><b>Keterangan Gambar:</b> Dua kawat lurus panjang sejajar berarus berlawanan arah (I<sub>A</sub> = 4 A ke atas, I<sub>B</sub> = 4 A ke bawah) dengan titik P berada tepat di tengah-tengahnya.</div>
+      </div>
+    `;
+
+    const SVG_Q26 = `
+      <div class="visual-box">
+        <svg width="410" height="170" viewBox="0 0 410 170" style="width:100%; max-width:410px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="a26" markerWidth="8" markerHeight="8" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L8,3.5 z" fill="#6d28d9"/></marker>
+          </defs>
+          <line x1="135" y1="145" x2="135" y2="22" stroke="#6d28d9" stroke-width="3" marker-end="url(#a26)"/>
+          <text x="90" y="34" font-size="11.5" font-weight="bold" fill="#3b0764">Kawat P</text>
+          <text x="84" y="50" font-size="11" font-weight="bold" fill="#6d28d9">I_P = 2 A</text>
+          <line x1="275" y1="22" x2="275" y2="145" stroke="#6d28d9" stroke-width="3" marker-end="url(#a26)"/>
+          <text x="286" y="34" font-size="11.5" font-weight="bold" fill="#3b0764">Kawat Q</text>
+          <text x="286" y="50" font-size="11" font-weight="bold" fill="#6d28d9">I_Q = 6 A</text>
+          <line x1="135" y1="95" x2="275" y2="95" stroke="#0d9488" stroke-width="1.6"/>
+          <text x="205" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#0f766e">8 cm</text>
+        </svg>
+        <div class="visual-caption"><b>Keterangan Gambar:</b> Kawat P (2 A ke atas) dan kawat Q (6 A ke bawah) sejajar pada bidang kertas terpisah jarak 8 cm.</div>
+      </div>
+    `;
+
+    const SVG_Q27 = `
+      <div class="visual-box">
+        <svg width="450" height="170" viewBox="0 0 450 170" style="width:100%; max-width:450px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="a27" markerWidth="8" markerHeight="8" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L8,3.5 z" fill="#0d9488"/></marker>
+          </defs>
+          <rect x="28" y="52" width="58" height="32" fill="#e2e8f0" stroke="#334155" stroke-width="1.8"/>
+          <rect x="86" y="52" width="58" height="32" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.8"/>
+          <text x="57" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">S</text>
+          <text x="115" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b0764">U</text>
+          <line x1="152" y1="68" x2="195" y2="68" stroke="#0d9488" stroke-width="2.6" marker-end="url(#a27)"/>
+          <text x="172" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f766e">v</text>
+          <rect x="215" y="40" width="125" height="56" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4"/>
+          <path d="M 225 40 C 232 25, 240 25, 240 40 L 240 96 C 240 110, 232 110, 225 96" fill="none" stroke="#6d28d9" stroke-width="2.4"/>
+          <path d="M 250 40 C 257 25, 265 25, 265 40 L 265 96 C 265 110, 257 110, 250 96" fill="none" stroke="#6d28d9" stroke-width="2.4"/>
+          <path d="M 275 40 C 282 25, 290 25, 290 40 L 290 96 C 290 110, 282 110, 275 96" fill="none" stroke="#6d28d9" stroke-width="2.4"/>
+          <path d="M 300 40 C 307 25, 315 25, 315 40 L 315 96 C 315 110, 307 110, 300 96" fill="none" stroke="#6d28d9" stroke-width="2.4"/>
+          <path d="M 325 40 C 332 25, 338 25, 338 40 L 338 96" fill="none" stroke="#6d28d9" stroke-width="2.4"/>
+          <polyline points="225,96 225,136 268,136" fill="none" stroke="#334155" stroke-width="1.8"/>
+          <polyline points="338,96 338,136 308,136" fill="none" stroke="#334155" stroke-width="1.8"/>
+          <circle cx="288" cy="136" r="18" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+          <text x="288" y="141" text-anchor="middle" font-size="13" font-weight="bold" fill="#115e59">G</text>
+          <text x="320" y="158" font-size="10.5" fill="#475569">Galvanometer</text>
+        </svg>
+        <div class="visual-caption"><b>Keterangan Ilustrasi:</b> Magnet batang (U = Utara, S = Selatan) digerakkan keluar-masuk rongga kumparan berjumlah lilitan N yang dihubungkan dengan galvanometer (G).</div>
+      </div>
+    `;
+
+    /* ============================================================
+       2. BANK SOAL TERINTEGRASI (ASLI DARI sejarah.html & fisika.html)
+    ============================================================ */
+    const SEJARAH_QUESTIONS = [
       {
-        no: 1,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Sidang PPKI I (18 Agustus 1945)",
+        no: 1, type: "PG", cog: "C4 • Level 2", topic: "Sidang PPKI I (18 Agustus 1945)",
         narasi: "Sehari setelah Proklamasi Kemerdekaan, PPKI menggelar Sidang I pada tanggal 18 Agustus 1945. Pada rapat tersebut, Otto Iskandardinata mengusulkan agar pemilihan Presiden dan Wakil Presiden dilakukan secara aklamasi, sehingga Ir. Soekarno dan Drs. Mohammad Hatta langsung ditetapkan secara bulat tanpa pemungutan suara.",
         question: "Berdasarkan kondisi Indonesia pasca-Proklamasi, analisis alasan paling tepat digunakannya strategi pemilihan secara aklamasi tersebut adalah...",
         options: [
@@ -912,10 +2071,7 @@
         bahas: "Pada 18 Agustus 1945, Indonesia baru saja merdeka dan menghadapi situasi politik-keamanan yang sangat genting serta mendesak (<i>vacuum of power</i> pasca-kapitulasi Jepang dan bayang-bayang kedatangan Sekutu). Pemilihan secara aklamasi dipilih untuk segera membentuk kepemimpinan nasional yang sah dan berwibawa—bukan karena menghemat anggaran ataupun ketiadaan tokoh lain."
       },
       {
-        no: 2,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Strategi Belanda Pasca-Proklamasi",
+        no: 2, type: "PG", cog: "C4 • Level 2", topic: "Strategi Belanda Pasca-Proklamasi",
         narasi: "Setelah Proklamasi 17 Agustus 1945, Belanda berupaya keras menancapkan kembali kekuasaan kolonialnya di Indonesia dengan berbagai cara, baik secara militer maupun diplomasi politik.",
         question: "Kombinasi strategi utama yang dijalankan Belanda untuk mengembalikan kekuasaannya di Indonesia pasca-kemerdekaan adalah...",
         options: [
@@ -929,10 +2085,7 @@
         bahas: "Belanda memadukan strategi kekerasan militer berupa <b>Agresi Militer I</b> (1947) dan <b>Agresi Militer II</b> (1948) dengan strategi politik/diplomasi mengulur waktu dan memecah belah wilayah RI melalui pembentukan negara-negara boneka federal (BFO) dalam kerangka Republik Indonesia Serikat (RIS)."
       },
       {
-        no: 3,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Bandung Lautan Api",
+        no: 3, type: "PG", cog: "C4 • Level 2", topic: "Bandung Lautan Api",
         narasi: "Pada tanggal 23–24 Maret 1946, dalam menghadapi ultimatum Sekutu agar Tentara Republik Indonesia (TRI) dan pejuang mengosongkan wilayah Bandung Selatan, para pejuang bersama sekitar 200.000 warga Tatar Sunda memilih membumihanguskan gedung-gedung penting serta permukiman sebelum bergerak mengungsi ke daerah pegunungan selatan (peristiwa Bandung Lautan Api).",
         question: "Alasan strategis utama dilakukannya operasi bumi hangus dalam peristiwa Bandung Lautan Api tersebut adalah...",
         options: [
@@ -946,10 +2099,7 @@
         bahas: "Operasi bumi hangus pada 23–24 Maret 1946 diputuskan oleh markas pejuang (antara lain A.H. Nasution) agar Sekutu dan NICA/Belanda tidak dapat menggunakan gedung-gedung, gudang mesiu, dan infrastruktur Kota Bandung sebagai basis militer maupun pusat logistik untuk menyerang wilayah RI."
       },
       {
-        no: 4,
-        type: "PG",
-        cog: "C3 dan C4 • Level 2",
-        topic: "Pertempuran Surabaya",
+        no: 4, type: "PG", cog: "C3 dan C4 • Level 2", topic: "Pertempuran Surabaya",
         narasi: `Perhatikan kutipan pidato bersejarah berikut:<div class="quote-box">"Selama banteng-banteng Indonesia masih mempunyai darah merah yang dapat membikin secarik kain putih merah dan putih, maka selama itu tidak akan kita mau menyerah kepada siapa pun juga! ... Lebih baik kita hancur lebur daripada tidak merdeka. Semboyan kita tetap: merdeka atau mati!"</div>`,
         question: "Keterangan historis yang tepat mengenai latar belakang kutipan pidato tersebut adalah...",
         options: [
@@ -963,10 +2113,7 @@
         bahas: "Kutipan heroik tersebut adalah pidato <b>Bung Tomo (Sutomo)</b> yang disiarkan melalui Radio Pemberontakan pada <b>9 November 1945</b> untuk membakar semangat arek-arek Suroboyo dalam menolak ultimatum Sekutu (Mayjen E.C. Mansergh) menjelang pecahnya Pertempuran Surabaya 10 November 1945."
       },
       {
-        no: 5,
-        type: "PG",
-        cog: "C5 • Level 3",
-        topic: "Pembubaran RIS Menuju NKRI",
+        no: 5, type: "PG", cog: "C5 • Level 3", topic: "Pembubaran RIS Menuju NKRI",
         narasi: "Setelah KMB, terbentuk negara federal Republik Indonesia Serikat (RIS) pada Desember 1949 yang terdiri atas RI dan 15 negara bagian/daerah otonom bentukan Belanda. Namun sejak awal 1950, demonstrasi rakyat terus menuntut pembubaran negara bagian. Satu per satu negara bagian (seperti Pasundan, Jawa Timur, Madura, hingga Sumatera Selatan) melebur ke RI sampai pada April 1950 hanya tersisa tiga negara bagian (RI, Negara Indonesia Timur, dan Negara Sumatera Timur), sebelum akhirnya resmi bersatu kembali pada Agustus 1950.",
         question: "Kesimpulan historis yang paling tepat berdasarkan dinamika singkatnya usia negara federal RIS tersebut adalah...",
         options: [
@@ -980,10 +2127,7 @@
         bahas: "Gelombang penolakan rakyat serta kesadaran para pemimpin daerah membuat negara-negara bagian cepat melebur ke pangkuan RI hingga akhirnya disepakati Piagam Persetujuan Mei 1950 dan proklamasi kembalinya NKRI pada 17 Agustus 1950. Hal ini membuktikan RIS semata merupakan negara transisi menuju NKRI."
       },
       {
-        no: 6,
-        type: "PG",
-        cog: "C3 dan C4 • Level 2",
-        topic: "Perjanjian Renville",
+        no: 6, type: "PG", cog: "C3 dan C4 • Level 2", topic: "Perjanjian Renville",
         narasi: "Perhatikan foto arsip kapal perang yang berlabuh di Teluk Jakarta sebagai lokasi perundingan antara delegasi Indonesia dan Belanda berikut ini:" + buildArchivalSlot(6, "uss_renville.jpg", "Kapal Perang USS Renville di Teluk Jakarta (1948)", "Menampilkan kapal pengangkut angkatan laut Amerika Serikat USS Renville yang dijadikan tempat netral perundingan Indonesia–Belanda."),
         question: "Peristiwa diplomasi yang berkaitan langsung dengan dokumen foto kapal perang di atas adalah...",
         options: [
@@ -997,10 +2141,7 @@
         bahas: "Nama perundingan diambil dari kapal perang Amerika Serikat <b>USS Renville</b> yang berlabuh di Teluk Jakarta. <b>Perjanjian Renville</b> ditandatangani pada <b>17 Januari 1948</b> dengan mediasi <b>Komisi Tiga Negara (KTN)</b> yang beranggotakan Australia (wakil RI), Belgia (wakil Belanda), dan Amerika Serikat (penengah netral)."
       },
       {
-        no: 7,
-        type: "PG",
-        cog: "C4 dan C5 • Level 3",
-        topic: "Pemerintahan Darurat Republik Indonesia (PDRI)",
+        no: 7, type: "PG", cog: "C4 dan C5 • Level 3", topic: "Pemerintahan Darurat Republik Indonesia (PDRI)",
         narasi: `Menyusul Agresi Militer Belanda II pada 19 Desember 1948 yang menduduki Yogyakarta, dibentuklah Pemerintahan Darurat Republik Indonesia (PDRI) di Bukittinggi, Sumatera Barat yang dipimpin Mr. Sjafruddin Prawiranegara. Perhatikan pernyataan berikut:<br/>(1) Mengisi kekosongan kekuasaan akibat ditangkap dan diasingkannya Presiden Soekarno dan Wapres Hatta.<br/>(2) Memindahkan pusat pemerintahan sementara ke wilayah yang aman dan masih dikuasai penuh oleh RI.<br/>(3) Membuktikan kepada dunia dan menggalang dukungan internasional bahwa negara RI masih eksis dan berdaulat.<br/>(4) Menyerahkan kedaulatan Pulau Sumatera secara terpisah kepada pemerintahan sipil NICA.`,
         question: "Analisis yang paling tepat mengenai alasan utama yang saling berkaitan dalam pembentukan PDRI adalah pernyataan nomor...",
         options: [
@@ -1014,10 +2155,7 @@
         bahas: "Ketiga alasan (1), (2), dan (3) saling berkaitan erat: karena Soekarno–Hatta ditawan di Yogyakarta, mandat diberikan kepada Sjafruddin Prawiranegara agar tidak terjadi <i>vacuum of power</i> (1), memindahkan pusat kendali ke Sumatera Barat yang aman (2), dan menunjukkan kepada dunia internasional bahwa Republik Indonesia belum bubar (3)."
       },
       {
-        no: 8,
-        type: "PG",
-        cog: "C3 • Level 2",
-        topic: "Pasukan Kolonial Pasca-PD II (KNIL)",
+        no: 8, type: "PG", cog: "C3 • Level 2", topic: "Pasukan Kolonial Pasca-PD II (KNIL)",
         narasi: "Pada akhir tahun 1945, terdapat kelompok pasukan bersenjata yang sejak masa kolonial telah lama bermukim di Hindia Belanda. Pada tahun 1942–1945 mereka sempat menjadi tahanan perang tentara pendudukan Jepang, kemudian setelah Jepang menyerah kepada Sekutu, mereka dibebaskan dari kamp interniran dan dipersenjatai kembali oleh Sekutu serta Belanda untuk membantu upaya menguasai kembali Indonesia.",
         question: "Nama pasukan yang dimaksud pada informasi sejarah di atas adalah...",
         options: [
@@ -1031,10 +2169,7 @@
         bahas: "<b>KNIL</b> (<i>Koninklijk Nederlands Indisch Leger</i> / Tentara Kerajaan Hindia Belanda) adalah pasukan militer kolonial Hindia Belanda. Pasukan ini menyerah kepada Jepang di Kalijati tahun 1942 dan ditawan, lalu dibebaskan serta dipersenjatai kembali pada akhir 1945."
       },
       {
-        no: 9,
-        type: "PG",
-        cog: "C2 dan C4 • Level 3",
-        topic: "Perbedaan KNIL, NICA, AFNEI, SEAC, & SWPA",
+        no: 9, type: "PG", cog: "C2 dan C4 • Level 3", topic: "Perbedaan KNIL, NICA, AFNEI, SEAC, & SWPA",
         narasi: "Pasca-kekalahan Jepang pada Agustus 1945, hadir berbagai kesatuan militer, sipil, dan komando asing di Indonesia. Masing-masing badan memiliki tugas serta struktur komando yang berbeda, mulai dari pasukan militer kolonial bekas tawanan Jepang yang sudah lama bermukim dan dipersenjatai kembali, badan pemerintahan sipil Belanda, hingga komando tentara Sekutu.",
         question: "Pemetaan perbedaan fungsi yang paling tepat antara KNIL, NICA, AFNEI, SEAC, dan SWPA adalah...",
         options: [
@@ -1048,10 +2183,7 @@
         bahas: "Secara fungsional: <b>KNIL</b> = pasukan militer kolonial Hindia Belanda (eks tawanan perang Jepang yang dipersenjatai lagi akhir 1945); <b>NICA</b> = administrasi pemerintahan sipil Belanda pimpinan Van Mook; <b>AFNEI</b> = pasukan Inggris di Indonesia di bawah <b>SEAC</b> (Komando Asia Tenggara pimpinan Mountbatten); sedangkan <b>SWPA</b> = Komando Pasifik Barat Daya pimpinan MacArthur sebelum dialihkan ke SEAC."
       },
       {
-        no: 10,
-        type: "PG",
-        cog: "C2 dan C3 • Level 2",
-        topic: "Pertempuran Mempertahankan Kemerdekaan",
+        no: 10, type: "PG", cog: "C2 dan C3 • Level 2", topic: "Pertempuran Mempertahankan Kemerdekaan",
         narasi: "Pertempuran besar ini meletus di pusat kota pada tanggal 10 November 1945 setelah sebelumnya terjadi insiden tewasnya Brigadir Jenderal A.W.S. Mallaby yang memicu ultimatum keras dari tentara Sekutu. Peristiwa heroik rakyat dan pejuang tersebut kini diperingati bangsa Indonesia setiap tahun sebagai Hari Pahlawan.",
         question: "Nama peristiwa perjuangan fisik yang sesuai dengan deskripsi tokoh, lokasi, dan waktu di atas adalah...",
         options: [
@@ -1065,10 +2197,7 @@
         bahas: "Pertempuran pada <b>10 November 1945</b> pasca-tewasnya <b>Brigadir Jenderal A.W.S. Mallaby</b> (30 Oktober 1945) yang diabadikan sebagai <b>Hari Pahlawan</b> adalah <b>Pertempuran Surabaya</b>."
       },
       {
-        no: 11,
-        type: "PG",
-        cog: "C4 dan C5 • Level 3",
-        topic: "Konferensi Asia-Afrika (1955)",
+        no: 11, type: "PG", cog: "C4 dan C5 • Level 3", topic: "Konferensi Asia-Afrika (1955)",
         narasi: "Pada masa Kabinet Ali Sastroamidjojo I tahun 1955, Indonesia menjadi tuan rumah sekaligus pemrakarsa utama Konferensi Asia-Afrika (KAA) di Bandung yang melahirkan Dasasila Bandung di tengah memanasnya Perang Dingin antara Blok Barat dan Blok Timur.",
         question: "Alasan paling konkret yang membuktikan bahwa KAA merupakan keberhasilan nyata Indonesia dalam menjalankan politik luar negeri bebas-aktif adalah...",
         options: [
@@ -1082,10 +2211,7 @@
         bahas: "Politik bebas-aktif berarti tidak memihak blok militer manapun ('bebas') sekaligus turut aktif menjaga ketertiban dan kemerdekaan dunia ('aktif'). Melalui KAA 1955 dan Dasasila Bandung, Indonesia secara konkret menginspirasi dan mendorong dekolonisasi negara-negara terjajah di Asia dan Afrika serta perdamaian dunia."
       },
       {
-        no: 12,
-        type: "PG",
-        cog: "C2 • Level 1",
-        topic: "Kabinet Djuanda (Zaken Kabinet)",
+        no: 12, type: "PG", cog: "C2 • Level 1", topic: "Kabinet Djuanda (Zaken Kabinet)",
         narasi: "Pada tanggal 9 April 1957, Ir. Djuanda Kartawidjaja diangkat memimpin Kabinet Karya yang dikenal luas dalam sejarah Indonesia dengan sebutan <i>zaken kabinet</i>.",
         question: "Alasan utama diterapkannya sistem <i>zaken kabinet</i> pada masa Kabinet Djuanda tersebut adalah...",
         options: [
@@ -1099,10 +2225,7 @@
         bahas: "<i>Zaken kabinet</i> adalah kabinet yang jajaran menterinya berasal dari kalangan profesional/pakar di bidang masing-masing (<i>the right man in the right place</i>), bukan berdasarkan kuota kompromi partai politik, sehingga diharapkan lebih stabil dan efektif bekerja."
       },
       {
-        no: 13,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Sistem Ekonomi Ali-Baba",
+        no: 13, type: "PG", cog: "C4 • Level 2", topic: "Sistem Ekonomi Ali-Baba",
         narasi: "Pada masa Kabinet Ali Sastroamidjojo I, Menteri Perekonomian Iskaq Tjokrohadisurjo meluncurkan Sistem Ekonomi Ali-Baba yang mewajibkan pengusaha non-pribumi ('Baba') bekerja sama serta melatih pengusaha pribumi ('Ali') dengan dukungan fasilitas kredit dan lisensi impor dari pemerintah.",
         question: "Analisis faktor utama penyebab kegagalan Sistem Ekonomi Ali-Baba tersebut adalah...",
         options: [
@@ -1116,10 +2239,7 @@
         bahas: "Sistem Ali-Baba gagal mencapai target karena pengusaha pribumi yang masih kurang berpengalaman kerap hanya menjadi alat untuk memperoleh lisensi impor lalu menjualnya kembali kepada pengusaha non-pribumi/asing (praktik 'Ali-Ali-an'), disertai korupsi birokrasi dan penggunaan kredit untuk konsumsi, bukan investasi produktif."
       },
       {
-        no: 14,
-        type: "PG",
-        cog: "C2 dan C4 • Level 2",
-        topic: "Periodisasi Sistem Demokrasi Indonesia",
+        no: 14, type: "PG", cog: "C2 dan C4 • Level 2", topic: "Periodisasi Sistem Demokrasi Indonesia",
         narasi: `Perhatikan lini masa periodisasi sistem demokrasi di Indonesia berikut (bagian yang ditebalkan menjadi fokus pertanyaan):<div class="timeline-box"><div class="tl-item"><div class="tl-year">1945 – 1959</div><div class="tl-label">Era Awal Kemerdekaan &amp; Parlementer</div></div><div class="tl-item active-bold"><div class="tl-year">1959 – 1966</div><div class="tl-label">Periode Fokus Pertanyaan</div></div><div class="tl-item"><div class="tl-year">1966 – 1998</div><div class="tl-label">Era Pemerintahan Selanjutnya</div></div></div>`,
         question: "Sistem demokrasi pada kurun waktu yang ditebalkan (1959–1966) beserta faktor utama berakhirnya adalah...",
         options: [
@@ -1133,10 +2253,7 @@
         bahas: "Periode <b>1959–1966</b> (dimulai sejak Dekrit Presiden 5 Juli 1959) adalah masa <b>Demokrasi Terpimpin</b>. Sistem ini runtuh akibat krisis ekonomi berkepanjangan, polarisasi tajam karena menguatnya pengaruh PKI, serta meletusnya peristiwa <b>G30S/PKI</b> tahun 1965."
       },
       {
-        no: 15,
-        type: "PG",
-        cog: "C2 • Level 1",
-        topic: "Tokoh Pemberontakan DI/TII",
+        no: 15, type: "PG", cog: "C2 • Level 1", topic: "Tokoh Pemberontakan DI/TII",
         narasi: "Perhatikan foto arsip tokoh pemimpin pusat gerakan Darul Islam / Tentara Islam Indonesia (DI/TII) yang memproklamasikan berdirinya Negara Islam Indonesia (NII) di Jawa Barat pada 7 Agustus 1949 berikut ini:" + buildArchivalSlot(15, "tokoh_ditii.jpg", "Foto Arsip Tokoh Pemimpin Pusat DI/TII (Jawa Barat)", "Menampilkan potret tokoh pendiri dan imam pusat gerakan DI/TII di Jawa Barat (1949)."),
         question: "Nama tokoh pemimpin gerakan DI/TII tersebut beserta kesesuaian wilayah pemberontakannya adalah...",
         options: [
@@ -1150,10 +2267,7 @@
         bahas: "Pemimpin pusat DI/TII sekaligus proklamator NII di <b>Jawa Barat</b> adalah <b>Sekarmadji Maridjan Kartosoewiryo</b>. Sebagai pemetaan lengkap tokoh DI/TII di daerah lain: <b>Kahar Muzakkar</b> = Sulawesi Selatan, <b>Daud Beureueh</b> = Aceh, <b>Amir Fatah</b> = Jawa Tengah, dan <b>Ibnu Hadjar</b> = Kalimantan Selatan."
       },
       {
-        no: 16,
-        type: "PG",
-        cog: "C2 dan C4 • Level 2",
-        topic: "Pelanggaran Politik Bebas-Aktif (Kabinet Sukiman)",
+        no: 16, type: "PG", cog: "C2 dan C4 • Level 2", topic: "Pelanggaran Politik Bebas-Aktif (Kabinet Sukiman)",
         narasi: "Pada tahun 1951–1952, Kabinet Sukiman mendapat kecaman keras dari parlemen dan publik karena kebijakannya dinilai telah menyimpang dari prinsip politik luar negeri bebas-aktif Indonesia hingga akhirnya kabinet tersebut jatuh.",
         question: "Bukti konkret bentuk pelanggaran politik luar negeri bebas-aktif pada masa Kabinet Sukiman tersebut adalah...",
         options: [
@@ -1167,10 +2281,7 @@
         bahas: "Menteri Luar Negeri Achmad Soebardjo dari Kabinet Sukiman menandatangani perjanjian <b>Mutual Security Act (MSA)</b> dengan Duta Besar AS Merle Cochran (1952). Karena bantuan MSA mensyaratkan keberpihakan militer/politik kepada Blok Barat, tindakan ini dianggap melanggar politik bebas-aktif."
       },
       {
-        no: 17,
-        type: "PG",
-        cog: "C4 dan C5 • Level 3",
-        topic: "Kebijakan Sanering (25 Agustus 1959)",
+        no: 17, type: "PG", cog: "C4 dan C5 • Level 3", topic: "Kebijakan Sanering (25 Agustus 1959)",
         narasi: "Pada tanggal 25 Agustus 1959, pemerintah mengeluarkan kebijakan sanering (Perpu No. 2 Tahun 1959) yang memotong nilai uang kertas pecahan Rp 500 dan Rp 1.000 menjadi sepersepuluhnya (Rp 50 dan Rp 100) serta membekukan 90% simpanan di atas Rp 25.000 untuk menekan laju inflasi. Namun dalam jangka panjang, kebijakan ini gagal menstabilkan perekonomian dan inflasi justru melonjak kembali hingga ratusan persen.",
         question: "Evaluasi paling tepat mengenai penyebab kegagalan kebijakan sanering 1959 tersebut adalah...",
         options: [
@@ -1184,10 +2295,7 @@
         bahas: "Sanering 1959 bersifat <b>simptomatis</b> (mengobati gejala, bukan akar penyakit). Karena defisit APBN terus membengkak untuk membiayai proyek-proyek mercusuar, pembebasan Irian Barat, dan konfrontasi Malaysia tanpa penerimaan negara yang sepadan, pemerintah kembali mencetak uang baru sehingga inflasi meledak jauh lebih parah."
       },
       {
-        no: 18,
-        type: "PG",
-        cog: "C2 • Level 1",
-        topic: "Kebijakan Ekonomi Masa Demokrasi Liberal",
+        no: 18, type: "PG", cog: "C2 • Level 1", topic: "Kebijakan Ekonomi Masa Demokrasi Liberal",
         narasi: "Pada masa Demokrasi Liberal, pemerintah meluncurkan program ekonomi yang bertujuan mengubah struktur ekonomi kolonial menjadi ekonomi nasional melalui kanalisasi untuk melahirkan kelas pengusaha pribumi bermodal lemah dengan memberikan fasilitas kredit modal serta bimbingan usaha.",
         question: "Nama program kebijakan ekonomi beserta tokoh penggagasnya sesuai deskripsi di atas adalah...",
         options: [
@@ -1201,10 +2309,7 @@
         bahas: "<b>Sistem Ekonomi Gerakan Benteng</b> digagas oleh <b>Prof. Dr. Sumitro Djojohadikusumo</b> pada tahun 1950 (Kabinet Natsir) dengan tujuan menumbuhkan wirausaha pribumi agar mampu menggantikan dominasi perusahaan modal asing/kolonial."
       },
       {
-        no: 19,
-        type: "PG",
-        cog: "C2 • Level 1",
-        topic: "Penyelenggaraan KAA 1955",
+        no: 19, type: "PG", cog: "C2 • Level 1", topic: "Penyelenggaraan KAA 1955",
         narasi: "Pada masa Demokrasi Liberal, Indonesia meraih prestasi diplomatik gemilang di kancah internasional melalui penyelenggaraan Konferensi Asia-Afrika (KAA) tahun 1955 di Gedung Merdeka, Bandung, yang menghasilkan Dasa Sila Bandung.",
         question: "Pemerintahan Perdana Menteri yang berhasil menyelenggarakan Konferensi Asia-Afrika tahun 1955 tersebut adalah...",
         options: [
@@ -1218,10 +2323,7 @@
         bahas: "Konferensi Asia-Afrika (18–24 April 1955) diselenggarakan pada masa pemerintahan Perdana Menteri <b>Ali Sastroamidjojo</b> (<b>Kabinet Ali Sastroamidjojo I</b>)."
       },
       {
-        no: 20,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Pidato Nawaksara & Peralihan ke Orde Baru",
+        no: 20, type: "PG", cog: "C4 • Level 2", topic: "Pidato Nawaksara & Peralihan ke Orde Baru",
         narasi: "Dalam Sidang Umum IV MPRS pada tanggal 22 Juni 1966, Presiden Soekarno menyampaikan pidato pertanggungjawaban berjudul <i>Nawaksara</i> yang memuat sembilan pokok persoalan bangsa. Namun, MPRS secara resmi menolak pertanggungjawaban tersebut dan meminta Presiden melengkapinya.",
         question: "Analisis penyebab utama ditolaknya pidato <i>Nawaksara</i> oleh MPRS tersebut adalah...",
         options: [
@@ -1235,10 +2337,7 @@
         bahas: "MPRS menolak pidato <i>Nawaksara</i> (dan kemudian <i>Pelengkap Nawaksara</i> tahun 1967) terutama karena dianggap tidak memberikan kejelasan maupun pertanggungjawaban yang tegas mengenai terjadinya peristiwa <b>G30S/PKI</b>, krisis ekonomi, serta dekadensi akhlak/tatanan negara."
       },
       {
-        no: 21,
-        type: "PG",
-        cog: "C2 • Level 1",
-        topic: "Konsep Politik Demokrasi Terpimpin",
+        no: 21, type: "PG", cog: "C2 • Level 1", topic: "Konsep Politik Demokrasi Terpimpin",
         narasi: "Pada masa Demokrasi Terpimpin, Presiden Soekarno mencetuskan suatu gagasan konsep politik yang bertujuan menyatukan dan merangkul seluruh elemen kekuatan masyarakat serta partai politik Indonesia dari tiga golongan besar, yakni golongan nasionalis, golongan agama, dan golongan komunis.",
         question: "Istilah konsep pemikiran politik Presiden Soekarno yang dimaksud adalah...",
         options: [
@@ -1252,10 +2351,7 @@
         bahas: "<b>NASAKOM</b> merupakan akronim dari <b>Nasionalis, Agama, dan Komunis</b>, yakni doktrin pemersatu tiga aliran ideologi besar yang diterapkan Presiden Soekarno selama masa Demokrasi Terpimpin."
       },
       {
-        no: 22,
-        type: "PG",
-        cog: "C4 dan C5 • Level 3",
-        topic: "Arah Politik Luar Negeri Demokrasi Terpimpin",
+        no: 22, type: "PG", cog: "C4 dan C5 • Level 3", topic: "Arah Politik Luar Negeri Demokrasi Terpimpin",
         narasi: "Meskipun secara konstitusional tetap menganut politik bebas-aktif, kebijakan luar negeri Indonesia pada masa Demokrasi Terpimpin terlihat condong ke Blok Timur: membeli persenjataan besar-besaran dari Uni Soviet, menjalin kedekatan diplomatik dengan Tiongkok (Poros Jakarta–Peking), serta berkonfrontasi keras dengan blok Barat (anti-Nekolim).",
         question: "Analisis faktor pendorong utama yang paling tepat menjelaskan pergeseran haluan luar negeri tersebut adalah...",
         options: [
@@ -1269,10 +2365,7 @@
         bahas: "Indonesia tidak menjadi negara komunis. Kecenderungan ke Blok Timur didorong kepentingan strategis nasional (ketika Blok Barat menolak memasok senjata untuk merebut Irian Barat, Uni Soviet bersedia memberikan kredit senjata besar-besaran) sekaligus mencerminkan pengaruh aliansi politik dalam negeri <b>NASAKOM</b> yang melibatkan PKI."
       },
       {
-        no: 23,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Penyimpangan Kekuasaan Masa Demokrasi Terpimpin",
+        no: 23, type: "PG", cog: "C4 • Level 2", topic: "Penyimpangan Kekuasaan Masa Demokrasi Terpimpin",
         narasi: "Selama berlakunya Demokrasi Terpimpin (1959–1965), mekanisme pengawasan lembaga tinggi negara terhadap presiden menjadi lemah, bahkan Majelis Permusyawaratan Rakyat Sementara (MPRS) cenderung melegitimasi pemusatan kekuasaan di tangan eksekutif.",
         question: "Kebijakan MPRS yang paling nyata menunjukkan penyimpangan penguatan kekuasaan presiden secara tidak terbatas pada masa Demokrasi Terpimpin adalah...",
         options: [
@@ -1286,10 +2379,7 @@
         bahas: "Melalui <b>TAP MPRS No. III/MPRS/1963</b>, MPRS mengangkat Ir. Soekarno sebagai <b>Presiden Seumur Hidup</b>. Ketetapan ini merupakan penyimpangan besar terhadap UUD 1945 Pasal 7 yang mengatur masa jabatan presiden selama lima tahun."
       },
       {
-        no: 24,
-        type: "PG",
-        cog: "C4 dan C5 • Level 3",
-        topic: "Ancaman G30S/PKI Terhadap Pancasila",
+        no: 24, type: "PG", cog: "C4 dan C5 • Level 3", topic: "Ancaman G30S/PKI Terhadap Pancasila",
         narasi: "Dalam kajian sejarah nasional, peristiwa Gerakan 30 September 1965 (G30S/PKI) kerap disebut sebagai bukti nyata bahwa ideologi Pancasila pernah berada di ujung tanduk dan terancam digantikan.",
         question: "Analisis yang tepat untuk membenarkan pernyataan bahwa G30S/PKI mengancam eksistensi Pancasila adalah...",
         options: [
@@ -1303,10 +2393,7 @@
         bahas: "Penculikan dan pembunuhan para perwira tinggi TNI AD (Pahlawan Revolusi) yang menjadi benteng pertahanan anti-komunis bertujuan melumpuhkan komando militer. Jika berhasil, posisi Presiden mudah dikendalikan dan PKI dapat leluasa mengubah ideologi negara Pancasila menjadi komunisme."
       },
       {
-        no: 25,
-        type: "PG",
-        cog: "C2 dan C4 • Level 2",
-        topic: "Latar Belakang G30S/PKI",
+        no: 25, type: "PG", cog: "C2 dan C4 • Level 2", topic: "Latar Belakang G30S/PKI",
         narasi: "Pada malam tanggal 30 September hingga dini hari 1 Oktober 1965, terjadi peristiwa penculikan dan pembunuhan terhadap sejumlah perwira tinggi TNI Angkatan Darat di Jakarta dan Yogyakarta yang dipimpin oleh Letkol Untung serta melibatkan tokoh-tokoh PKI.",
         question: "Latar belakang politik utama terjadinya peristiwa G30S/PKI pada tahun 1965 adalah...",
         options: [
@@ -1320,10 +2407,7 @@
         bahas: "Latar belakang utama peristiwa G30S/PKI 1965 adalah ambisi PKI merebut kekuasaan pemerintahan dan mengganti dasar negara Pancasila dengan ideologi komunisme (yang dipicu pula oleh ketegangan dengan TNI AD, isu Dewan Jenderal, dan memburuknya kesehatan Presiden Soekarno)."
       },
       {
-        no: 26,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Konfrontasi Pembebasan Irian Barat",
+        no: 26, type: "PG", cog: "C4 • Level 2", topic: "Konfrontasi Pembebasan Irian Barat",
         narasi: "Karena Belanda terus mengingkari penyelesaian masalah Irian Barat melalui jalur diplomasi bilateral maupun forum PBB, sejak tahun 1957–1958 Indonesia melancarkan konfrontasi menyeluruh di bidang politik, ekonomi, dan militer.",
         question: "Langkah yang menjadi puncak konfrontasi di bidang ekonomi dalam perjuangan pembebasan Irian Barat tersebut adalah...",
         options: [
@@ -1337,10 +2421,7 @@
         bahas: "Setelah membatalkan persetujuan KMB dan melancarkan aksi mogok buruh pada Desember 1957, puncak konfrontasi ekonomi RI terhadap Belanda diwujudkan dengan <b>nasionalisasi seluruh aset dan perusahaan milik Belanda di Indonesia</b> melalui <b>UU No. 86 Tahun 1958</b>."
       },
       {
-        no: 27,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Peranan UNTEA dalam Masalah Irian Barat",
+        no: 27, type: "PG", cog: "C4 • Level 2", topic: "Peranan UNTEA dalam Masalah Irian Barat",
         narasi: "Berdasarkan Perjanjian New York tanggal 15 Agustus 1962 antara Indonesia dan Belanda, disepakati pembentukan badan pemerintahan sementara bernama <i>United Nations Temporary Executive Authority</i> (UNTEA) sebelum penyelenggaraan Penentuan Pendapat Rakyat (PEPERA).",
         question: "Analisis yang tepat mengenai peranan utama UNTEA dalam penyelesaian masalah Irian Barat adalah...",
         options: [
@@ -1354,10 +2435,7 @@
         bahas: "<b>UNTEA</b> bertugas sebagai badan administrasi sementara/penengah dari PBB selama masa transisi penyerahan Irian Barat dari Belanda kepada Indonesia sejak <b>1 Oktober 1962 hingga 1 Mei 1963</b>."
       },
       {
-        no: 28,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Politik Mercusuar Demokrasi Terpimpin",
+        no: 28, type: "PG", cog: "C4 • Level 2", topic: "Politik Mercusuar Demokrasi Terpimpin",
         narasi: `Perhatikan kutipan gagasan pembangunan Presiden Soekarno pada awal 1960-an berikut:<div class="quote-box">"Jakarta harus menjadi kebanggaan bangsa Indonesia... Kita bangun Monumen Nasional (Monas), kompleks Gelora Bung Karno, Hotel Indonesia, dan Jembatan Semanggi untuk menyambut Asian Games IV tahun 1962 agar dunia menyaksikan kebesaran bangsa yang baru merdeka!"</div>`,
         question: "Berdasarkan kutipan tersebut, hakikat dari kebijakan Politik Mercusuar pada masa Demokrasi Terpimpin adalah...",
         options: [
@@ -1371,10 +2449,7 @@
         bahas: "<b>Politik Mercusuar</b> adalah kebijakan pembangunan proyek-proyek prestisius berskala megah (Monas, GBK, Hotel Indonesia, Jembatan Semanggi, Masjid Istiqlal) untuk menjadikan Indonesia sebagai 'mercusuar' bagi negara-negara NEFO serta menaikkan prestise bangsa di mata internasional, meskipun menelan biaya sangat besar di tengah inflasi."
       },
       {
-        no: 29,
-        type: "PG",
-        cog: "C5 • Level 3",
-        topic: "Warisan Positif Politik Mercusuar",
+        no: 29, type: "PG", cog: "C5 • Level 3", topic: "Warisan Positif Politik Mercusuar",
         narasi: "Meskipun menuai kritik karena menguras kas negara pada dekade 1960-an, sejumlah bangunan fisik hasil Politik Mercusuar Soekarno tetap terawat dan digunakan oleh masyarakat lintas generasi.",
         question: "Kombinasi warisan positif Politik Mercusuar yang hingga hari ini masih berfungsi vital dan menjadi ikon kebanggaan nasional di ibu kota adalah...",
         options: [
@@ -1388,10 +2463,7 @@
         bahas: "Warisan monumental Politik Mercusuar yang hingga kini menjadi ikon kebanggaan nasional dan masih berfungsi aktif bagi publik antara lain <b>Monumen Nasional (Monas)</b>, <b>Gelora Bung Karno (GBK)</b>, <b>Masjid Istiqlal</b>, serta <b>Jembatan Semanggi</b> (dan Hotel Indonesia)."
       },
       {
-        no: 30,
-        type: "PG",
-        cog: "C4 • Level 2",
-        topic: "Dampak Sosial Kebijakan NASAKOM",
+        no: 30, type: "PG", cog: "C4 • Level 2", topic: "Dampak Sosial Kebijakan NASAKOM",
         narasi: "Pada masa Demokrasi Terpimpin, pemerintah mewajibkan pelajaran Manipol-USDEK di sekolah dan lembaga negara, membentuk Front Nasional, serta mendorong organisasi kemasyarakatan untuk berafiliasi dalam kerangka NASAKOM (Nasionalis, Agama, Komunis).",
         question: "Analisis dampak sosial yang muncul di tengah masyarakat Indonesia akibat penerapan kebijakan tersebut adalah...",
         options: [
@@ -1404,13 +2476,8 @@
         answer: 1,
         bahas: "Alih-alih menciptakan keharmonisan permanen, politisasi organisasi massa ke dalam blok-blok NASAKOM dan doktrin Manipol-USDEK justru memperdalam <b>polarisasi serta persaingan tajam antara kubu Nasionalis, Agama, dan Komunis</b> di desa maupun kota (seperti ketegangan aksi sepihak di pedesaan)."
       },
-
-      // ===================== SOAL 31 - 35 (PG KOMPLEKS CHECKLIST) =====================
       {
-        no: 31,
-        type: "PGK_CHECK",
-        cog: "C2 dan C4 • Level 2",
-        topic: "Perjuangan Bersenjata di Berbagai Daerah",
+        no: 31, type: "PGK_CHECK", cog: "C2 dan C4 • Level 2", topic: "Perjuangan Bersenjata di Berbagai Daerah",
         narasi: "Pasca-Proklamasi 17 Agustus 1945, kedatangan pasukan Sekutu yang diboncengi NICA memicu perlawanan bersenjata rakyat dan TKR/TRI di berbagai wilayah Indonesia.",
         question: "Pilihlah 3 pernyataan yang BENAR mengenai perjuangan bersenjata di berbagai daerah! (Pilih tepat 3 jawaban)",
         options: [
@@ -1424,10 +2491,7 @@
         bahas: "Pernyataan 1 (Bandung Lautan Api), 2 (Puputan Margarana dipimpin I Gusti Ngurah Rai), dan 3 (Serangan Umum 1 Maret 1949 di Yogyakarta) adalah fakta sejarah yang benar. Pertempuran Medan Area terjadi di Medan/Sumatera Utara (bukan Semarang), dan Pertempuran Lima Hari Semarang terjadi Oktober 1945 melawan tentara Jepang."
       },
       {
-        no: 32,
-        type: "PGK_CHECK",
-        cog: "C4 • Level 2",
-        topic: "Strategi Belanda (NICA & Civil Affairs Agreement)",
+        no: 32, type: "PGK_CHECK", cog: "C4 • Level 2", topic: "Strategi Belanda (NICA & Civil Affairs Agreement)",
         narasi: "Setelah Jepang menyerah kepada Sekutu pada Agustus 1945, Belanda menyusun langkah hukum, sipil, dan militer untuk mengambil alih kembali bekas wilayah Hindia Belanda.",
         question: "Pilihlah 3 pernyataan yang BENAR mengenai strategi Belanda mengembalikan kekuasaannya di Indonesia! (Pilih tepat 3 jawaban)",
         options: [
@@ -1441,10 +2505,7 @@
         bahas: "Tiga strategi Belanda pasca-kapitulasi Jepang ditunjukkan oleh opsi 1 (<i>Civil Affairs Agreement</i> Inggris–Belanda), opsi 2 (NICA pimpinan Van Mook membonceng AFNEI), dan opsi 3 (pembebasan dan persenjataan ulang bekas tawanan perang/serdadu KNIL)."
       },
       {
-        no: 33,
-        type: "PGK_CHECK",
-        cog: "C4 • Level 2",
-        topic: "Ciri & Pelaksanaan Demokrasi Liberal (1950–1959)",
+        no: 33, type: "PGK_CHECK", cog: "C4 • Level 2", topic: "Ciri & Pelaksanaan Demokrasi Liberal (1950–1959)",
         narasi: "Pada kurun waktu 1950–1959, Indonesia menerapkan sistem Demokrasi Liberal berdasarkan Undang-Undang Dasar Sementara (UUDS) 1950.",
         question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan kebijakan masa Demokrasi Liberal! (Pilih tepat 3 jawaban)",
         options: [
@@ -1458,10 +2519,7 @@
         bahas: "Ciri dan pelaksanaan Demokrasi Liberal (1950–1959) adalah sistem parlementer dengan instabilitas kabinet (7 kali ganti kabinet), terselenggaranya Pemilu 1955 untuk memilih DPR dan Konstituante, serta kebijakan ekonomi nasional seperti Gerakan Benteng."
       },
       {
-        no: 34,
-        type: "PGK_CHECK",
-        cog: "C4 • Level 2",
-        topic: "Ciri & Kebijakan Demokrasi Terpimpin (1959–1965)",
+        no: 34, type: "PGK_CHECK", cog: "C4 • Level 2", topic: "Ciri & Kebijakan Demokrasi Terpimpin (1959–1965)",
         narasi: "Periode Demokrasi Terpimpin (1959–1965) menandai pemusatan kekuasaan politik di tangan Presiden Soekarno dengan berbagai doktrin politik dalam dan luar negeri.",
         question: "Pilihlah 3 pernyataan yang BENAR mengenai ciri, kebijakan, dan penyimpangan Demokrasi Terpimpin! (Pilih tepat 3 jawaban)",
         options: [
@@ -1475,10 +2533,7 @@
         bahas: "Pernyataan 1 (isi Dekrit Presiden 5 Juli 1959), 2 (NASAKOM, Politik Mercusuar, dan konfrontasi Malaysia), serta 3 (Indonesia sebagai salah satu pemrakarsa GNB 1961) benar mengenai Demokrasi Terpimpin."
       },
       {
-        no: 35,
-        type: "PGK_CHECK",
-        cog: "C4 • Level 2",
-        topic: "Perjuangan Pembebasan Irian Barat",
+        no: 35, type: "PGK_CHECK", cog: "C4 • Level 2", topic: "Perjuangan Pembebasan Irian Barat",
         narasi: "Belanda mengingkari janji penyelesaian masalah Irian Barat dalam KMB 1949 sehingga Presiden Soekarno menempuh jalur konfrontasi hingga lahirnya Trikora dan Perjanjian New York.",
         question: "Pilihlah 3 pernyataan yang BENAR mengenai rangkaian perjuangan pembebasan Irian Barat! (Pilih tepat 3 jawaban)",
         options: [
@@ -1491,13 +2546,8 @@
         answer: [0, 1, 2],
         bahas: "Tiga pernyataan yang benar adalah opsi 1 (penundaan hasil KMB 1949 dan alasan Belanda bertahan), opsi 2 (isi Trikora 19 Desember 1961), dan opsi 3 (Perjanjian New York 15 Agustus 1962 serta peran diplomasi AS di tengah Perang Dingin)."
       },
-
-      // ===================== SOAL 36 - 40 (BENAR / SALAH) =====================
       {
-        no: 36,
-        type: "PGK_BS",
-        cog: "C5 dan C6 • Level 3",
-        topic: "Dampak Agresi Militer Belanda II",
+        no: 36, type: "PGK_BS", cog: "C5 dan C6 • Level 3", topic: "Dampak Agresi Militer Belanda II",
         narasi: "Pada 19 Desember 1948, Belanda melancarkan Agresi Militer II dengan menduduki ibu kota Yogyakarta serta menawan Presiden Soekarno dan Wakil Presiden Hatta, dengan asumsi Republik Indonesia akan segera runtuh.",
         question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan kesimpulan mengenai dampak Agresi Militer Belanda II tersebut!",
         statements: [
@@ -1511,10 +2561,7 @@
         bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (TNI tetap melanjutkan perang gerilya di bawah Jenderal Soedirman dan pemerintahan berjalan lewat PDRI).\n5) SALAH (DK PBB mengecam agresi Belanda dan mengeluarkan resolusi penghentian permusuhan serta pembebasan pemimpin RI)."
       },
       {
-        no: 37,
-        type: "PGK_BS",
-        cog: "C4 • Level 2",
-        topic: "Tugas dan Peran AFNEI di Indonesia",
+        no: 37, type: "PGK_BS", cog: "C4 • Level 2", topic: "Tugas dan Peran AFNEI di Indonesia",
         narasi: "Pasca-kekalahan Jepang pada Agustus 1945, Sekutu mengirimkan pasukan khusus AFNEI (<i>Allied Forces Netherlands East Indies</i>) pimpinan Letjen Sir Philip Christison ke Indonesia.",
         question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai tugas dan peran AFNEI di Indonesia berikut!",
         statements: [
@@ -1528,10 +2575,7 @@
         bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (tugas AFNEI justru melucuti dan memulangkan tentara Jepang, bukan membantu mereka mempertahankan kekuasaan)."
       },
       {
-        no: 38,
-        type: "PGK_BS",
-        cog: "C5 • Level 3",
-        topic: "Evaluasi Dampak Negatif Ekonomi Demokrasi Liberal",
+        no: 38, type: "PGK_BS", cog: "C5 • Level 3", topic: "Evaluasi Dampak Negatif Ekonomi Demokrasi Liberal",
         narasi: "Berbagai kebijakan ekonomi yang silih berganti pada masa Demokrasi Liberal (1950–1959) tidak mampu sepenuhnya memulihkan perekonomian nasional yang terbebani utang KMB dan instabilitas politik.",
         question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai dampak negatif kebijakan ekonomi pada masa Demokrasi Liberal berikut!",
         statements: [
@@ -1545,10 +2589,7 @@
         bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (inflasi justru tetap tinggi dan defisit anggaran serta beban utang tidak teratasi hingga berakhirnya Demokrasi Liberal)."
       },
       {
-        no: 39,
-        type: "PGK_BS",
-        cog: "C4 • Level 2",
-        topic: "Dampak Langsung Peristiwa G30S/PKI",
+        no: 39, type: "PGK_BS", cog: "C4 • Level 2", topic: "Dampak Langsung Peristiwa G30S/PKI",
         narasi: "Peristiwa Gerakan 30 September 1965 (G30S/PKI) menjadi titik balik besar yang mengubah arah sejarah politik, ideologi, dan kemanusiaan di Indonesia.",
         question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai dampak langsung peristiwa G30S/PKI terhadap tatanan politik Indonesia berikut!",
         statements: [
@@ -1562,10 +2603,7 @@
         bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (PKI justru dibubarkan dan dinyatakan sebagai partai terlarang pada 12 Maret 1966 serta dikukuhkan dalam TAP MPRS No. XXV/MPRS/1966)."
       },
       {
-        no: 40,
-        type: "PGK_BS",
-        cog: "C4 • Level 2",
-        topic: "Perbandingan Kedaulatan Rakyat: Liberal vs Terpimpin",
+        no: 40, type: "PGK_BS", cog: "C4 • Level 2", topic: "Perbandingan Kedaulatan Rakyat: Liberal vs Terpimpin",
         narasi: "Pelaksanaan prinsip kedaulatan rakyat dan struktur kepartaian mengalami perubahan fundamental saat Indonesia beralih dari Demokrasi Liberal (1950–1959) ke Demokrasi Terpimpin (1959–1965).",
         question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan perbandingan pelaksanaan kedaulatan rakyat antara Demokrasi Liberal dan Demokrasi Terpimpin berikut!",
         statements: [
@@ -1580,24 +2618,617 @@
       }
     ];
 
-    // State Aplikasi
-    let currentIndex = 0;
-    let userAnswers = new Array(QUESTIONS.length).fill(null);
-    let bahasVisible = new Array(QUESTIONS.length).fill(false);
+    const FISIKA_QUESTIONS = [
+      {
+        no: 1, type: "PG", cog: "C3 • Level 3", topic: "Medan Magnet Kawat Lurus Berarus",
+        narasi: `Seutas kawat penghantar lurus sangat panjang dialiri arus listrik searah sebesar <span class="math">I = 4 A</span>. Titik <span class="math">P</span> terletak pada jarak <span class="math">2 cm</span> tegak lurus dari kawat tersebut. (Diketahui <span class="math">&mu;<sub>0</sub> = 4&pi; &times; 10<sup>&minus;7</sup> Wb/(A&middot;m)</span>).`,
+        question: "Besar induksi magnetik di titik P akibat arus listrik pada kawat tersebut adalah...",
+        options: [
+          `<span class="math">2 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">4 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">8 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">4 &times; 10<sup>&minus;6</sup> T</span>`,
+          `<span class="math">2 &times; 10<sup>&minus;4</sup> T</span>`
+        ],
+        answer: 1,
+        bahas: `Gunakan persamaan medan magnet di sekitar kawat lurus panjang:<br/><span class="math">B = ${frac("&mu;<sub>0</sub> I", "2&pi; a")} = ${frac("4&pi; &times; 10<sup>&minus;7</sup> &times; 4", "2&pi; &times; (2 &times; 10<sup>&minus;2</sup>)")} = ${frac("16&pi; &times; 10<sup>&minus;7</sup>", "4&pi; &times; 10<sup>&minus;2</sup>")} = <b>4 &times; 10<sup>&minus;5</sup> T</b></span>.`
+      },
+      {
+        no: 2, type: "PG", cog: "C3 • Level 2", topic: "Arah Gaya Magnetik (Kaidah Tangan Kanan)",
+        narasi: "Sebuah kawat penghantar lurus membentang horizontal dan dialiri arus listrik mengarah tepat ke <b>timur</b>. Kawat tersebut berada di dalam medan magnetik homogen yang berarah horizontal ke <b>utara</b>.",
+        question: "Berdasarkan kaidah tangan kanan, arah gaya magnetik (gaya Lorentz) yang dialami oleh kawat berarus tersebut adalah...",
+        options: [
+          "Ke selatan",
+          "Ke barat",
+          "Ke atas (menjauhi permukaan bumi)",
+          "Ke bawah (menuju permukaan bumi)",
+          "Ke timur searah arus listrik"
+        ],
+        answer: 2,
+        bahas: `Gunakan kaidah tangan kanan untuk <span class="math">F = I &middot; L &times; B</span>:<br/>• Arahkan ibu jari ke <b>timur</b> (arah arus listrik <span class="math">I</span>).<br/>• Arahkan empat jari ke <b>utara</b> (arah medan magnet <span class="math">B</span>).<br/>• Telapak tangan mendorong lurus <b>ke atas</b> (vertikal menjauhi permukaan bumi).`
+      },
+      {
+        no: 3, type: "PG", cog: "C3 • Level 3", topic: "Medan Magnet Kawat Lurus Berarus",
+        narasi: `Sebuah kabel transmisi lurus panjang dialiri arus listrik sebesar <span class="math">15 A</span>. Seorang pengamat mengukur medan magnet di suatu titik yang berjarak <span class="math">5 cm</span> dari kabel tersebut (<span class="math">&mu;<sub>0</sub> = 4&pi; &times; 10<sup>&minus;7</sup> Wb/(A&middot;m)</span>).`,
+        question: "Besar induksi magnetik di titik pengamatan tersebut adalah...",
+        options: [
+          `<span class="math">1,5 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">3,0 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">6,0 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">7,5 &times; 10<sup>&minus;5</sup> T</span>`,
+          `<span class="math">6,0 &times; 10<sup>&minus;4</sup> T</span>`
+        ],
+        answer: 2,
+        bahas: `Diketahui <span class="math">I = 15 A</span> dan <span class="math">a = 5 cm = 5 &times; 10<sup>&minus;2</sup> m</span>:<br/><span class="math">B = ${frac("&mu;<sub>0</sub> I", "2&pi; a")} = ${frac("4&pi; &times; 10<sup>&minus;7</sup> &times; 15", "2&pi; &times; (5 &times; 10<sup>&minus;2</sup>)")} = ${frac("2 &times; 15 &times; 10<sup>&minus;7</sup>", "5 &times; 10<sup>&minus;2</sup>")} = <b>6,0 &times; 10<sup>&minus;5</sup> T</b></span>.`
+      },
+      {
+        no: 4, type: "PG", cog: "C4 • Level 3", topic: "Analisis Arah I, B, dan F (Kaidah Tangan Kanan)",
+        narasi: "Perhatikan empat ilustrasi arah arus listrik (I), arah medan magnet (B), dan arah gaya magnetik (F) pada kawat lurus berikut ini:" + SVG_Q4,
+        question: "Ilustrasi yang menunjukkan kesesuaian arah arus, medan magnet, dan gaya magnetik menurut kaidah tangan kanan adalah...",
+        options: [
+          "Ilustrasi (1)",
+          "Ilustrasi (2)",
+          "Ilustrasi (3)",
+          "Ilustrasi (4)",
+          "Ilustrasi (1) dan (3)"
+        ],
+        answer: 1,
+        bahas: `Evaluasi tiap ilustrasi dengan kaidah tangan kanan:<br/>• <b>Ilustrasi (1) Salah:</b> <span class="math">I</span> ke atas &times; <span class="math">B</span> masuk bidang (<span class="math">&otimes;</span>) menghasilkan <span class="math">F</span> ke kiri, bukan ke kanan.<br/>• <b>Ilustrasi (2) BENAR:</b> <span class="math">I</span> ke kanan &times; <span class="math">B</span> masuk bidang (<span class="math">&otimes;</span>) menghasilkan dorongan telapak tangan <span class="math">F</span> tepat ke atas.<br/>• <b>Ilustrasi (3) Salah:</b> <span class="math">I</span> ke atas &times; <span class="math">B</span> ke kanan menghasilkan <span class="math">F</span> masuk bidang (<span class="math">&otimes;</span>), bukan keluar bidang (<span class="math">&odot;</span>).<br/>• <b>Ilustrasi (4) Salah:</b> <span class="math">I</span> ke kiri &times; <span class="math">B</span> keluar bidang (<span class="math">&odot;</span>) menghasilkan <span class="math">F</span> ke atas, bukan ke bawah.`
+      },
+      {
+        no: 5, type: "PG", cog: "C3 • Level 3", topic: "Gaya Lorentz pada Muatan Bergerak",
+        narasi: "Sebuah kawat lurus vertikal dialiri arus listrik <b>ke atas</b>. Di sebelah <b>kanan</b> kawat tersebut, sebuah <b>elektron</b> (muatan negatif) ditembakkan bergerak sejajar kawat dengan arah <b>ke atas</b>.",
+        question: "Dengan memperhatikan jenis muatan elektron, arah gaya magnetik yang dialami oleh elektron tersebut adalah...",
+        options: [
+          "Ke kiri (mendekati kawat)",
+          "Ke kanan (menjauhi kawat)",
+          "Masuk tegak lurus bidang kertas",
+          "Keluar tegak lurus bidang kertas",
+          "Ke bawah berlawanan arah geraknya"
+        ],
+        answer: 1,
+        bahas: `1) Dengan aturan genggaman tangan kanan pada kawat berarus ke atas, medan magnet <span class="math">B</span> di sebelah kanan kawat berarah <b>masuk bidang (&otimes;)</b>.<br/>2) Untuk muatan positif yang bergerak ke atas dalam medan <span class="math">B</span> (<span class="math">&otimes;</span>), arah <span class="math">v &times; B</span> adalah <b>ke kiri</b> (mendekati kawat).<br/>3) Karena yang bergerak adalah <b>elektron (bermuatan negatif)</b>, arah gaya Lorentz berbalik arah menjadi <b>ke kanan (menjauhi kawat)</b>.`
+      },
+      {
+        no: 6, type: "PG", cog: "C4 • Level 3", topic: "GGL Induksi Akibat Gerak Penghantar",
+        narasi: `Sebuah batang penghantar sepanjang <span class="math">&ell;</span> digerakkan tegak lurus memotong medan magnet homogen <span class="math">B</span> dengan kecepatan <span class="math">v</span> sehingga timbul GGL induksi sebesar <span class="math">&varepsilon;</span>. Jika pada medan magnet <span class="math">B</span> yang sama panjang penghantar diubah menjadi <span class="math">2&ell;</span> dan kecepatannya ditingkatkan menjadi <span class="math">3v</span>.`,
+        question: "Besar GGL induksi baru yang dihasilkan pada ujung-ujung penghantar tersebut adalah...",
+        options: [
+          `<span class="math">${frac("2","3")}&varepsilon;</span>`,
+          `<span class="math">${frac("3","2")}&varepsilon;</span>`,
+          `<span class="math">5&varepsilon;</span>`,
+          `<span class="math">6&varepsilon;</span>`,
+          `<span class="math">9&varepsilon;</span>`
+        ],
+        answer: 3,
+        bahas: `GGL induksi gerak memenuhi <span class="math">&varepsilon; = B &middot; &ell; &middot; v</span>.<br/>Karena <span class="math">B</span> tetap, perbandingan GGL induksi baru terhadap semula adalah:<br/><span class="math">${frac("&varepsilon;' ", "&varepsilon;")} = ${frac("B (2&ell;)(3v)", "B &ell; v")} = 2 &times; 3 = 6 &rArr; <b>&varepsilon;' = 6&varepsilon;</b></span>.`
+      },
+      {
+        no: 7, type: "PG", cog: "C3 • Level 3", topic: "GGL Induksi Diri pada Kumparan",
+        narasi: `Sebuah kumparan memiliki induktansi diri sebesar <span class="math">0,4 H</span>. Kuat arus listrik yang mengalir di dalam kumparan tersebut berubah dari <span class="math">5 A</span> menjadi <span class="math">1 A</span> secara beraturan dalam selang waktu <span class="math">0,02 detik</span>.`,
+        question: "Besar GGL induksi diri rata-rata yang timbul pada kumparan tersebut adalah...",
+        options: ["16 volt", "40 volt", "60 volt", "80 volt", "120 volt"],
+        answer: 3,
+        bahas: `Gunakan rumus GGL induksi diri:<br/><span class="math">|&varepsilon;| = L ${frac("|&Delta;I|", "&Delta;t")} = 0,4 &times; ${frac("|1 &minus; 5|", "0,02")} = 0,4 &times; ${frac("4", "0,02")} = 0,4 &times; 200 = <b>80 volt</b></span>.`
+      },
+      {
+        no: 8, type: "PG", cog: "C3 • Level 3", topic: "Arus Bolak-Balik pada Rangkaian Resistif",
+        narasi: `Sebuah resistor murni berhambatan <span class="math">R = 45 &Omega;</span> dihubungkan ke sumber tegangan bolak-balik (AC) dengan persamaan tegangan sesaat <span class="math">V(t) = 180 sin(100&pi;t) volt</span>.`,
+        question: "Kuat arus maksimum yang mengalir pada rangkaian resistif tersebut adalah...",
+        options: ["2 A", "3 A", "4 A", "6 A", "8 A"],
+        answer: 2,
+        bahas: `Dari persamaan <span class="math">V(t) = V<sub>maks</sub> sin(&omega;t) = 180 sin(100&pi;t)</span>, diperoleh tegangan maksimum <span class="math">V<sub>maks</sub> = 180 volt</span>.<br/>Pada rangkaian resistif murni:<br/><span class="math">I<sub>maks</sub> = ${frac("V<sub>maks</sub>", "R")} = ${frac("180", "45")} = <b>4 A</b></span>.`
+      },
+      {
+        no: 9, type: "PG", cog: "C3 • Level 3", topic: "Fluks Magnetik pada Kumparan",
+        narasi: `Suatu bidang kumparan dengan luas penampang <span class="math">400 cm<sup>2</sup></span> ditembus oleh medan magnet homogen sebesar <span class="math">0,5 T</span>. Arah medan magnet tersebut membentuk sudut <span class="math">60°</span> terhadap <b>garis normal</b> bidang kumparan.`,
+        question: "Besar fluks magnetik yang menembus bidang kumparan tersebut adalah...",
+        options: [
+          `<span class="math">0,005 Wb</span>`,
+          `<span class="math">0,010 Wb</span>`,
+          `<span class="math">0,017 Wb</span>`,
+          `<span class="math">0,020 Wb</span>`,
+          `<span class="math">0,100 Wb</span>`
+        ],
+        answer: 1,
+        bahas: `Diketahui <span class="math">A = 400 cm<sup>2</sup> = 4 &times; 10<sup>&minus;2</sup> m<sup>2</sup></span>, <span class="math">B = 0,5 T</span>, dan sudut terhadap garis normal <span class="math">&theta; = 60°</span>:<br/><span class="math">&Phi; = B &middot; A &middot; cos &theta; = 0,5 &times; (4 &times; 10<sup>&minus;2</sup>) &times; cos 60° = 0,5 &times; 0,04 &times; 0,5 = <b>0,010 Wb</b></span>.`
+      },
+      {
+        no: 10, type: "PG", cog: "C3 • Level 3", topic: "Rangkaian Seri RL pada Arus Bolak-Balik",
+        narasi: `Sebuah rangkaian seri resistor dan induktor (seri RL) dihubungkan pada sumber tegangan AC sebesar <span class="math">100 V</span>. Jika hambatan resistor adalah <span class="math">30 &Omega;</span> dan kuat arus efektif yang mengalir dalam rangkaian terukur sebesar <span class="math">2 A</span>.`,
+        question: "Besar tegangan pada ujung-ujung resistor (<span class=\"math\">V<sub>R</sub></span>) dalam rangkaian seri RL tersebut adalah...",
+        options: ["30 V", "40 V", "60 V", "80 V", "100 V"],
+        answer: 2,
+        bahas: `Pada rangkaian seri, arus yang mengalir melewati resistor sama dengan arus rangkaian (<span class="math">I = 2 A</span>):<br/><span class="math">V<sub>R</sub> = I &middot; R = 2 A &times; 30 &Omega; = <b>60 V</b></span>.<br/>(Sedangkan tegangan induktornya <span class="math">V<sub>L</sub> = ${sqrt("100<sup>2</sup> &minus; 60<sup>2</sup>")} = 80 V</span>).`
+      },
+      {
+        no: 11, type: "PG", cog: "C2 • Level 2", topic: "Urutan Panjang Gelombang Spektrum Elektromagnetik",
+        narasi: "Dalam kajian spektrum gelombang elektromagnetik, terdapat tiga jenis radiasi yang sering dibandingkan karakteristiknya, yakni: <b>sinar ultraviolet (UV)</b>, <b>cahaya merah</b>, dan <b>sinar-X</b>.",
+        question: "Urutan ketiga radiasi elektromagnetik tersebut dari panjang gelombang yang <b>paling pendek menuju paling panjang</b> adalah...",
+        options: [
+          "Cahaya merah – sinar ultraviolet – sinar-X",
+          "Sinar ultraviolet – sinar-X – cahaya merah",
+          "Sinar-X – sinar ultraviolet – cahaya merah",
+          "Sinar-X – cahaya merah – sinar ultraviolet",
+          "Cahaya merah – sinar-X – sinar ultraviolet"
+        ],
+        answer: 2,
+        bahas: `Dalam spektrum gelombang elektromagnetik, urutan dari frekuensi tertinggi (panjang gelombang terpendek) ke terendah (terpanjang) adalah: Sinar gamma &lt; <b>Sinar-X</b> &lt; <b>Ultraviolet</b> &lt; Cahaya tampak (Ungu s.d. <b>Merah</b>) &lt; Inframerah &lt; Gelombang mikro &lt; Radio.`
+      },
+      {
+        no: 12, type: "PG", cog: "C3 • Level 3", topic: "Resonansi pada Rangkaian Penala",
+        narasi: `Sebuah rangkaian penala (tuning) pada penerima gelombang elektromagnetik terdiri atas induktor berinduktansi <span class="math">L = 4 &mu;H = 4 &times; 10<sup>&minus;6</sup> H</span> dan kapasitor berkapasitansi <span class="math">C = 100 pF = 10<sup>&minus;10</sup> F</span>. (Gunakan <span class="math">c = 3 &times; 10<sup>8</sup> m/s</span> dan <span class="math">&pi; = 3,14</span>).`,
+        question: "Panjang gelombang elektromagnetik yang ditangkap saat rangkaian tersebut mengalami resonansi adalah...",
+        options: ["12,56 meter", "18,84 meter", "37,68 meter", "75,36 meter", "376,8 meter"],
+        answer: 2,
+        bahas: `Saat resonansi berlaku <span class="math">f<sub>r</sub> = ${frac("1", `2&pi; ${sqrt("LC")}`)}</span> dan <span class="math">&lambda; = ${frac("c", "f<sub>r</sub>")} = 2&pi; c ${sqrt("LC")}</span>:<br/>• <span class="math">${sqrt("LC")} = ${sqrt("(4 &times; 10<sup>&minus;6</sup>)(10<sup>&minus;10</sup>)")} = ${sqrt("4 &times; 10<sup>&minus;16</sup>")} = 2 &times; 10<sup>&minus;8</sup> s</span>.<br/>• <span class="math">&lambda; = 2(3,14)(3 &times; 10<sup>8</sup>)(2 &times; 10<sup>&minus;8</sup>) = 6,28 &times; 6 = <b>37,68 meter</b></span>.`
+      },
+      {
+        no: 13, type: "PG", cog: "C2 • Level 2", topic: "Sifat Gelombang Elektromagnetik vs Gelombang Bunyi",
+        narasi: "Gelombang elektromagnetik dan gelombang bunyi sama-sama merupakan gelombang yang merambatkan energi. Perhatikan gejala-gejala gelombang berikut: (1) Pemantulan, (2) Pembiasan, (3) Interferensi, (4) Difraksi, dan (5) Polarisasi.",
+        question: "Gejala gelombang yang <b>hanya dapat terjadi pada gelombang elektromagnetik</b> dan tidak dapat terjadi pada gelombang bunyi di udara adalah...",
+        options: ["Pemantulan", "Pembiasan", "Interferensi", "Difraksi", "Polarisasi"],
+        answer: 4,
+        bahas: `Gelombang elektromagnetik adalah gelombang <b>transversal</b>, sedangkan gelombang bunyi di udara adalah gelombang <b>longitudinal</b>. Pemantulan, pembiasan, interferensi, dan difraksi terjadi pada kedua jenis gelombang, tetapi <b>polarisasi</b> hanya dapat dialami oleh gelombang transversal seperti gelombang elektromagnetik.`
+      },
+      {
+        no: 14, type: "PG", cog: "C2 • Level 2", topic: "Spektrum Gelombang Elektromagnetik",
+        narasi: "Diberikan lima jenis gelombang elektromagnetik berikut: Gelombang radio, Gelombang mikro, Sinar inframerah, Sinar ultraviolet, dan Sinar gamma.",
+        question: "Jenis gelombang elektromagnetik yang memiliki <b>panjang gelombang paling pendek</b> di antara kelima gelombang tersebut adalah...",
+        options: ["Gelombang radio", "Gelombang mikro", "Sinar inframerah", "Sinar ultraviolet", "Sinar gamma"],
+        answer: 4,
+        bahas: `<b>Sinar gamma</b> berada pada ujung spektrum dengan frekuensi paling tinggi (&gt; 10<sup>19</sup> Hz) dan panjang gelombang paling pendek (&lt; 10<sup>&minus;11</sup> m).`
+      },
+      {
+        no: 15, type: "PG", cog: "C3 • Level 3", topic: "Hubungan E Maksimum dan B Maksimum pada GEM",
+        narasi: `Suatu gelombang elektromagnetik merambat di ruang hampa dengan kelajuan <span class="math">c = 3 &times; 10<sup>8</sup> m/s</span>. Amplitudo (kuat medan listrik maksimum) gelombang tersebut terukur sebesar <span class="math">E<sub>maks</sub> = 600 N/C</span>.`,
+        question: "Besar kuat medan magnet maksimum (<span class=\"math\">B<sub>maks</sub></span>) gelombang elektromagnetik tersebut adalah...",
+        options: [
+          `<span class="math">2 &times; 10<sup>&minus;8</sup> T</span>`,
+          `<span class="math">2 &times; 10<sup>&minus;6</sup> T</span>`,
+          `<span class="math">5 &times; 10<sup>&minus;6</sup> T</span>`,
+          `<span class="math">1,8 &times; 10<sup>11</sup> T</span>`,
+          `<span class="math">2 &times; 10<sup>&minus;4</sup> T</span>`
+        ],
+        answer: 1,
+        bahas: `Hubungan medan listrik dan medan magnet maksimum pada GEM memenuhi <span class="math">c = ${frac("E<sub>maks</sub>", "B<sub>maks</sub>")}</span>:<br/><span class="math">B<sub>maks</sub> = ${frac("E<sub>maks</sub>", "c")} = ${frac("600", "3 &times; 10<sup>8</sup>")} = <b>2 &times; 10<sup>&minus;6</sup> T</b></span>.`
+      },
+      {
+        no: 16, type: "PG", cog: "C2 • Level 2", topic: "Manfaat Teknologi Digital",
+        narasi: "Penggunaan teknologi digital saat ini telah merambah berbagai bidang, mulai dari pembelajaran daring, layanan konsultasi kesehatan jarak jauh (telemedicine), transaksi pembayaran nontunai, hingga penyimpanan dokumen kerja di komputasi awan, di samping perlunya kewaspadaan terhadap keamanan privasi.",
+        question: "Pernyataan yang paling tepat menggambarkan manfaat utama teknologi digital dalam kehidupan sehari-hari berdasarkan narasi di atas adalah...",
+        options: [
+          "Menghilangkan kebutuhan listrik dan jaringan internet secara menyeluruh.",
+          "Mempercepat akses informasi, mempermudah kolaborasi lintas jarak, serta meningkatkan efisiensi layanan pendidikan, kesehatan, dan ekonomi.",
+          "Membatasi pertukaran informasi agar hanya dapat dilakukan secara tatap muka di satu ruangan.",
+          "Menjamin semua pengguna bebas dari kewajiban menjaga keamanan kata sandi akun.",
+          "Mengubah seluruh bentuk komunikasi menjadi surat pos fisik yang lebih lambat."
+        ],
+        answer: 1,
+        bahas: "Teknologi digital memberikan manfaat nyata berupa efisiensi waktu dan jarak dalam pertukaran informasi, layanan publik (pendidikan dan telemedicine), serta transaksi ekonomi yang serba cepat."
+      },
+      {
+        no: 17, type: "PG", cog: "C2 • Level 2", topic: "Sinyal Komunikasi pada Smartphone",
+        narasi: "Setiap hari jutaan orang menggunakan smartphone untuk melakukan panggilan suara, mengirim pesan instan, mengakses internet melalui jaringan seluler maupun Wi-Fi, serta berbagi berkas lewat Bluetooth. Namun, pemakaian berlebihan tanpa jeda juga dapat mengganggu kualitas tidur.",
+        question: "Jenis sinyal fisis yang dimanfaatkan smartphone untuk mengirim dan menerima data pada komunikasi nirkabel tersebut adalah...",
+        options: [
+          "Gelombang bunyi ultrasonik di ruang hampa",
+          "Gelombang elektromagnetik pada rentang radiofrekuensi (gelombang radio/mikro)",
+          "Arus listrik searah melalui kabel tembaga bawah tanah menuju telepon genggam",
+          "Gelombang mekanik gempa bumi (gelombang seismik)",
+          "Sinar gamma berenergi tinggi dari inti atom"
+        ],
+        answer: 1,
+        bahas: "Komunikasi nirkabel pada smartphone (jaringan seluler 4G/5G, Wi-Fi, Bluetooth, GPS) memanfaatkan <b>gelombang elektromagnetik pada pita radiofrekuensi</b> (gelombang radio dan gelombang mikro)."
+      },
+      {
+        no: 18, type: "PG", cog: "C3 • Level 2", topic: "Konversi Bilangan Biner ke Desimal",
+        narasi: `Dalam pemrosesan data sebuah mikrokontroler digital, terbaca rangkaian bit biner <span class="math">101101<sub>2</sub></span>.`,
+        question: "Nilai bilangan biner <span class=\"math\">101101<sub>2</sub></span> jika dikonversi ke dalam sistem bilangan desimal adalah...",
+        options: ["37", "43", "45", "53", "55"],
+        answer: 2,
+        bahas: `Konversi tiap posisi bit dari kanan (<span class="math">2<sup>0</sup></span>) ke kiri (<span class="math">2<sup>5</sup></span>):<br/><span class="math">(1 &times; 2<sup>5</sup>) + (0 &times; 2<sup>4</sup>) + (1 &times; 2<sup>3</sup>) + (1 &times; 2<sup>2</sup>) + (0 &times; 2<sup>1</sup>) + (1 &times; 2<sup>0</sup>)</span><br/><span class="math">= 32 + 0 + 8 + 4 + 0 + 1 = <b>45</b></span>.`
+      },
+      {
+        no: 19, type: "PG", cog: "C3 • Level 2", topic: "Konversi Bilangan Biner ke Heksadesimal",
+        narasi: `Sebuah register memori komputer menyimpan alamat data dalam bentuk bilangan biner 8-bit: <span class="math">11010111<sub>2</sub></span>.`,
+        question: "Representasi bilangan biner tersebut dalam sistem bilangan heksadesimal (basis 16) adalah...",
+        options: [
+          `<span class="math">C7<sub>16</sub></span>`,
+          `<span class="math">D5<sub>16</sub></span>`,
+          `<span class="math">D7<sub>16</sub></span>`,
+          `<span class="math">E7<sub>16</sub></span>`,
+          `<span class="math">7D<sub>16</sub></span>`
+        ],
+        answer: 2,
+        bahas: `Kelompokkan biner menjadi 4 bit dari kanan:<br/>• 4 bit kiri: <span class="math">1101<sub>2</sub> = 8 + 4 + 0 + 1 = 13 = <b>D</b></span><br/>• 4 bit kanan: <span class="math">0111<sub>2</sub> = 0 + 4 + 2 + 1 = <b>7</b></span><br/>Jadi bentuk heksadesimalnya adalah <b>D7<sub>16</sub></b>.`
+      },
+      {
+        no: 20, type: "PG", cog: "C2 • Level 2", topic: "Media Penyimpanan Data Digital",
+        narasi: "Sebuah studio penyuntingan video 4K membutuhkan media penyimpanan data sekunder berkecepatan baca dan akses data paling tinggi agar pemrosesan berkas besar tidak mengalami lag.",
+        question: "Jenis media penyimpanan data berikut yang memiliki kecepatan akses dan baca paling tinggi adalah...",
+        options: [
+          "Optical Disc (DVD-ROM)",
+          "Hard Disk Drive (HDD) piringan mekanis 5400 RPM",
+          "Pita Magnetik (Magnetic Tape)",
+          "Solid State Drive (SSD NVMe)",
+          "Floppy Disk (Disket)"
+        ],
+        answer: 3,
+        bahas: `<b>SSD NVMe</b> menggunakan memori semikonduktor (flash NAND) yang terhubung langsung lewat jalur PCIe tanpa bagian mekanis berputar, sehingga kecepatan baca/tulis dan waktu aksesnya jauh melampaui HDD mekanis, DVD, maupun pita magnetik.`
+      },
+      {
+        no: 21, type: "PGK_BS", cog: "C5 • Level 3", topic: "Tegangan Maksimum Generator AC",
+        narasi: `Tegangan maksimum yang dihasilkan oleh sebuah generator arus bolak-balik (AC) dirumuskan oleh <span class="math">&varepsilon;<sub>maks</sub> = N &middot; B &middot; A &middot; &omega;</span> dengan <span class="math">&omega; = 2&pi;f = ${frac("2&pi;", "T")}</span>.`,
+        question: "Tentukan Benar atau Salah setiap pernyataan berikut berdasarkan konsep tegangan maksimum generator AC!",
+        statements: [
+          "Memperbesar frekuensi sudut (ω) putaran kumparan generator akan memperbesar tegangan maksimum yang dihasilkan secara sebanding.",
+          "Menambah jumlah lilitan (N) kumparan pada luas bidang dan medan magnet yang tetap akan memperkecil tegangan maksimum generator.",
+          "Jika periode putaran (T) kumparan diperkecil menjadi setengah kali semula, tegangan maksimum generator akan meningkat menjadi dua kali lipat.",
+          "Apabila kumparan dan magnet sama-sama diam tanpa gerak relatif, gaya magnetik pada elektron kawat tetap bekerja menghasilkan tegangan maksimum AC.",
+          "Meningkatkan frekuensi putaran (f) kumparan mempercepat laju perubahan fluks magnetik sehingga tegangan maksimum generator ikut bertambah."
+        ],
+        answer: ["B", "S", "B", "S", "B"],
+        bahas: "1) BENAR (ε_maks ∝ ω).\n2) SALAH (menambah N justru memperbesar ε_maks karena ε_maks ∝ N).\n3) BENAR (ε_maks ∝ 1/T).\n4) SALAH (jika diam tanpa gerak relatif/perubahan fluks, tidak ada gaya magnetik pada muatan bebas sehingga ε = 0).\n5) BENAR (ε_maks ∝ f)."
+      },
+      {
+        no: 22, type: "PGK_BS", cog: "C5 • Level 3", topic: "Dampak Radiasi Ultraviolet (UV)",
+        narasi: "Matahari memancarkan radiasi ultraviolet (UV-A, UV-B, dan UV-C) yang memengaruhi kehidupan di Bumi.",
+        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan mengenai dampak paparan sinar ultraviolet berikut!",
+        statements: [
+          "Paparan sinar UV-B matahari pagi dalam dosis wajar membantu tubuh manusia mensintesis vitamin D yang penting bagi kesehatan tulang.",
+          "Paparan radiasi UV berlebih dalam jangka panjang berisiko merusak DNA sel kulit (kanker kulit/melanoma) dan memicu katarak pada lensa mata.",
+          "Menipisnya lapisan ozon di atmosfer menyebabkan lebih banyak radiasi UV berenergi tinggi mencapai permukaan bumi.",
+          "Sinar ultraviolet sama sekali tidak dapat digunakan untuk mensterilkan peralatan medis karena tidak memengaruhi mikroorganisme.",
+          "Penggunaan tabir surya (sunscreen) dan pelindung mata anti-UV membantu meminimalkan risiko kerusakan kulit dan mata akibat paparan UV berlebih."
+        ],
+        answer: ["B", "B", "B", "S", "B"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (sinar UV-C justru banyak digunakan dalam sterilisasi medis dan air karena mampu merusak materi genetik bakteri/virus).\n5) BENAR."
+      },
+      {
+        no: 23, type: "PGK_BS", cog: "C5 • Level 3", topic: "Evaluasi Penggunaan Gelombang Mikro (Microwave)",
+        narasi: "Gelombang mikro dimanfaatkan secara luas dalam perangkat pemanas rumah tangga (oven microwave) serta telekomunikasi.",
+        question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai dampak penggunaan microwave berikut!",
+        statements: [
+          "Oven microwave memanaskan makanan dengan memancarkan gelombang mikro (~2,45 GHz) yang menggetarkan molekul air/polar di dalam makanan sehingga timbul energi panas.",
+          "Gelombang mikro termasuk radiasi non-pengion (energinya jauh lebih rendah daripada sinar-X), sehingga tidak membuat makanan menjadi radioaktif.",
+          "Memasukkan wadah logam atau aluminium foil ke dalam oven microwave yang beroperasi aman dilakukan terus-menerus karena logam tidak memantulkan gelombang mikro.",
+          "Kebocoran radiasi gelombang mikro berdaya tinggi pada oven yang segel pintunya rusak berpotensi memanaskan jaringan tubuh apabila terpapar terus-menerus pada jarak sangat dekat.",
+          "Memanaskan makanan berulang kali dalam wadah plastik yang bukan microwave-safe dapat memicu pelepasan senyawa kimia berbahaya dari plastik ke makanan."
+        ],
+        answer: ["B", "B", "S", "B", "B"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) SALAH (logam memantulkan gelombang mikro dan dapat menimbulkan loncatan bunga api listrik serta merusak magnetron).\n4) BENAR.\n5) BENAR."
+      },
+      {
+        no: 24, type: "PGK_BS", cog: "C5 • Level 3", topic: "Klasifikasi Gelombang Elektromagnetik",
+        narasi: "Berbagai fenomena gelombang di alam dibedakan antara gelombang elektromagnetik dan gelombang mekanik.",
+        question: "Tentukan status kebenaran (Benar/Salah) pengelompokan kelima jenis gelombang berikut sebagai gelombang elektromagnetik!",
+        statements: [
+          "Sinar-X (sinar Röntgen) yang dipakai dalam pencitraan medis tulang merupakan gelombang elektromagnetik.",
+          "Gelombang ultrasonik yang digunakan pada alat USG dan sonar laut termasuk gelombang elektromagnetik.",
+          "Gelombang radio dan sinyal jaringan Wi-Fi termasuk kelompok gelombang elektromagnetik.",
+          "Radiasi inframerah yang dipancarkan oleh tubuh manusia dan remote control TV merupakan gelombang elektromagnetik.",
+          "Gelombang seismik gempa bumi yang merambat di kerak bumi merupakan gelombang elektromagnetik."
+        ],
+        answer: ["B", "S", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) SALAH (gelombang ultrasonik adalah gelombang bunyi/mekanik).\n3) BENAR.\n4) BENAR.\n5) SALAH (gelombang seismik adalah gelombang mekanik yang merambat melalui medium batuan bumi)."
+      },
+      {
+        no: 25, type: "PGK_BS", cog: "C5 • Level 3", topic: "Superposisi Medan Magnet Dua Kawat Sejajar",
+        narasi: "Perhatikan konfigurasi dua kawat lurus sangat panjang yang sejajar dan dialiri arus listrik berlawanan arah berikut:" + SVG_Q25,
+        question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai medan magnet pada sistem dua kawat sejajar tersebut!",
+        statements: [
+          "Tepat di titik P (antara kedua kawat), medan magnet yang ditimbulkan kawat A dan kawat B sama-sama berarah masuk tegak lurus bidang gambar (⊗).",
+          "Karena besar arus kedua kawat sama dan berlawanan arah, resultan medan magnet di titik P (tengah-tengah kedua kawat) bernilai nol.",
+          "Besar induksi magnetik di suatu titik akibat masing-masing kawat berbanding lurus dengan kuat arus (I) dan berbanding terbalik dengan jarak titik ke kawat.",
+          "Kedua kawat sejajar dengan arah arus berlawanan tersebut mengalami gaya magnetik saling tolak-menolak.",
+          "Jika arah arus pada kawat B dibalik menjadi ke atas (searah kawat A), maka resultan medan magnet di titik P menjadi bernilai nol."
+        ],
+        answer: ["B", "S", "B", "B", "B"],
+        bahas: "1) BENAR (kawat A ke atas → di kanan masuk ⊗; kawat B ke bawah → di kiri masuk ⊗).\n2) SALAH (di titik P kedua medan searah masuk bidang ⊗ sehingga saling menjumlahkan menjadi 2B, bukan nol!).\n3) BENAR (B = μ₀I / 2πa).\n4) BENAR (arus sejajar berlawanan arah saling tolak-menolak).\n5) BENAR (jika searah ke atas, di P medan A masuk ⊗ dan medan B keluar ⊙ dengan besar sama sehingga saling meniadakan)."
+      },
+      {
+        no: 26, type: "PGK_CHECK", cog: "C5 • Level 3", topic: "Resultan Medan Magnet Dua Kawat Sejajar",
+        narasi: `Dua kawat lurus panjang sejajar P dan Q terpisah jarak <span class="math">8 cm</span> dengan arus berlawanan arah (<span class="math">I<sub>P</sub> = 2 A</span> ke atas dan <span class="math">I<sub>Q</sub> = 6 A</span> ke bawah) seperti gambar berikut:` + SVG_Q26,
+        question: "Pilihlah seluruh pernyataan yang BENAR mengenai arah dan besar resultan medan magnet berdasarkan prinsip superposisi! (Pilih 3 jawaban yang benar)",
+        options: [
+          "Di daerah antara kawat P dan kawat Q, medan magnet akibat kedua kawat berarah sama (masuk bidang gambar ⊗) sehingga resultannya saling menjumlahkan.",
+          "Tepat di tengah-tengah antara kawat P dan Q (jarak 4 cm dari masing-masing kawat), besar resultan medan magnetnya adalah 4 × 10⁻⁵ T berarah masuk bidang (⊗).",
+          "Titik yang memiliki resultan medan magnet bernilai nol terletak pada jarak 4 cm di sebelah kiri kawat P.",
+          "Titik yang memiliki resultan medan magnet bernilai nol berada di antara kawat P dan Q pada jarak 2 cm dari kawat P.",
+          "Di sebelah kanan kawat Q terdapat titik dengan resultan medan magnet nol karena arus pada kawat Q lebih besar."
+        ],
+        answer: [0, 1, 2],
+        bahas: `• <b>Opsi 1 BENAR:</b> Di antara P dan Q, kedua medan sama-sama masuk bidang (⊗).<br/>• <b>Opsi 2 BENAR:</b> Di titik tengah (<span class="math">a = 4 cm = 0,04 m</span>): <span class="math">B<sub>P</sub> = 1 &times; 10<sup>&minus;5</sup> T</span> dan <span class="math">B<sub>Q</sub> = 3 &times; 10<sup>&minus;5</sup> T</span>, sehingga <span class="math">B<sub>total</sub> = <b>4 &times; 10<sup>&minus;5</sup> T</b></span> (⊗).<br/>• <b>Opsi 3 BENAR:</b> Medan nol berada di luar dekat kawat berarus lebih kecil (sebelah kiri P): <span class="math">${frac("2", "x")} = ${frac("6", "x + 8")} &rArr; 6x = 2x + 16 &rArr; x = <b>4 cm</b></span> di kiri kawat P.`
+      },
+      {
+        no: 27, type: "PGK_CHECK", cog: "C5 • Level 3", topic: "Proses Induksi Elektromagnetik (Faraday & Lenz)",
+        narasi: "Perhatikan ilustrasi percobaan magnet batang yang digerakkan keluar-masuk ke dalam suatu kumparan yang terhubung dengan galvanometer:" + SVG_Q27,
+        question: "Pilihlah seluruh pernyataan yang BENAR mengenai perubahan fluks, besar GGL, arah arus induksi, dan jumlah lilitan! (Pilih 3 jawaban yang benar)",
+        options: [
+          "GGL induksi dan arus induksi hanya timbul selama terjadi perubahan fluks magnetik yang menembus penampang kumparan akibat gerak relatif magnet dan kumparan.",
+          "Memperbanyak jumlah lilitan kumparan (N) dan mempercepat gerakan keluar-masuk magnet akan memperbesar nilai GGL induksi sesuai Hukum Faraday.",
+          "Menurut Hukum Lenz, saat kutub utara magnet digerakkan mendekati ujung kiri kumparan, arus induksi mengalir sehingga ujung kiri kumparan berperan sebagai kutub utara untuk menentang pertambahan fluks.",
+          "Apabila magnet batang dibiarkan diam tidak bergerak di dalam rongga kumparan, jarum galvanometer akan menyimpang maksimal secara terus-menerus.",
+          "Mengubah arah gerak magnet dari mendekati menjadi menjauhi kumparan tidak akan mengubah arah simpangan jarum galvanometer."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Opsi 1 (syarat perubahan fluks), opsi 2 (ε = −N ΔΦ/Δt), dan opsi 3 (Hukum Lenz menentang perubahan fluks) benar. Jika magnet diam di dalam kumparan (opsi 4), ΔΦ = 0 sehingga tidak ada arus induksi. Membalik arah gerak magnet (opsi 5) membalik arah arus dan simpangan galvanometer."
+      },
+      {
+        no: 28, type: "PGK_CHECK", cog: "C5 • Level 3", topic: "Karakteristik & Pemanfaatan Spektrum GEM",
+        narasi: "Spektrum gelombang elektromagnetik meliputi gelombang radio, gelombang mikro, inframerah, cahaya tampak, ultraviolet, sinar-X, dan sinar gamma.",
+        question: "Pilihlah seluruh pernyataan yang BENAR mengenai hubungan frekuensi, panjang gelombang, energi, dan pemanfaatan spektrum GEM! (Pilih 3 jawaban yang benar)",
+        options: [
+          "Sinar gamma memiliki frekuensi tertinggi, panjang gelombang paling pendek, dan energi foton paling besar sehingga digunakan dalam radioterapi sel kanker serta sterilisasi peralatan medis.",
+          "Gelombang mikro memiliki panjang gelombang lebih pendek daripada gelombang radio sehingga mampu menembus lapisan atmosfer/awan dengan baik untuk sistem radar dan komunikasi satelit.",
+          "Gelombang radio memiliki panjang gelombang paling panjang serta energi foton paling rendah sehingga aman dimanfaatkan untuk penyiaran komunikasi jarak jauh.",
+          "Sinar ultraviolet memiliki panjang gelombang lebih panjang daripada gelombang radio dan tidak membawa energi untuk reaksi fotokimia.",
+          "Di ruang hampa, kelajuan rambat sinar gamma jauh lebih cepat daripada kelajuan rambat gelombang radio karena frekuensinya lebih besar."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Opsi 1, 2, dan 3 benar. Opsi 4 salah karena panjang gelombang UV jauh lebih pendek daripada gelombang radio. Opsi 5 salah karena seluruh gelombang elektromagnetik merambat di ruang hampa dengan kelajuan yang sama, yaitu c = 3 × 10⁸ m/s."
+      },
+      {
+        no: 29, type: "PGK_CHECK", cog: "C5 • Level 3", topic: "Prinsip Dasar Sistem & Pengolahan Data Digital",
+        narasi: "Perangkat audio, video, dan komputer modern mengolah informasi dari dunia nyata menjadi format data digital.",
+        question: "Pilihlah seluruh pernyataan yang BENAR mengenai representasi biner, sinyal digital, sampling, kuantisasi, dan penyalinan data! (Pilih 3 jawaban yang benar)",
+        options: [
+          "Sistem digital merepresentasikan seluruh informasi (teks, suara, gambar) ke dalam sistem bilangan biner yang terdiri atas dua logika dasar, yakni 0 dan 1 (bit).",
+          "Digitalisasi sinyal analog menjadi sinyal digital dilakukan melalui tahap pencuplikan waktu (sampling), pembulatan level amplitudo (quantization), dan pengkodean biner (encoding).",
+          "Data digital dapat digandakan (disalin) berulang kali tanpa mengalami penurunan kualitas atau tambahan derau selama bit 0 dan 1 terjaga utuh.",
+          "Semakin rendah laju sampling (sampling rate) dan jumlah bit kuantisasi saat merekam suara, semakin presisi dan jernih hasil audio digitalnya.",
+          "Sinyal digital selalu berupa gelombang sinus kontinu dengan nilai amplitudo tak terhingga tanpa loncatan nilai diskrit."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Opsi 1 (biner 0 dan 1), opsi 2 (proses ADC: sampling, kuantisasi, encoding), dan opsi 3 (keunggulan penyalinan digital tanpa degradasi derau) benar. Opsi 4 terbalik (makin tinggi sampling rate & bit depth, makin akurat), dan opsi 5 adalah definisi sinyal analog."
+      },
+      {
+        no: 30, type: "PGK_CHECK", cog: "C5 • Level 3", topic: "Penerapan Teknologi Digital dalam Pembelajaran",
+        narasi: "Sebuah sekolah menerapkan sistem pembelajaran jarak jauh dan kolaborasi berbasis internet menggunakan platform komputasi awan (cloud computing) dan ruang kelas virtual.",
+        question: "Pilihlah seluruh pernyataan yang BENAR mengenai manfaat dan tantangan cloud computing, bandwidth, enkripsi, validitas informasi, serta protokol komunikasi! (Pilih 3 jawaban yang benar)",
+        options: [
+          "Cloud computing memudahkan siswa dan guru menyimpan, mengakses, serta berkolaborasi menyunting materi pembelajaran secara real-time dari beragam perangkat tanpa bergantung pada satu memori lokal.",
+          "Ketersediaan lebar pita jaringan (bandwidth) yang cukup sangat menentukan kelancaran transmisi data bervolume besar seperti konferensi video pembelajaran tanpa gangguan jeda (lag).",
+          "Penerapan enkripsi (seperti HTTPS/TLS) dan verifikasi validitas sumber informasi mutlak diperlukan untuk menjaga keamanan data akun serta mencegah penyebaran hoaks di lingkungan belajar digital.",
+          "Protokol komunikasi internet (TCP/IP) bekerja dengan melarang pemecahan data menjadi paket-paket dan mengirimkan informasi tanpa memerlukan alamat IP tujuan.",
+          "Menyimpan materi di cloud computing otomatis menjamin seluruh berita yang ditemukan di internet benar dan kebal dari pembobolan tanpa perlu kata sandi kuat."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Opsi 1 (manfaat kolaborasi cloud computing), opsi 2 (peran bandwidth pada streaming/video pembelajaran), dan opsi 3 (pentingnya enkripsi keamanan data & literasi validitas informasi) benar. Opsi 4 salah karena TCP/IP justru memecah data menjadi paket-paket dengan alamat IP; opsi 5 salah karena cloud tetap membutuhkan autentikasi/enkripsi dan literasi verifikasi fakta."
+      }
+    ];
+
+    /* ============================================================
+       3. DAFTAR MATA PELAJARAN (OTOMATIS DARI NAMA FILE ASLI)
+    ============================================================ */
+    const SUBJECTS = [
+      {
+        id: "sejarah",
+        sourceFile: "sejarah.html",
+        name: formatSubjectName("sejarah.html"),
+        subtitle: "Kelas XII/F • Perjuangan Kemerdekaan, Demokrasi Liberal & Terpimpin",
+        formats: "PG, PG Kompleks, Benar/Salah",
+        questions: SEJARAH_QUESTIONS,
+        iconSvg: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+      },
+      {
+        id: "fisika",
+        sourceFile: "fisika.html",
+        name: formatSubjectName("fisika.html"),
+        subtitle: "Kelas XII/F • Kemagnetan, Induksi, Arus AC, GEM & Teknologi Digital",
+        formats: "PG, Benar/Salah, PG Kompleks",
+        questions: FISIKA_QUESTIONS,
+        iconSvg: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>`
+      }
+    ];
+
+    /* ============================================================
+       4. PENYIMPANAN LOKAL STABIL (AMAN SAAT PEMBARUAN)
+    ============================================================ */
+    const STORAGE_KEYS = {
+      THEME: "rasfarilmi_edu_v1_theme",
+      SEEN_OPENING: "rasfarilmi_edu_v1_seen_opening",
+      DRAFTS: "rasfarilmi_edu_v1_drafts",
+      HISTORY: "rasfarilmi_edu_v1_history"
+    };
+
+    function readStorage(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function writeStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (e) {
+        // Abaikan jika mode private membatasi quota
+      }
+    }
+
+    /* ============================================================
+       5. STATE APLIKASI & NAVIGASI
+    ============================================================ */
+    let activeSubject = null;
+    let currentQIdx = 0;
+    let userAnswers = [];
+    let bahasVisible = [];
     let autoBahasMode = false;
     let isEvaluated = false;
+    let lastResult = null;
+    let deferredInstallPrompt = null;
 
-    // Inisialisasi jawaban default untuk PGK B/S dan Checklist
-    QUESTIONS.forEach((q, idx) => {
-      if (q.type === "PGK_BS") {
-        userAnswers[idx] = new Array(q.statements.length).fill(null);
-      } else if (q.type === "PGK_CHECK") {
-        userAnswers[idx] = [];
+    function initTheme() {
+      const saved = readStorage(STORAGE_KEYS.THEME, "light");
+      applyTheme(saved);
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      writeStorage(STORAGE_KEYS.THEME, theme);
+      const isDark = theme === "dark";
+      document.getElementById("themeIcon").textContent = isDark ? "☀️" : "🌙";
+      const settingBtn = document.getElementById("settingThemeBtn");
+      if (settingBtn) settingBtn.textContent = isDark ? "Tema: Gelap" : "Tema: Terang";
+    }
+
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute("data-theme") || "light";
+      applyTheme(cur === "dark" ? "light" : "dark");
+    }
+
+    function initOpening() {
+      const seen = readStorage(STORAGE_KEYS.SEEN_OPENING, false);
+      const el = document.getElementById("openingScreen");
+      if (!seen) {
+        el.classList.remove("hidden");
       }
-    });
+    }
+
+    function dismissOpening() {
+      writeStorage(STORAGE_KEYS.SEEN_OPENING, true);
+      document.getElementById("openingScreen").classList.add("hidden");
+    }
+
+    function showOpeningPreview() {
+      document.getElementById("openingScreen").classList.remove("hidden");
+    }
+
+    function navigate(viewName) {
+      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) target.classList.add("active");
+
+      const navGroup = (viewName === "quiz" || viewName === "result") ? "subjects" : viewName;
+      document.querySelectorAll("[data-nav]").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-nav") === navGroup);
+      });
+
+      if (viewName === "home") renderSubjectCards("homeSubjectGrid");
+      if (viewName === "subjects") renderSubjectCards("subjectsGrid");
+      if (viewName === "history") renderHistoryView();
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* ============================================================
+       6. RENDER KARTU MATA PELAJARAN
+    ============================================================ */
+    function countAnsweredInAnswers(subject, answersArr) {
+      if (!Array.isArray(answersArr)) return 0;
+      let count = 0;
+      subject.questions.forEach((q, idx) => {
+        const ans = answersArr[idx];
+        if (q.type === "PG" && ans !== null && ans !== undefined) count++;
+        else if (q.type === "PGK_BS" && Array.isArray(ans) && ans.every(v => v !== null)) count++;
+        else if (q.type === "PGK_CHECK" && Array.isArray(ans) && ans.length > 0) count++;
+      });
+      return count;
+    }
+
+    function renderSubjectCards(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const drafts = readStorage(STORAGE_KEYS.DRAFTS, {});
+
+      container.innerHTML = SUBJECTS.map(subj => {
+        const total = subj.questions.length;
+        const draft = drafts[subj.id];
+        const answeredCount = draft ? countAnsweredInAnswers(subj, draft.answers) : 0;
+        const hasProgress = draft && !draft.isEvaluated && answeredCount > 0;
+        const pct = Math.round((answeredCount / total) * 100);
+
+        return `
+          <article class="subject-card">
+            <div>
+              <div class="subject-top">
+                <div class="subject-icon">${subj.iconSvg}</div>
+                <span class="subject-count">${total} Soal</span>
+              </div>
+              <h3 class="subject-title" style="margin-top: 14px;">${subj.name}</h3>
+              <p class="subject-meta">${subj.subtitle}</p>
+            </div>
+
+            ${hasProgress ? `
+              <div class="subject-draft">
+                <div style="display:flex; justify-content:space-between; font-weight:600;">
+                  <span>Progres tersimpan</span>
+                  <span>${answeredCount} / ${total} soal (${pct}%)</span>
+                </div>
+                <div class="subject-draft-bar">
+                  <div class="subject-draft-fill" style="width:${pct}%"></div>
+                </div>
+              </div>
+            ` : ""}
+
+            <div class="subject-actions">
+              <button class="btn btn-primary" onclick="startSubject('${subj.id}', false)">
+                ${hasProgress ? "Lanjutkan" : "Kerjakan"}
+              </button>
+              ${hasProgress ? `<button class="btn" onclick="startSubject('${subj.id}', true)">Ulangi</button>` : ""}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    /* ============================================================
+       7. MESIN PENGERJAAN SOAL & EVALUASI
+    ============================================================ */
+    function createEmptyAnswers(subject) {
+      return subject.questions.map(q => {
+        if (q.type === "PG") return null;
+        if (q.type === "PGK_BS") return new Array(q.statements.length).fill(null);
+        return [];
+      });
+    }
+
+    function startSubject(subjectId, forceFresh) {
+      const subj = SUBJECTS.find(s => s.id === subjectId);
+      if (!subj) return;
+      activeSubject = subj;
+
+      const drafts = readStorage(STORAGE_KEYS.DRAFTS, {});
+      const savedDraft = drafts[subj.id];
+
+      if (!forceFresh && savedDraft && Array.isArray(savedDraft.answers) && savedDraft.answers.length === subj.questions.length && !savedDraft.isEvaluated) {
+        userAnswers = savedDraft.answers;
+        currentQIdx = Math.min(savedDraft.currentQIdx || 0, subj.questions.length - 1);
+        isEvaluated = false;
+        bahasVisible = new Array(subj.questions.length).fill(false);
+      } else {
+        userAnswers = createEmptyAnswers(subj);
+        currentQIdx = 0;
+        isEvaluated = false;
+        bahasVisible = new Array(subj.questions.length).fill(false);
+        saveDraft();
+      }
+
+      autoBahasMode = false;
+      document.getElementById("toggleAutoBahasBtn").textContent = "Mode Bahas Langsung: OFF";
+      document.getElementById("quizSubjectTitle").textContent = subj.name;
+      navigate("quiz");
+      renderQuestion();
+    }
+
+    function saveDraft() {
+      if (!activeSubject) return;
+      const drafts = readStorage(STORAGE_KEYS.DRAFTS, {});
+      drafts[activeSubject.id] = {
+        answers: userAnswers,
+        currentQIdx: currentQIdx,
+        isEvaluated: isEvaluated,
+        updatedAt: Date.now()
+      };
+      writeStorage(STORAGE_KEYS.DRAFTS, drafts);
+    }
 
     function isQuestionAnswered(idx) {
-      const q = QUESTIONS[idx];
+      const q = activeSubject.questions[idx];
       const ans = userAnswers[idx];
       if (q.type === "PG") return ans !== null;
       if (q.type === "PGK_BS") return Array.isArray(ans) && ans.every(v => v !== null);
@@ -1606,7 +3237,7 @@
     }
 
     function isQuestionCorrect(idx) {
-      const q = QUESTIONS[idx];
+      const q = activeSubject.questions[idx];
       const ans = userAnswers[idx];
       if (q.type === "PG") return ans === q.answer;
       if (q.type === "PGK_BS") {
@@ -1621,12 +3252,12 @@
       return false;
     }
 
-    function renderNav() {
+    function renderQuizNav() {
       const grid = document.getElementById("navGrid");
       grid.innerHTML = "";
       let answeredTotal = 0;
 
-      QUESTIONS.forEach((q, idx) => {
+      activeSubject.questions.forEach((q, idx) => {
         const answered = isQuestionAnswered(idx);
         if (answered) answeredTotal++;
 
@@ -1634,31 +3265,32 @@
         btn.className = "nav-btn";
         btn.textContent = q.no;
 
-        if (idx === currentIndex) btn.classList.add("current");
+        if (idx === currentQIdx) btn.classList.add("current");
         if (isEvaluated) {
           btn.classList.add(isQuestionCorrect(idx) ? "eval-correct" : "eval-wrong");
         } else if (answered) {
           btn.classList.add("answered");
         }
 
-        btn.onclick = () => goTo(idx);
+        btn.onclick = () => goToQuestion(idx);
         grid.appendChild(btn);
       });
 
-      document.getElementById("answeredCount").textContent = `Terjawab: ${answeredTotal} / ${QUESTIONS.length}`;
+      document.getElementById("quizAnsweredCount").textContent =
+        `Terjawab: ${answeredTotal} / ${activeSubject.questions.length}`;
     }
 
     function renderQuestion() {
-      const q = QUESTIONS[currentIndex];
-      const total = QUESTIONS.length;
+      if (!activeSubject) return;
+      const questions = activeSubject.questions;
+      const q = questions[currentQIdx];
+      const total = questions.length;
 
-      // Progress
       document.getElementById("progressLabel").textContent = `Soal ${q.no} dari ${total}`;
-      const pct = ((currentIndex + 1) / total) * 100;
+      const pct = ((currentQIdx + 1) / total) * 100;
       document.getElementById("progressPercent").textContent = `${pct.toFixed(1)}%`;
       document.getElementById("progressFill").style.width = `${pct}%`;
 
-      // Meta tags
       const typeLabel =
         q.type === "PG" ? "Pilihan Ganda" :
         q.type === "PGK_BS" ? "Benar / Salah" :
@@ -1671,12 +3303,12 @@
         <span class="tag tag-topic">${q.topic}</span>
       `;
 
-      // Perbarui narasi dinamis jika berisi slot foto arsip No. 6 / No. 15
+      // Refresh dynamic archival slot for Sejarah Q6 & Q15
       let narasiHTML = q.narasi;
-      if (q.no === 6) {
+      if (activeSubject.id === "sejarah" && q.no === 6) {
         narasiHTML = "Perhatikan foto arsip kapal perang yang berlabuh di Teluk Jakarta sebagai lokasi perundingan antara delegasi Indonesia dan Belanda berikut ini:" +
           buildArchivalSlot(6, "uss_renville.jpg", "Kapal Perang USS Renville di Teluk Jakarta (1948)", "Menampilkan kapal pengangkut angkatan laut Amerika Serikat USS Renville yang dijadikan tempat netral perundingan Indonesia–Belanda.");
-      } else if (q.no === 15) {
+      } else if (activeSubject.id === "sejarah" && q.no === 15) {
         narasiHTML = "Perhatikan foto arsip tokoh pemimpin pusat gerakan Darul Islam / Tentara Islam Indonesia (DI/TII) yang memproklamasikan berdirinya Negara Islam Indonesia (NII) di Jawa Barat pada 7 Agustus 1949 berikut ini:" +
           buildArchivalSlot(15, "tokoh_ditii.jpg", "Foto Arsip Tokoh Pemimpin Pusat DI/TII (Jawa Barat)", "Menampilkan potret tokoh pendiri dan imam pusat gerakan DI/TII di Jawa Barat (1949).");
       }
@@ -1686,8 +3318,7 @@
 
       const inputArea = document.getElementById("qInputArea");
       inputArea.innerHTML = "";
-
-      const showCorrection = isEvaluated || bahasVisible[currentIndex];
+      const showCorrection = isEvaluated || bahasVisible[currentQIdx];
 
       if (q.type === "PG") {
         const list = document.createElement("div");
@@ -1697,7 +3328,7 @@
         q.options.forEach((opt, i) => {
           const item = document.createElement("div");
           item.className = "option-item";
-          const selected = userAnswers[currentIndex] === i;
+          const selected = userAnswers[currentQIdx] === i;
           if (selected) item.classList.add("selected");
 
           if (showCorrection) {
@@ -1705,49 +3336,34 @@
             else if (selected && i !== q.answer) item.classList.add("wrong");
           }
 
-          item.innerHTML = `
-            <span class="option-letter">${letters[i]}</span>
-            <span>${opt}</span>
-          `;
+          item.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
           item.onclick = () => selectPG(i);
           list.appendChild(item);
         });
         inputArea.appendChild(list);
       } else if (q.type === "PGK_BS") {
+        const wrap = document.createElement("div");
+        wrap.className = "bs-table-wrap";
         const table = document.createElement("table");
         table.className = "bs-table";
-        table.innerHTML = `
-          <thead>
-            <tr>
-              <th>Pernyataan</th>
-              <th class="center">Benar</th>
-              <th class="center">Salah</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        `;
+        table.innerHTML = `<thead><tr><th>Pernyataan</th><th class="center">Benar</th><th class="center">Salah</th></tr></thead><tbody></tbody>`;
         const tbody = table.querySelector("tbody");
 
         q.statements.forEach((stmt, i) => {
           const tr = document.createElement("tr");
-          const curVal = userAnswers[currentIndex][i];
-
+          const curVal = userAnswers[currentQIdx][i];
           if (showCorrection && curVal !== null) {
             tr.className = curVal === q.answer[i] ? "row-correct" : "row-wrong";
           }
-
           tr.innerHTML = `
             <td><strong>${i + 1}.</strong> ${stmt}</td>
-            <td class="center">
-              <button class="bs-btn ${curVal === 'B' ? 'active-b' : ''}" onclick="selectBS(${i}, 'B')">B</button>
-            </td>
-            <td class="center">
-              <button class="bs-btn ${curVal === 'S' ? 'active-s' : ''}" onclick="selectBS(${i}, 'S')">S</button>
-            </td>
+            <td class="center"><button class="bs-btn ${curVal === 'B' ? 'active-b' : ''}" onclick="selectBS(${i}, 'B')">B</button></td>
+            <td class="center"><button class="bs-btn ${curVal === 'S' ? 'active-s' : ''}" onclick="selectBS(${i}, 'S')">S</button></td>
           `;
           tbody.appendChild(tr);
         });
-        inputArea.appendChild(table);
+        wrap.appendChild(table);
+        inputArea.appendChild(wrap);
       } else if (q.type === "PGK_CHECK") {
         const list = document.createElement("div");
         list.className = "options-list";
@@ -1755,7 +3371,7 @@
         q.options.forEach((opt, i) => {
           const item = document.createElement("div");
           item.className = "check-item";
-          const selected = userAnswers[currentIndex].includes(i);
+          const selected = userAnswers[currentQIdx].includes(i);
           if (selected) item.classList.add("selected");
 
           if (showCorrection) {
@@ -1763,20 +3379,16 @@
             else if (selected && !q.answer.includes(i)) item.classList.add("wrong");
           }
 
-          item.innerHTML = `
-            <span class="check-box">${selected ? "✓" : ""}</span>
-            <span>${opt}</span>
-          `;
+          item.innerHTML = `<span class="check-box">${selected ? "✓" : ""}</span><span>${opt}</span>`;
           item.onclick = () => toggleCheck(i);
           list.appendChild(item);
         });
         inputArea.appendChild(list);
       }
 
-      // Pembahasan box
       const bahasBox = document.getElementById("bahasBox");
-      const shouldShowBahas = bahasVisible[currentIndex] || autoBahasMode;
-      if (shouldShowBahas) {
+      const shouldShowBahas = bahasVisible[currentQIdx] || autoBahasMode;
+      if (shouldShowBahas && q.bahas) {
         bahasBox.classList.add("show");
         document.getElementById("bahasKey").textContent = formatAnswerKey(q);
         document.getElementById("bahasText").innerHTML = q.bahas.replace(/\n/g, "<br/>");
@@ -1784,107 +3396,255 @@
         bahasBox.classList.remove("show");
       }
 
-      // Tombol prev/next
-      document.getElementById("prevBtn").disabled = currentIndex === 0;
-      document.getElementById("nextBtn").disabled = currentIndex === total - 1;
-      document.getElementById("bahasBtn").textContent = shouldShowBahas ? "🙈 Sembunyikan Bahas" : "💡 Bahas Soal Ini";
+      document.getElementById("prevBtn").disabled = currentQIdx === 0;
+      document.getElementById("nextBtn").disabled = currentQIdx === total - 1;
+      document.getElementById("bahasBtn").textContent = shouldShowBahas ? "Sembunyikan Bahas" : "Bahas Soal Ini";
 
-      renderNav();
+      renderQuizNav();
     }
 
     function formatAnswerKey(q) {
       const letters = ["A", "B", "C", "D", "E"];
-      if (q.type === "PG") {
-        return `Kunci Jawaban: ${letters[q.answer]}`;
-      }
-      if (q.type === "PGK_BS") {
-        return `Kunci Jawaban: ${q.answer.map((v, i) => `${i + 1}.${v === 'B' ? 'Benar' : 'Salah'}`).join(" | ")}`;
-      }
-      if (q.type === "PGK_CHECK") {
-        return `Kunci Jawaban: Pernyataan nomor ${q.answer.map(i => i + 1).join(", ")}`;
-      }
+      if (q.type === "PG") return `Kunci Jawaban: ${letters[q.answer]}`;
+      if (q.type === "PGK_BS") return `Kunci Jawaban: ${q.answer.map((v, i) => `${i + 1}.${v === 'B' ? 'Benar' : 'Salah'}`).join(" | ")}`;
+      return `Kunci Jawaban: Pernyataan nomor ${q.answer.map(i => i + 1).join(", ")}`;
     }
 
     function selectPG(optionIdx) {
-      userAnswers[currentIndex] = optionIdx;
-      if (autoBahasMode) bahasVisible[currentIndex] = true;
+      if (isEvaluated) return;
+      userAnswers[currentQIdx] = optionIdx;
+      if (autoBahasMode) bahasVisible[currentQIdx] = true;
+      saveDraft();
       renderQuestion();
     }
 
     function selectBS(stmtIdx, val) {
-      userAnswers[currentIndex][stmtIdx] = val;
-      if (autoBahasMode && isQuestionAnswered(currentIndex)) bahasVisible[currentIndex] = true;
+      if (isEvaluated) return;
+      userAnswers[currentQIdx][stmtIdx] = val;
+      if (autoBahasMode && isQuestionAnswered(currentQIdx)) bahasVisible[currentQIdx] = true;
+      saveDraft();
       renderQuestion();
     }
 
     function toggleCheck(optIdx) {
-      const arr = userAnswers[currentIndex];
+      if (isEvaluated) return;
+      const arr = userAnswers[currentQIdx];
       const pos = arr.indexOf(optIdx);
       if (pos === -1) arr.push(optIdx);
       else arr.splice(pos, 1);
-      if (autoBahasMode) bahasVisible[currentIndex] = true;
+      if (autoBahasMode) bahasVisible[currentQIdx] = true;
+      saveDraft();
       renderQuestion();
     }
 
-    function toggleBahas() {
-      bahasVisible[currentIndex] = !bahasVisible[currentIndex];
+    function toggleBahasCurrent() {
+      bahasVisible[currentQIdx] = !bahasVisible[currentQIdx];
       renderQuestion();
     }
 
-    function toggleModeBahas() {
+    function toggleAutoBahas() {
       autoBahasMode = !autoBahasMode;
-      const btn = document.getElementById("toggleAutoBahas");
-      btn.textContent = `Mode Bahas Langsung: ${autoBahasMode ? "ON" : "OFF"}`;
-      if (autoBahasMode) {
-        bahasVisible[currentIndex] = true;
-      }
+      document.getElementById("toggleAutoBahasBtn").textContent = `Mode Bahas Langsung: ${autoBahasMode ? "ON" : "OFF"}`;
+      if (autoBahasMode) bahasVisible[currentQIdx] = true;
       renderQuestion();
     }
 
-    function goTo(idx) {
-      if (idx < 0 || idx >= QUESTIONS.length) return;
-      currentIndex = idx;
+    function goToQuestion(idx) {
+      if (!activeSubject || idx < 0 || idx >= activeSubject.questions.length) return;
+      currentQIdx = idx;
+      if (!isEvaluated) saveDraft();
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function exitQuizToSubjects() {
+      if (activeSubject && !isEvaluated) saveDraft();
+      navigate("subjects");
     }
 
     function finishQuiz() {
-      isEvaluated = true;
+      if (!activeSubject) return;
+      const total = activeSubject.questions.length;
       let correctCount = 0;
-      QUESTIONS.forEach((_, idx) => {
-        if (isQuestionCorrect(idx)) correctCount++;
-        bahasVisible[idx] = true;
+      let unansweredCount = 0;
+
+      activeSubject.questions.forEach((_, idx) => {
+        if (!isQuestionAnswered(idx)) {
+          unansweredCount++;
+        } else if (isQuestionCorrect(idx)) {
+          correctCount++;
+        }
       });
 
-      const score = Math.round((correctCount / QUESTIONS.length) * 100);
-      document.getElementById("finalScoreText").textContent = `${score} / 100`;
-      document.getElementById("finalDetailText").textContent = `Benar: ${correctCount} dari ${QUESTIONS.length} soal`;
-      document.getElementById("summaryBanner").classList.add("show");
+      const wrongCount = total - correctCount - unansweredCount;
+      const score = Math.round((correctCount / total) * 100);
+      const percent = Math.round((correctCount / total) * 100);
 
-      renderQuestion();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+      if (!isEvaluated) {
+        const history = readStorage(STORAGE_KEYS.HISTORY, []);
+        history.unshift({
+          id: `${activeSubject.id}_${Date.now()}`,
+          subjectId: activeSubject.id,
+          subjectName: activeSubject.name,
+          score,
+          correct: correctCount,
+          wrong: wrongCount,
+          unanswered: unansweredCount,
+          total,
+          percent,
+          dateISO: new Date().toISOString()
+        });
+        writeStorage(STORAGE_KEYS.HISTORY, history);
 
-    function showAllBahasMode() {
+        // Hapus draft aktif karena sesi sudah selesai
+        const drafts = readStorage(STORAGE_KEYS.DRAFTS, {});
+        delete drafts[activeSubject.id];
+        writeStorage(STORAGE_KEYS.DRAFTS, drafts);
+      }
+
+      isEvaluated = true;
       bahasVisible = bahasVisible.map(() => true);
+      lastResult = { subject: activeSubject, score, correctCount, wrongCount, unansweredCount, total, percent };
+
+      document.getElementById("resultSubjectBadge").textContent = activeSubject.name;
+      document.getElementById("resultScoreNum").textContent = score;
+      document.getElementById("resultPercentText").textContent = `${percent}% Keberhasilan`;
+      document.getElementById("resCorrect").textContent = correctCount;
+      document.getElementById("resWrong").textContent = wrongCount;
+      document.getElementById("resUnanswered").textContent = unansweredCount;
+      document.getElementById("resPercent").textContent = `${percent}%`;
+
+      navigate("result");
+    }
+
+    function openReviewFromResult() {
+      if (!activeSubject) return;
+      currentQIdx = 0;
+      bahasVisible = bahasVisible.map(() => true);
+      navigate("quiz");
       renderQuestion();
     }
 
-    function resetQuiz() {
-      isEvaluated = false;
-      currentIndex = 0;
-      bahasVisible.fill(false);
-      QUESTIONS.forEach((q, idx) => {
-        if (q.type === "PG") userAnswers[idx] = null;
-        else if (q.type === "PGK_BS") userAnswers[idx] = new Array(q.statements.length).fill(null);
-        else userAnswers[idx] = [];
+    function retakeFromResult() {
+      if (!activeSubject) return;
+      startSubject(activeSubject.id, true);
+    }
+
+    /* ============================================================
+       8. RIWAYAT & PROGRES BELAJAR
+    ============================================================ */
+    function renderHistoryView() {
+      const history = readStorage(STORAGE_KEYS.HISTORY, []);
+      const drafts = readStorage(STORAGE_KEYS.DRAFTS, {});
+      const totalAttempts = history.length;
+      const avgScore = totalAttempts
+        ? Math.round(history.reduce((acc, item) => acc + item.score, 0) / totalAttempts)
+        : 0;
+      const inProgressCount = Object.values(drafts).filter(d => !d.isEvaluated).length;
+
+      document.getElementById("historyOverview").innerHTML = `
+        <div class="overview-card"><span>Latihan Diselesaikan</span><strong>${totalAttempts} kali</strong></div>
+        <div class="overview-card"><span>Rata-rata Nilai</span><strong>${avgScore} / 100</strong></div>
+        <div class="overview-card"><span>Latihan Berlangsung</span><strong>${inProgressCount} mapel</strong></div>
+      `;
+
+      document.getElementById("subjectProgressList").innerHTML = SUBJECTS.map(subj => {
+        const items = history.filter(h => h.subjectId === subj.id);
+        const latest = items[0];
+        const best = items.length ? Math.max(...items.map(i => i.score)) : null;
+
+        return `
+          <div class="overview-card" style="display:flex; flex-direction:column; gap:10px; justify-content:space-between;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="font-size:1.15rem; margin:0;">${subj.name}</strong>
+                <span class="subject-count">${items.length}x latihan</span>
+              </div>
+              <p style="font-size:0.85rem; color:var(--muted); margin-top:6px;">
+                ${latest ? `Nilai terakhir: <b>${latest.score}</b> • Terbaik: <b>${best}</b>` : "Belum ada riwayat selesai."}
+              </p>
+            </div>
+            <button class="btn btn-sm" onclick="startSubject('${subj.id}', false)">Buka Latihan</button>
+          </div>
+        `;
+      }).join("");
+
+      const listEl = document.getElementById("historyList");
+      if (!history.length) {
+        listEl.innerHTML = `<div class="empty-state">Belum ada riwayat pengerjaan selesai. Pilih mata pelajaran untuk memulai latihan pertamamu.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = history.map(item => {
+        const dateStr = new Date(item.dateISO).toLocaleString("id-ID", {
+          day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+        return `
+          <div class="history-item">
+            <div>
+              <strong style="font-size:1.02rem; display:block;">${item.subjectName}</strong>
+              <span style="font-size:0.82rem; color:var(--muted);">${dateStr} • Benar ${item.correct} dari ${item.total} soal</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px;">
+              <span class="history-score">${item.score}</span>
+              <button class="btn btn-sm" onclick="startSubject('${item.subjectId}', true)">Ulangi</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function confirmClearHistory() {
+      if (confirm("Hapus seluruh riwayat nilai latihan yang tersimpan di perangkat ini?")) {
+        writeStorage(STORAGE_KEYS.HISTORY, []);
+        renderHistoryView();
+        alert("Riwayat nilai berhasil dibersihkan.");
+      }
+    }
+
+    /* ============================================================
+       9. PWA & SERVICE WORKER
+    ============================================================ */
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      document.getElementById("installBtn").classList.add("visible");
+      const setBtn = document.getElementById("settingInstallBtn");
+      setBtn.disabled = false;
+      setBtn.textContent = "Instal Sekarang";
+    });
+
+    window.addEventListener("appinstalled", () => {
+      deferredInstallPrompt = null;
+      document.getElementById("installBtn").classList.remove("visible");
+      const setBtn = document.getElementById("settingInstallBtn");
+      setBtn.disabled = true;
+      setBtn.textContent = "Sudah Terinstal";
+    });
+
+    async function triggerInstall() {
+      if (!deferredInstallPrompt) {
+        alert("Untuk menginstal aplikasi, gunakan menu Chrome ('Tambahkan ke layar utama' atau ikon Instal di bilah alamat) saat membuka halaman via localhost/HTTPS.");
+        return;
+      }
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
       });
-      document.getElementById("summaryBanner").classList.remove("show");
-      renderQuestion();
     }
 
-    // Render awal
-    renderQuestion();
+    /* ============================================================
+       10. INISIALISASI AWAL
+    ============================================================ */
+    initTheme();
+    initOpening();
+    renderSubjectCards("homeSubjectGrid");
+    renderSubjectCards("subjectsGrid");
   </script>
 </body>
 </html>
