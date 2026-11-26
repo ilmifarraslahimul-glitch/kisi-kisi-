@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asesmen Sosiologi XII — Perubahan Sosial &amp; Globalisasi</title>
+  <title>Asesmen PSAS Sejarah XII — Latihan &amp; Pembahasan</title>
   <style>
     :root {
-      --primary: #047857;
-      --primary-dark: #064e3b;
-      --primary-light: #d1fae5;
-      --accent: #4338ca;
-      --accent-light: #ede9fe;
-      --bg: #ecfdf5;
+      --primary: #4338ca;
+      --primary-dark: #1e1b4b;
+      --primary-light: #e0e7ff;
+      --accent: #0f766e;
+      --accent-light: #ccfbf1;
+      --bg: #f5f3ff;
       --card: #ffffff;
       --text: #0f172a;
       --muted: #64748b;
-      --border: #a7f3d0;
+      --border: #c7d2fe;
       --success: #15803d;
       --success-bg: #dcfce7;
       --danger: #475569;
       --danger-bg: #e2e8f0;
-      --info: #4338ca;
-      --info-bg: #e0e7ff;
+      --info: #0369a1;
+      --info-bg: #e0f2fe;
       --radius: 14px;
-      --shadow: 0 8px 24px rgba(4, 120, 87, 0.09);
+      --shadow: 0 8px 24px rgba(67, 56, 202, 0.09);
     }
 
     * {
@@ -45,7 +45,7 @@
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
       padding: 18px 24px;
-      box-shadow: 0 4px 16px rgba(6, 78, 59, 0.22);
+      box-shadow: 0 4px 16px rgba(30, 27, 75, 0.24);
       position: sticky;
       top: 0;
       z-index: 50;
@@ -77,7 +77,7 @@
       place-items: center;
       font-size: 17px;
       font-weight: 800;
-      color: #a7f3d0;
+      color: #c7d2fe;
     }
 
     .brand h1 {
@@ -123,7 +123,7 @@
     }
 
     .mode-btn:hover {
-      background: #a7f3d0;
+      background: #c7d2fe;
     }
 
     /* Layout */
@@ -175,7 +175,7 @@
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), #14b8a6);
+      background: linear-gradient(90deg, var(--primary), #0d9488);
       width: 0%;
       transition: width 0.3s ease;
     }
@@ -237,25 +237,115 @@
       line-height: 1.8;
     }
 
-    .visual-box {
+    .quote-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      margin: 10px 0;
+      font-style: italic;
+      color: #1e293b;
+    }
+
+    /* Timeline 14 */
+    .timeline-box {
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 12px;
-      padding: 14px;
+      padding: 16px;
       margin: 12px 0 4px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(6, 78, 59, 0.05);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
 
-    .visual-caption {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #334155;
-      background: #ecfdf5;
-      padding: 8px 12px;
+    @media (max-width: 640px) {
+      .timeline-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tl-item {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .tl-item.active-bold {
+      border: 2.5px solid var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(67, 56, 202, 0.14);
+    }
+
+    .tl-year {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .tl-label {
+      font-size: 0.84rem;
+    }
+
+    /* Archival Photo Slot (for authentic historical images) */
+    .archival-slot {
+      background: #ffffff;
+      border: 1.5px dashed #818cf8;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0 4px;
+      text-align: center;
+    }
+
+    .archival-img {
+      max-width: 100%;
+      max-height: 290px;
       border-radius: 8px;
-      text-align: left;
-      line-height: 1.6;
+      border: 1px solid #cbd5e1;
+      display: none;
+      margin: 0 auto 10px;
+      object-fit: contain;
+    }
+
+    .archival-img.loaded {
+      display: block;
+    }
+
+    .archival-placeholder {
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      border-radius: 10px;
+      padding: 18px 14px;
+      color: #312e81;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .upload-label {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .upload-label:hover {
+      background: var(--primary-dark);
+    }
+
+    .upload-input {
+      display: none;
     }
 
     /* Options PG */
@@ -286,7 +376,7 @@
     .option-item.selected {
       border-color: var(--primary);
       background: var(--primary-light);
-      box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.16);
+      box-shadow: 0 0 0 2px rgba(67, 56, 202, 0.16);
     }
 
     .option-item.correct {
@@ -449,8 +539,8 @@
       margin-top: 22px;
       padding: 20px;
       border-radius: 12px;
-      background: #f0fdf4;
-      border: 1.5px solid #6ee7b7;
+      background: #eef2ff;
+      border: 1.5px solid #a5b4fc;
       display: none;
       animation: fadeIn 0.25s ease;
     }
@@ -540,12 +630,12 @@
 
     .btn-bahas {
       background: var(--accent-light);
-      color: #4c1d95;
-      border-color: #a78bfa;
+      color: #115e59;
+      border-color: #2dd4bf;
     }
 
     .btn-bahas:hover:not(:disabled) {
-      background: #ddd6fe;
+      background: #99f6e4;
     }
 
     .btn-finish {
@@ -612,7 +702,7 @@
 
     .nav-btn.current {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.25);
+      box-shadow: 0 0 0 2px rgba(67, 56, 202, 0.25);
       background: var(--primary-light);
       color: var(--primary-dark);
     }
@@ -638,7 +728,7 @@
     .summary-banner {
       display: none;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #064e3b, #047857);
+      background: linear-gradient(135deg, #1e1b4b, #4338ca);
       color: #fff;
       border-radius: var(--radius);
       padding: 22px 24px;
@@ -657,7 +747,7 @@
       font-size: 2.3rem;
       font-weight: 800;
       line-height: 1.1;
-      color: #a7f3d0;
+      color: #c7d2fe;
     }
 
     @keyframes fadeIn {
@@ -671,10 +761,10 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="brand-badge">SOS</div>
+        <div class="brand-badge">SEJ</div>
         <div>
-          <h1>Asesmen Sosiologi — Perubahan Sosial &amp; Globalisasi</h1>
-          <p>Latihan &amp; Pembahasan Berbasis Kisi-Kisi • 40 Soal (PG, Benar/Salah, Checklist)</p>
+          <h1>Asesmen PSAS Ganjil Sejarah — Kelas XII/F</h1>
+          <p>Perjuangan Kemerdekaan, Demokrasi Liberal &amp; Demokrasi Terpimpin • 40 Soal (PG, PGK, Benar/Salah)</p>
         </div>
       </div>
       <div class="topbar-actions">
@@ -691,7 +781,7 @@
       <!-- Hasil Akhir Banner -->
       <section class="summary-banner" id="summaryBanner">
         <div>
-          <div style="font-size:0.85rem; opacity:0.9; font-weight:600;">HASIL EVALUASI ASESMEN SOSIOLOGI</div>
+          <div style="font-size:0.85rem; opacity:0.9; font-weight:600;">HASIL EVALUASI ASESMEN SEJARAH</div>
           <div class="score-big" id="finalScoreText">0 / 100</div>
           <div style="font-size:0.9rem; margin-top:4px;" id="finalDetailText">Benar: 0 dari 40 soal</div>
         </div>
@@ -721,7 +811,7 @@
 
         <!-- Fitur Bahas -->
         <div class="bahas-box" id="bahasBox">
-          <div class="bahas-title">📘 Pembahasan Soal</div>
+          <div class="bahas-title">📜 Pembahasan Soal</div>
           <div class="bahas-key" id="bahasKey"></div>
           <div class="bahas-text" id="bahasText"></div>
         </div>
@@ -750,784 +840,743 @@
       </div>
       <div class="nav-grid" id="navGrid"></div>
       <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">
-        <strong>Struktur Kisi-Kisi:</strong><br />
+        <strong>Struktur Kisi-Kisi Sejarah:</strong><br />
         • No. 1–30: Pilihan Ganda (PG)<br />
-        • No. 31–35: Benar / Salah<br />
-        • No. 36–40: PG Kompleks (Checklist 3 jawaban)
+        • No. 31–35: PG Kompleks (Checklist 3 jawaban)<br />
+        • No. 36–40: Benar / Salah
       </div>
     </aside>
   </main>
 
   <script>
-    const SVG_CULTURAL_LAG = `
-      <div class="visual-box">
-        <svg width="470" height="175" viewBox="0 0 470 175" style="width:100%; max-width:470px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <marker id="arrLag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L7,3 z" fill="#047857"/>
-            </marker>
-          </defs>
-          <line x1="45" y1="140" x2="435" y2="140" stroke="#334155" stroke-width="1.6" marker-end="url(#arrLag)"/>
-          <line x1="45" y1="140" x2="45" y2="20" stroke="#334155" stroke-width="1.6" marker-end="url(#arrLag)"/>
-          <text x="412" y="156" font-size="11" font-weight="bold" fill="#334155">Waktu</text>
-          <text x="12" y="18" font-size="11" font-weight="bold" fill="#334155">Perkembangan</text>
-          <!-- Kurva Budaya Material (cepat) -->
-          <path d="M 45 125 Q 200 95 405 32" fill="none" stroke="#047857" stroke-width="3"/>
-          <text x="275" y="40" font-size="11.5" font-weight="bold" fill="#064e3b">Budaya Material (Teknologi AI &amp; Digital)</text>
-          <!-- Kurva Budaya Nonmaterial (lambat) -->
-          <path d="M 45 125 Q 230 120 405 98" fill="none" stroke="#4338ca" stroke-width="2.8" stroke-dasharray="6 4"/>
-          <text x="225" y="128" font-size="11.5" font-weight="bold" fill="#4338ca">Budaya Nonmaterial (Etika, Norma &amp; Regulasi)</text>
-          <!-- Zona Kesenjangan -->
-          <line x1="365" y1="44" x2="365" y2="102" stroke="#0f766e" stroke-width="2"/>
-          <rect x="255" y="60" width="102" height="26" rx="6" fill="#d1fae5" stroke="#047857"/>
-          <text x="306" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#064e3b">Cultural Lag</text>
-        </svg>
-        <div class="visual-caption"><b>Penjelasan Grafik (William F. Ogburn):</b> Garis utuh menunjukkan laju budaya material (teknologi) yang melaju pesat, sedangkan garis putus-putus menunjukkan budaya nonmaterial (norma, etika, hukum) yang menyesuaikan jauh lebih lambat sehingga memicu kesenjangan (<i>cultural lag</i>).</div>
-      </div>
-    `;
+    // Simpan DataURL foto arsip asli yang diunggah pengguna (khusus No. 6 & No. 15)
+    const uploadedImages = {
+      6: null,
+      15: null
+    };
 
-    const SVG_DURKHEIM = `
-      <div class="visual-box">
-        <svg width="480" height="125" viewBox="0 0 480 125" style="width:100%; max-width:480px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="16" width="142" height="90" rx="10" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
-          <text x="83" y="40" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#064e3b">Solidaritas Mekanik</text>
-          <text x="83" y="59" text-anchor="middle" font-size="10" fill="#334155">Masyarakat homogen</text>
-          <text x="83" y="75" text-anchor="middle" font-size="10" fill="#334155">Kesadaran kolektif kuat</text>
-          <text x="83" y="91" text-anchor="middle" font-size="10" fill="#334155">Hukum bersifat represif</text>
+    function buildArchivalSlot(qNo, defaultFile, title, note) {
+      const customSrc = uploadedImages[qNo];
+      const srcToUse = customSrc || defaultFile;
+      return `
+        <div class="archival-slot">
+          <img
+            id="archivalImg-${qNo}"
+            class="archival-img ${customSrc ? 'loaded' : ''}"
+            src="${srcToUse}"
+            alt="${title}"
+            onload="this.classList.add('loaded'); const ph=document.getElementById('archivalPh-${qNo}'); if(ph) ph.style.display='none';"
+            onerror="if(!uploadedImages[${qNo}]){ this.classList.remove('loaded'); const ph=document.getElementById('archivalPh-${qNo}'); if(ph) ph.style.display='block'; }"
+          />
+          <div id="archivalPh-${qNo}" class="archival-placeholder" style="${customSrc ? 'display:none;' : ''}">
+            <strong>📁 Slot Dokumen / Foto Arsip Asli: ${title}</strong><br/>
+            <span style="font-size:0.84rem; color:#475569;">${note}</span><br/>
+            <span style="font-size:0.8rem; color:#64748b;">Letakkan file <code>${defaultFile}</code> di folder yang sama dengan file HTML ini, atau unggah foto arsip aslinya langsung di bawah ini:</span>
+          </div>
+          <label class="upload-label">
+            📂 Pilih / Unggah Foto Asli (${defaultFile})
+            <input type="file" class="upload-input" accept="image/*" onchange="handleImageUpload(${qNo}, this)" />
+          </label>
+        </div>
+      `;
+    }
 
-          <line x1="158" y1="61" x2="188" y2="61" stroke="#047857" stroke-width="2.2"/>
-          <polygon points="186,56 196,61 186,66" fill="#047857"/>
-
-          <rect x="198" y="24" width="104" height="74" rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
-          <text x="250" y="48" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#312e81">Faktor Pendorong</text>
-          <text x="250" y="65" text-anchor="middle" font-size="10" fill="#334155">Kepadatan moral &amp;</text>
-          <text x="250" y="81" text-anchor="middle" font-size="10" fill="#334155">pembagian kerja (?)</text>
-
-          <line x1="306" y1="61" x2="334" y2="61" stroke="#047857" stroke-width="2.2"/>
-          <polygon points="332,56 342,61 332,66" fill="#047857"/>
-
-          <rect x="344" y="16" width="124" height="90" rx="10" fill="#064e3b"/>
-          <text x="406" y="40" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fff">Solidaritas Organik</text>
-          <text x="406" y="59" text-anchor="middle" font-size="10" fill="#a7f3d0">Heterogen &amp; kompleks</text>
-          <text x="406" y="75" text-anchor="middle" font-size="10" fill="#a7f3d0">Saling bergantung</text>
-          <text x="406" y="91" text-anchor="middle" font-size="10" fill="#a7f3d0">Hukum bersifat restitutif</text>
-        </svg>
-        <div class="visual-caption"><b>Penjelasan Bagan:</b> Transformasi tipe solidaritas sosial dalam teori perubahan sosial Émile Durkheim dari masyarakat sederhana ke masyarakat industri modern.</div>
-      </div>
-    `;
-
-    const SVG_DEPENDENCY = `
-      <div class="visual-box">
-        <svg width="470" height="135" viewBox="0 0 470 135" style="width:100%; max-width:470px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="16" y="20" width="165" height="92" rx="10" fill="#064e3b"/>
-          <text x="98" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Negara Maju (Core)</text>
-          <text x="98" y="64" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Pemilik modal &amp; teknologi tinggi</text>
-          <text x="98" y="81" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Ekspor produk industri mahal</text>
-          <text x="98" y="98" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Mengakumulasi surplus nilai</text>
-
-          <line x1="186" y1="45" x2="280" y2="45" stroke="#4338ca" stroke-width="2.2"/>
-          <polygon points="278,40 288,45 278,50" fill="#4338ca"/>
-          <text x="237" y="36" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#312e81">Barang Manufaktur Mahal</text>
-
-          <line x1="288" y1="88" x2="194" y2="88" stroke="#047857" stroke-width="2.2"/>
-          <polygon points="196,83 186,88 196,93" fill="#047857"/>
-          <text x="237" y="104" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#064e3b">Bahan Mentah &amp; Upah Murah</text>
-
-          <rect x="290" y="20" width="165" height="92" rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
-          <text x="372" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#312e81">Negara Berkembang (Periphery)</text>
-          <text x="372" y="64" text-anchor="middle" font-size="10.2" fill="#334155">Ekspor komoditas mentah murah</text>
-          <text x="372" y="81" text-anchor="middle" font-size="10.2" fill="#334155">Bergantung pada modal/utang</text>
-          <text x="372" y="98" text-anchor="middle" font-size="10.2" fill="#334155">Nilai tambah tertahan di luar</text>
-        </svg>
-        <div class="visual-caption"><b>Penjelasan Bagan (Teori Ketergantungan):</b> Pola pertukaran tidak setara antara negara pusat (<i>core</i>) dan negara pinggiran (<i>periphery</i>) dalam ekonomi global.</div>
-      </div>
-    `;
+    function handleImageUpload(qNo, inputEl) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        uploadedImages[qNo] = e.target.result;
+        renderQuestion();
+      };
+      reader.readAsDataURL(file);
+    }
 
     const QUESTIONS = [
       // ===================== SOAL 1 - 30 (PILIHAN GANDA) =====================
       {
         no: 1,
         type: "PG",
-        cog: "C4",
-        topic: "Cultural Lag",
-        narasi: "Pemerintah daerah membangun infrastruktur jaringan internet berkecepatan tinggi dan membagikan perangkat pembelajaran digital hingga ke pelosok desa. Namun, setelah fasilitas tersedia, muncul lonjakan kasus penyebaran hoaks, perundungan siber, serta penyalahgunaan data pribadi karena warga belum memiliki kesadaran etika digital dan regulasi perlindungan data yang memadai." + SVG_CULTURAL_LAG,
-        question: "Berdasarkan analisis sosiologis terhadap fenomena di atas, penyebab utama terjadinya ketimpangan tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Sidang PPKI I (18 Agustus 1945)",
+        narasi: "Sehari setelah Proklamasi Kemerdekaan, PPKI menggelar Sidang I pada tanggal 18 Agustus 1945. Pada rapat tersebut, Otto Iskandardinata mengusulkan agar pemilihan Presiden dan Wakil Presiden dilakukan secara aklamasi, sehingga Ir. Soekarno dan Drs. Mohammad Hatta langsung ditetapkan secara bulat tanpa pemungutan suara.",
+        question: "Berdasarkan kondisi Indonesia pasca-Proklamasi, analisis alasan paling tepat digunakannya strategi pemilihan secara aklamasi tersebut adalah...",
         options: [
-          "Budaya nonmaterial berkembang jauh lebih cepat dibandingkan budaya material sehingga masyarakat mengalami disorganisasi.",
-          "Kecepatan adopsi teknologi fisik (budaya material) tidak diimbangi dengan kesiapan norma, etika, dan aturan hukum (budaya nonmaterial).",
-          "Masyarakat menolak seluruh fasilitas internet karena masih berpegang teguh pada isolasi geografis.",
-          "Terjadinya asimilasi budaya secara menyeluruh antara masyarakat kota dan desa.",
-          "Hilangnya seluruh lembaga pendidikan formal akibat penggunaan perangkat digital."
+          "Untuk menghemat anggaran keuangan negara yang baru berdiri dari biaya pencetakan surat suara.",
+          "Karena di Indonesia sama sekali tidak ada tokoh pergerakan nasional selain Soekarno dan Hatta.",
+          "Karena situasi politik dan keamanan sangat genting serta mendesak (mengisi kekosongan kekuasaan/vacuum of power sebelum kedatangan Sekutu) sehingga kepemimpinan eksekutif harus segera terbentuk.",
+          "Karena UUD 1945 secara mutlak melarang pelaksanaan pemilihan umum di masa depan.",
+          "Atas perintah langsung panglima tentara Jepang di Jakarta agar segera dibubarkan."
         ],
-        answer: 1,
-        bahas: "Fenomena tersebut merupakan contoh klasik <i>cultural lag</i> (kesenjangan budaya) menurut William F. Ogburn, yaitu kondisi ketika unsur budaya material (perangkat digital dan internet) berubah sangat cepat, sedangkan unsur budaya nonmaterial (etika bermedia, kesadaran hukum, dan norma sosial) tertinggal sehingga menimbulkan masalah sosial."
+        answer: 2,
+        bahas: "Pada 18 Agustus 1945, Indonesia baru saja merdeka dan menghadapi situasi politik-keamanan yang sangat genting serta mendesak (<i>vacuum of power</i> pasca-kapitulasi Jepang dan bayang-bayang kedatangan Sekutu). Pemilihan secara aklamasi dipilih untuk segera membentuk kepemimpinan nasional yang sah dan berwibawa—bukan karena menghemat anggaran ataupun ketiadaan tokoh lain."
       },
       {
         no: 2,
         type: "PG",
-        cog: "C4",
-        topic: "Teori Perubahan Sosial",
-        narasi: "Masyarakat desa tradisional awalnya memiliki pekerjaan yang seragam sebagai petani dengan ikatan kekerabatan erat serta kesadaran kolektif yang kuat. Seiring pertumbuhan penduduk dan masuknya kawasan jasa serta industri, warga mulai menekuni profesi yang sangat beragam (teknisi, akuntan, kurir, guru, pedagang) sehingga mereka tidak lagi bisa memenuhi kebutuhannya sendiri dan saling bergantung secara fungsional." + SVG_DURKHEIM,
-        question: "Menurut teori Émile Durkheim, faktor pendorong utama terjadinya pergeseran dari solidaritas mekanik menuju solidaritas organik pada ilustrasi tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Strategi Belanda Pasca-Proklamasi",
+        narasi: "Setelah Proklamasi 17 Agustus 1945, Belanda berupaya keras menancapkan kembali kekuasaan kolonialnya di Indonesia dengan berbagai cara, baik secara militer maupun diplomasi politik.",
+        question: "Kombinasi strategi utama yang dijalankan Belanda untuk mengembalikan kekuasaannya di Indonesia pasca-kemerdekaan adalah...",
         options: [
-          "Menguatnya hukum yang bersifat represif untuk menghukum setiap perbedaan profesi.",
-          "Kembalinya masyarakat pada pola hidup agraris yang serba seragam.",
-          "Meningkatnya kepadatan penduduk dan spesialisasi pembagian kerja (division of labor) dalam masyarakat.",
-          "Penghapusan seluruh norma hukum tertulis yang digantikan oleh adat istiadat lisan.",
-          "Berhentinya interaksi sosial antarwarga karena setiap profesi bekerja secara terpisah tanpa ketergantungan."
+          "Menyerahkan seluruh persenjataan Sekutu kepada TKR dan mengakui kedaulatan RI sejak September 1945.",
+          "Melancarkan operasi militer (Agresi Militer I dan II) serta menerapkan politik pecah belah melalui pembentukan negara-negara bagian federal dalam wadah Republik Indonesia Serikat (RIS).",
+          "Membiayai pembentukan PDRI di Sumatera Barat agar pemerintahan di Yogyakarta tetap aman.",
+          "Mengajak seluruh negara Asia-Afrika mendukung kemerdekaan penuh Republik Indonesia di PBB.",
+          "Membubarkan NICA dan KNIL secara sepihak pada akhir tahun 1945."
         ],
-        answer: 2,
-        bahas: "Menurut Émile Durkheim, meningkatnya kepadatan penduduk dan interaksi sosial mendorong diferensiasi serta pembagian kerja (<i>division of labor</i>) yang semakin terspesialisasi. Hal inilah yang menggeser solidaritas mekanik (berbasis kesamaan) menuju solidaritas organik (berbasis ketergantungan fungsional antarspesialisasi)."
+        answer: 1,
+        bahas: "Belanda memadukan strategi kekerasan militer berupa <b>Agresi Militer I</b> (1947) dan <b>Agresi Militer II</b> (1948) dengan strategi politik/diplomasi mengulur waktu dan memecah belah wilayah RI melalui pembentukan negara-negara boneka federal (BFO) dalam kerangka Republik Indonesia Serikat (RIS)."
       },
       {
         no: 3,
         type: "PG",
-        cog: "C4",
-        topic: "Faktor Penghambat Perubahan",
-        narasi: "Sebuah pemerintah kota merancang sistem perizinan usaha daring yang transparan, bebas pungutan liar, dan dapat diselesaikan dalam dua hari. Akan tetapi, rencana pembaruan tersebut mendapat penolakan keras dari sekelompok oknum perantara dan pejabat lama yang selama ini menikmati keuntungan finansial serta pengaruh dari birokrasi tatap muka yang berbelit.",
-        question: "Analisis yang tepat mengenai pengaruh faktor <i>vested interest</i> dalam kasus penolakan perubahan sosial tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Bandung Lautan Api",
+        narasi: "Pada tanggal 23–24 Maret 1946, dalam menghadapi ultimatum Sekutu agar Tentara Republik Indonesia (TRI) dan pejuang mengosongkan wilayah Bandung Selatan, para pejuang bersama sekitar 200.000 warga Tatar Sunda memilih membumihanguskan gedung-gedung penting serta permukiman sebelum bergerak mengungsi ke daerah pegunungan selatan (peristiwa Bandung Lautan Api).",
+        question: "Alasan strategis utama dilakukannya operasi bumi hangus dalam peristiwa Bandung Lautan Api tersebut adalah...",
         options: [
-          "Perubahan ditolak karena kelompok yang diuntungkan oleh sistem lama merasa hak istimewa dan kepentingannya terancam oleh sistem baru.",
-          "Masyarakat umum menolak sistem daring karena prasangka terhadap budaya asing.",
-          "Penolakan terjadi semata-mata karena pemerintah kota kekurangan tenaga ahli teknologi.",
-          "Kelompok perantara mendorong perubahan cepat agar memperoleh status sosial baru.",
-          "Adat istiadat leluhur melarang penggunaan komputer dalam pelayanan publik."
+          "Sebagai bentuk kemarahan rakyat terhadap pemerintah pusat RI yang memindahkan ibu kota ke Jakarta.",
+          "Mencegah Kota Bandung beserta fasilitas strategis, gedung, dan sarana logistiknya dimanfaatkan oleh Sekutu dan Belanda sebagai basis kekuatan militer.",
+          "Menghapus seluruh jejak sejarah Kerajaan Pajajaran agar tidak diketahui tentara Jepang.",
+          "Melaksanakan perintah resmi pemerintah kolonial NICA demi pembangunan kota baru.",
+          "Mengalihkan perhatian pasukan Belanda agar pindah menyerang Pulau Bali."
         ],
-        answer: 0,
-        bahas: "<i>Vested interest</i> adalah kepentingan yang telah tertanam kuat pada kelompok atau elite tertentu yang memperoleh keuntungan ekonomi, kekuasaan, atau status dari tatanan lama. Mereka cenderung menghambat perubahan sosial karena khawatir sistem baru akan menghapus keistimewaan tersebut."
+        answer: 1,
+        bahas: "Operasi bumi hangus pada 23–24 Maret 1946 diputuskan oleh markas pejuang (antara lain A.H. Nasution) agar Sekutu dan NICA/Belanda tidak dapat menggunakan gedung-gedung, gudang mesiu, dan infrastruktur Kota Bandung sebagai basis militer maupun pusat logistik untuk menyerang wilayah RI."
       },
       {
         no: 4,
         type: "PG",
-        cog: "C4",
-        topic: "Bentuk Perubahan Sosial",
-        narasi: "Pemerintah melaksanakan program perluasan akses listrik tenaga surya dan digitalisasi administrasi kependudukan di wilayah kepulauan terluar selama lima tahun. Program ini berhasil mempercepat layanan publik dan mendorong munculnya usaha ekonomi kreatif warga, namun juga memunculkan tantangan baru berupa meningkatnya sampah elektronik dan ketergantungan pada gawai.",
-        question: "Berdasarkan bentuk dan dampaknya, analisis yang tepat mengenai perubahan sosial dalam narasi di atas adalah...",
+        cog: "C3 dan C4 • Level 2",
+        topic: "Pertempuran Surabaya",
+        narasi: `Perhatikan kutipan pidato bersejarah berikut:<div class="quote-box">"Selama banteng-banteng Indonesia masih mempunyai darah merah yang dapat membikin secarik kain putih merah dan putih, maka selama itu tidak akan kita mau menyerah kepada siapa pun juga! ... Lebih baik kita hancur lebur daripada tidak merdeka. Semboyan kita tetap: merdeka atau mati!"</div>`,
+        question: "Keterangan historis yang tepat mengenai latar belakang kutipan pidato tersebut adalah...",
         options: [
-          "Perubahan tidak direncanakan (unplanned change) yang seluruh dampaknya bersifat negatif.",
-          "Perubahan cepat (revolusi) yang menghapus seluruh struktur pemerintahan desa.",
-          "Perubahan yang direncanakan (planned change) yang menghasilkan dampak positif sesuai tujuan sekaligus dampak ikutan yang tidak terduga.",
-          "Perubahan kecil yang hanya memengaruhi gaya berpakaian warga tanpa menyentuh lembaga ekonomi.",
-          "Perubahan regres yang mengembalikan masyarakat ke pola hidup prasejarah."
+          "Cuplikan pidato Jenderal Soedirman saat memimpin Palagan Ambarawa pada Desember 1945.",
+          "Cuplikan pidato Ir. Soekarno saat membacakan Dekrit Presiden tanggal 5 Juli 1959.",
+          "Cuplikan pidato Bung Tomo yang disiarkan melalui Radio Pemberontakan pada 9 November 1945 sebagai respons atas ultimatum Sekutu menjelang Pertempuran Surabaya 10 November 1945.",
+          "Cuplikan pidato I Gusti Ngurah Rai menjelang perang Puputan Margarana di Bali tahun 1946.",
+          "Cuplikan pidato Sjafruddin Prawiranegara saat mengumumkan berdirinya PDRI di Bukittinggi."
         ],
         answer: 2,
-        bahas: "Program pemerintah tersebut merupakan perubahan sosial yang direncanakan (<i>planned change</i> / <i>intended change</i>) karena dirancang secara sadar oleh agen perubahan. Seperti umumnya perubahan terencana, di samping mencapai target peningkatan layanan dan ekonomi, muncul pula dampak ikutan (<i>unintended consequences</i>) berupa sampah elektronik yang perlu dikelola."
+        bahas: "Kutipan heroik tersebut adalah pidato <b>Bung Tomo (Sutomo)</b> yang disiarkan melalui Radio Pemberontakan pada <b>9 November 1945</b> untuk membakar semangat arek-arek Suroboyo dalam menolak ultimatum Sekutu (Mayjen E.C. Mansergh) menjelang pecahnya Pertempuran Surabaya 10 November 1945."
       },
       {
         no: 5,
         type: "PG",
-        cog: "C3",
-        topic: "Perubahan Sosial",
-        narasi: "Dalam satu dekade terakhir, banyak toko ritel mengganti sebagian kasir manual dengan mesin pembayaran mandiri (<i>self-checkout</i>) berbasis QRIS. Pada saat yang sama, bermunculan profesi baru seperti spesialis pemasaran digital, pengelola toko daring, dan kurir logistik berbasis aplikasi.",
-        question: "Pernyataan yang tepat untuk mengidentifikasi perubahan pola pekerjaan akibat perkembangan teknologi tersebut adalah...",
+        cog: "C5 • Level 3",
+        topic: "Pembubaran RIS Menuju NKRI",
+        narasi: "Setelah KMB, terbentuk negara federal Republik Indonesia Serikat (RIS) pada Desember 1949 yang terdiri atas RI dan 15 negara bagian/daerah otonom bentukan Belanda. Namun sejak awal 1950, demonstrasi rakyat terus menuntut pembubaran negara bagian. Satu per satu negara bagian (seperti Pasundan, Jawa Timur, Madura, hingga Sumatera Selatan) melebur ke RI sampai pada April 1950 hanya tersisa tiga negara bagian (RI, Negara Indonesia Timur, dan Negara Sumatera Timur), sebelum akhirnya resmi bersatu kembali pada Agustus 1950.",
+        question: "Kesimpulan historis yang paling tepat berdasarkan dinamika singkatnya usia negara federal RIS tersebut adalah...",
         options: [
-          "Teknologi selalu menghilangkan seluruh jenis pekerjaan manusia tanpa menciptakan peluang baru.",
-          "Pekerjaan yang bersifat rutin manual mulai digantikan sistem digital, sementara pekerjaan baru berbasis layanan daring dan teknologi informasi bermunculan.",
-          "Masyarakat kembali menggunakan sistem barter tradisional di pasar ritel modern.",
-          "Semua kurir logistik harus menguasai keterampilan bertani untuk bertahan hidup.",
-          "Perubahan teknologi hanya berdampak pada sektor pertanian subsisten."
+          "Bentuk negara serikat/federal terbukti merupakan sistem yang paling dicintai rakyat Indonesia sepanjang sejarah.",
+          "RIS pada dasarnya hanyalah bentuk negara transisi/sementara akibat kompromi diplomasi KMB menuju terbentuknya kembali Negara Kesatuan Republik Indonesia (NKRI).",
+          "Pembubaran RIS terjadi karena desakan Belanda agar Indonesia tetap berbentuk monarki federal.",
+          "Seluruh negara bagian RIS berhasil bertahan hingga masa berakhirnya Demokrasi Terpimpin tahun 1966.",
+          "Bergabungnya negara bagian ke RI membuat kedaulatan Indonesia kembali dicabut oleh PBB."
         ],
         answer: 1,
-        bahas: "Perkembangan teknologi digital mengubah pola pekerjaan: tugas-tugas transaksional rutin mulai terotomatisasi (seperti kasir manual ke <i>self-checkout</i>/QRIS), namun di sisi lain melahirkan beragam profesi baru di ekosistem ekonomi digital."
+        bahas: "Gelombang penolakan rakyat serta kesadaran para pemimpin daerah membuat negara-negara bagian cepat melebur ke pangkuan RI hingga akhirnya disepakati Piagam Persetujuan Mei 1950 dan proklamasi kembalinya NKRI pada 17 Agustus 1950. Hal ini membuktikan RIS semata merupakan negara transisi menuju NKRI."
       },
       {
         no: 6,
         type: "PG",
-        cog: "C4",
-        topic: "Dampak Perubahan Sosial",
-        narasi: "Sebuah perusahaan manufaktur besar mengganti 60% tenaga operator pabrik berpendidikan menengah dengan lengan robot otomatis dan sistem kendali berbasis kecerdasan buatan. Akibatnya, ratusan buruh lama kehilangan pekerjaan karena keterampilannya tidak sesuai lagi dengan kebutuhan industri, sementara laba perusahaan serta gaji segelintir insinyur otomasi meningkat tajam.",
-        question: "Berdasarkan analisis dampak otomatisasi di atas, keterkaitan antara pengangguran struktural dan kesenjangan sosial yang terjadi adalah...",
+        cog: "C3 dan C4 • Level 2",
+        topic: "Perjanjian Renville",
+        narasi: "Perhatikan foto arsip kapal perang yang berlabuh di Teluk Jakarta sebagai lokasi perundingan antara delegasi Indonesia dan Belanda berikut ini:" + buildArchivalSlot(6, "uss_renville.jpg", "Kapal Perang USS Renville di Teluk Jakarta (1948)", "Menampilkan kapal pengangkut angkatan laut Amerika Serikat USS Renville yang dijadikan tempat netral perundingan Indonesia–Belanda."),
+        question: "Peristiwa diplomasi yang berkaitan langsung dengan dokumen foto kapal perang di atas adalah...",
         options: [
-          "Otomatisasi mempersempit kesenjangan pendapatan karena seluruh buruh otomatis naik jabatan menjadi insinyur.",
-          "Pengangguran terjadi hanya sementara karena buruh dapat langsung mengoperasikan robot tanpa pelatihan.",
-          "Ketidakcocokan keterampilan tenaga kerja lama dengan teknologi baru memicu pengangguran struktural yang sekaligus memperlebar jurang ekonomi antara pemilik modal/tenaga ahli dan pekerja rendah keterampilan.",
-          "Perusahaan mengalami kebangkrutan akibat tingginya upah pekerja manual.",
-          "Kesenjangan sosial berkurang karena semua barang industri dibagikan secara gratis."
+          "Perjanjian Linggarjati tanggal 15 November 1946 yang ditengahi oleh Lord Killearn dari Inggris.",
+          "Perjanjian Renville tanggal 17 Januari 1948 yang ditengahi oleh Komisi Tiga Negara (KTN).",
+          "Perjanjian Roem-Royen tanggal 7 Mei 1949 yang ditengahi oleh UNCI.",
+          "Konferensi Meja Bundar tanggal 23 Agustus–2 November 1949 di Den Haag, Belanda.",
+          "Perjanjian New York tanggal 15 Agustus 1962 mengenai penyerahan Irian Barat."
         ],
-        answer: 2,
-        bahas: "Otomatisasi menuntut keahlian teknis tinggi. Ketika pekerja berketerampilan rendah tidak terserap oleh struktur ekonomi baru, terjadilah <b>pengangguran struktural</b>. Pada saat bersamaan, pemilik modal dan tenaga ahli menikmati lonjakan produktivitas dan pendapatan, sehingga <b>kesenjangan sosial ekonomi</b> semakin melebar."
+        answer: 1,
+        bahas: "Nama perundingan diambil dari kapal perang Amerika Serikat <b>USS Renville</b> yang berlabuh di Teluk Jakarta. <b>Perjanjian Renville</b> ditandatangani pada <b>17 Januari 1948</b> dengan mediasi <b>Komisi Tiga Negara (KTN)</b> yang beranggotakan Australia (wakil RI), Belgia (wakil Belanda), dan Amerika Serikat (penengah netral)."
       },
       {
         no: 7,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Pola Konsumsi",
-        narasi: "Kehadiran lokapasar (<i>e-commerce</i>), fitur siaran langsung penjualan, notifikasi promo kilat (<i>flash sale</i>), dan opsi pembayaran tunda (<i>paylater</i>) membuat banyak pengguna gawai membeli barang bukan karena kebutuhan mendesak, melainkan karena dorongan impulsif dan rasa takut tertinggal tren (FOMO).",
-        question: "Analisis yang paling tepat mengenai perubahan perilaku konsumsi masyarakat akibat teknologi digital tersebut adalah...",
+        cog: "C4 dan C5 • Level 3",
+        topic: "Pemerintahan Darurat Republik Indonesia (PDRI)",
+        narasi: `Menyusul Agresi Militer Belanda II pada 19 Desember 1948 yang menduduki Yogyakarta, dibentuklah Pemerintahan Darurat Republik Indonesia (PDRI) di Bukittinggi, Sumatera Barat yang dipimpin Mr. Sjafruddin Prawiranegara. Perhatikan pernyataan berikut:<br/>(1) Mengisi kekosongan kekuasaan akibat ditangkap dan diasingkannya Presiden Soekarno dan Wapres Hatta.<br/>(2) Memindahkan pusat pemerintahan sementara ke wilayah yang aman dan masih dikuasai penuh oleh RI.<br/>(3) Membuktikan kepada dunia dan menggalang dukungan internasional bahwa negara RI masih eksis dan berdaulat.<br/>(4) Menyerahkan kedaulatan Pulau Sumatera secara terpisah kepada pemerintahan sipil NICA.`,
+        question: "Analisis yang paling tepat mengenai alasan utama yang saling berkaitan dalam pembentukan PDRI adalah pernyataan nomor...",
         options: [
-          "Teknologi digital mendorong masyarakat bersikap hemat dan menunda seluruh pembelian barang sekunder.",
-          "Kemudahan akses belanja dan skema kredit instan menggeser pola konsumsi dari pemenuhan nilai guna rasional menjadi konsumsi impulsif dan konsumtif.",
-          "Masyarakat hanya membeli barang kebutuhan pokok melalui pasar tradisional.",
-          "Fitur paylater menghilangkan risiko lilitan utang konsumtif di kalangan generasi muda.",
-          "Siaran langsung penjualan mengurangi interaksi antara penjual dan pembeli secara mutlak."
+          "(1) dan (4) saja",
+          "(2) dan (4) saja",
+          "(1), (2), dan (3)",
+          "(2), (3), dan (4)",
+          "Hanya pernyataan (3)"
         ],
-        answer: 1,
-        bahas: "Teknologi digital mempermudah transaksi hingga menghapus hambatan fisik belanja. Kombinasi promo kilat, algoritma personalisasi, dan <i>paylater</i> merangsang perilaku konsumtif dan pembelian impulsif yang lebih mengutamakan kepuasan psikologis/tren daripada kebutuhan fungsional."
+        answer: 2,
+        bahas: "Ketiga alasan (1), (2), dan (3) saling berkaitan erat: karena Soekarno–Hatta ditawan di Yogyakarta, mandat diberikan kepada Sjafruddin Prawiranegara agar tidak terjadi <i>vacuum of power</i> (1), memindahkan pusat kendali ke Sumatera Barat yang aman (2), dan menunjukkan kepada dunia internasional bahwa Republik Indonesia belum bubar (3)."
       },
       {
         no: 8,
         type: "PG",
-        cog: "C4",
-        topic: "Dampak Perubahan Sosial",
-        narasi: "Sebelumnya, warga Desa Sukamaju menggantungkan hidup sepenuhnya pada panen padi dua kali setahun, sehingga kondisi ekonomi mereka sangat rentan saat kemarau panjang. Kini, warga mengembangkan diversifikasi pekerjaan melalui pengolahan keripik hasil kebun, pengelolaan desa wisata edukasi, dan usaha penginapan warga (<i>homestay</i>).",
-        question: "Dampak paling signifikan dari diversifikasi pekerjaan tersebut terhadap kondisi ekonomi masyarakat desa adalah...",
+        cog: "C3 • Level 2",
+        topic: "Pasukan Kolonial Pasca-PD II (KNIL)",
+        narasi: "Pada akhir tahun 1945, terdapat kelompok pasukan bersenjata yang sejak masa kolonial telah lama bermukim di Hindia Belanda. Pada tahun 1942–1945 mereka sempat menjadi tahanan perang tentara pendudukan Jepang, kemudian setelah Jepang menyerah kepada Sekutu, mereka dibebaskan dari kamp interniran dan dipersenjatai kembali oleh Sekutu serta Belanda untuk membantu upaya menguasai kembali Indonesia.",
+        question: "Nama pasukan yang dimaksud pada informasi sejarah di atas adalah...",
         options: [
-          "Menurunnya pendapatan keluarga karena warga terpecah fokusnya dari sektor pertanian.",
-          "Meningkatnya ketergantungan warga pada bantuan pangan dari pemerintah pusat.",
-          "Terbentuknya ketahanan ekonomi keluarga yang lebih stabil karena adanya ragam sumber pendapatan di luar musim panen.",
-          "Hilangnya seluruh tradisi gotong royong akibat berdirinya usaha wisata.",
-          "Berkurangnya jumlah penduduk desa karena semua warga pindah menjadi pegawai negeri."
+          "AFNEI (Allied Forces Netherlands East Indies)",
+          "SEAC (South East Asia Command)",
+          "KNIL (Koninklijk Nederlands Indisch Leger)",
+          "NICA (Netherlands Indies Civil Administration)",
+          "PETA (Pembela Tanah Air)"
         ],
         answer: 2,
-        bahas: "Diversifikasi pekerjaan memperluas basis ekonomi masyarakat. Ketika sumber pendapatan tidak lagi bertumpu pada satu sektor yang rentan cuaca (pertanian musiman), rumah tangga memiliki ketahanan ekonomi yang lebih baik dan peluang peningkatan kesejahteraan."
+        bahas: "<b>KNIL</b> (<i>Koninklijk Nederlands Indisch Leger</i> / Tentara Kerajaan Hindia Belanda) adalah pasukan militer kolonial Hindia Belanda. Pasukan ini menyerah kepada Jepang di Kalijati tahun 1942 dan ditawan, lalu dibebaskan serta dipersenjatai kembali pada akhir 1945."
       },
       {
         no: 9,
         type: "PG",
-        cog: "C4",
-        topic: "Kesetaraan Gender",
-        narasi: "Pemerintah dan sektor swasta menerapkan kebijakan kesetaraan gender berupa jaminan kesamaan upah untuk pekerjaan setara, perlindungan hak cuti melahirkan, penyediaan ruang laktasi di kantor, serta seleksi jabatan manajerial berbasis kompetensi tanpa diskriminasi gender.",
-        question: "Analisis pengaruh kebijakan kesetaraan gender tersebut terhadap partisipasi perempuan dalam dunia kerja adalah...",
+        cog: "C2 dan C4 • Level 3",
+        topic: "Perbedaan KNIL, NICA, AFNEI, SEAC, & SWPA",
+        narasi: "Pasca-kekalahan Jepang pada Agustus 1945, hadir berbagai kesatuan militer, sipil, dan komando asing di Indonesia. Masing-masing badan memiliki tugas serta struktur komando yang berbeda, mulai dari pasukan militer kolonial bekas tawanan Jepang yang sudah lama bermukim dan dipersenjatai kembali, badan pemerintahan sipil Belanda, hingga komando tentara Sekutu.",
+        question: "Pemetaan perbedaan fungsi yang paling tepat antara KNIL, NICA, AFNEI, SEAC, dan SWPA adalah...",
         options: [
-          "Menurunkan minat perempuan untuk berkarier di sektor formal karena aturan perusahaan menjadi rumit.",
-          "Menghilangkan hambatan struktural dan bias gender sehingga partisipasi perempuan di sektor formal serta posisi pengambil keputusan meningkat.",
-          "Memaksa seluruh perempuan meninggalkan peran keluarga demi bekerja lembur di kantor.",
-          "Membatasi perempuan hanya pada sektor pekerjaan domestik dan informal.",
-          "Menghapus perbedaan kompetensi individu dalam proses rekrutmen tenaga kerja."
+          "KNIL adalah badan pemerintahan sipil Belanda; NICA adalah tentara bayaran Jepang; AFNEI adalah komando Amerika di Pasifik.",
+          "KNIL adalah tentara kolonial Hindia Belanda bekas tawanan Jepang (fungsi militer kolonial); NICA adalah badan pemerintahan sipil Belanda; AFNEI adalah pasukan Sekutu Inggris pelucut Jepang di Indonesia; SEAC adalah komando induk Sekutu di Asia Tenggara; SWPA adalah komando Sekutu di Pasifik Barat Daya.",
+          "AFNEI dan NICA sama-sama merupakan badan sipil PBB yang bertugas menyelenggarakan PEPERA di Irian Barat.",
+          "SEAC adalah pasukan khusus bentukan RI di Surabaya, sedangkan SWPA adalah tentara Kerajaan Belanda.",
+          "KNIL dan AFNEI adalah dua lembaga legislatif sementara dalam kabinet Demokrasi Liberal."
         ],
         answer: 1,
-        bahas: "Kebijakan afirmatif dan perlindungan hak reproduksi di tempat kerja mengatasi hambatan struktural yang selama ini membatasi perempuan. Dampaknya, partisipasi kerja perempuan meningkat secara kuantitatif maupun kualitatif (hingga tingkat manajerial)."
+        bahas: "Secara fungsional: <b>KNIL</b> = pasukan militer kolonial Hindia Belanda (eks tawanan perang Jepang yang dipersenjatai lagi akhir 1945); <b>NICA</b> = administrasi pemerintahan sipil Belanda pimpinan Van Mook; <b>AFNEI</b> = pasukan Inggris di Indonesia di bawah <b>SEAC</b> (Komando Asia Tenggara pimpinan Mountbatten); sedangkan <b>SWPA</b> = Komando Pasifik Barat Daya pimpinan MacArthur sebelum dialihkan ke SEAC."
       },
       {
         no: 10,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Transportasi",
-        narasi: "Beroperasinya jaringan transportasi massal terintegrasi seperti KRL, LRT, dan bus rapid transit yang menghubungkan kawasan penyangga dengan pusat bisnis kota membuat waktu tempuh antarkota menyusut drastis dengan biaya lebih terjangkau.",
-        question: "Analisis perubahan pola mobilitas masyarakat akibat perkembangan transportasi umum massal tersebut adalah...",
+        cog: "C2 dan C3 • Level 2",
+        topic: "Pertempuran Mempertahankan Kemerdekaan",
+        narasi: "Pertempuran besar ini meletus di pusat kota pada tanggal 10 November 1945 setelah sebelumnya terjadi insiden tewasnya Brigadir Jenderal A.W.S. Mallaby yang memicu ultimatum keras dari tentara Sekutu. Peristiwa heroik rakyat dan pejuang tersebut kini diperingati bangsa Indonesia setiap tahun sebagai Hari Pahlawan.",
+        question: "Nama peristiwa perjuangan fisik yang sesuai dengan deskripsi tokoh, lokasi, dan waktu di atas adalah...",
         options: [
-          "Masyarakat penyangga berhenti bekerja di pusat kota karena jarak terasa semakin jauh.",
-          "Terjadi peningkatan mobilitas sirkuler harian (komuter) dengan jangkauan kerja lebih luas dan efisiensi waktu serta biaya perjalanan.",
-          "Seluruh penduduk desa berpindah secara permanen ke pusat kota sehingga kawasan penyangga kosong.",
-          "Penggunaan kendaraan pribadi meningkat dua kali lipat karena tarif transportasi umum sangat mahal.",
-          "Interaksi ekonomi antara wilayah penyangga dan pusat kota terputus sepenuhnya."
+          "Pertempuran Medan Area",
+          "Palagan Ambarawa",
+          "Pertempuran Surabaya",
+          "Bandung Lautan Api",
+          "Puputan Margarana"
         ],
-        answer: 1,
-        bahas: "Transportasi massal yang cepat, murah, dan terintegrasi mendorong tingginya mobilitas ulang-alik harian (komuter). Pekerja dapat tinggal di wilayah penyangga namun mengakses lapangan kerja di pusat kota tanpa harus bermigrasi permanen."
+        answer: 2,
+        bahas: "Pertempuran pada <b>10 November 1945</b> pasca-tewasnya <b>Brigadir Jenderal A.W.S. Mallaby</b> (30 Oktober 1945) yang diabadikan sebagai <b>Hari Pahlawan</b> adalah <b>Pertempuran Surabaya</b>."
       },
       {
         no: 11,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Mata Pencaharian",
-        narasi: "Abrasi pantai dan kenaikan permukaan air laut yang merendam ratusan hektare sawah di pesisir utara Jawa membuat petani tidak lagi dapat menanam padi secara produktif. Sebagian warga kemudian beradaptasi dengan mengembangkan budidaya kepiting bakau, tambak ikan bandeng, serta wisata konservasi mangrove.",
-        question: "Analisis sosiologis mengenai perubahan mata pencaharian masyarakat pada kasus di atas adalah...",
+        cog: "C4 dan C5 • Level 3",
+        topic: "Konferensi Asia-Afrika (1955)",
+        narasi: "Pada masa Kabinet Ali Sastroamidjojo I tahun 1955, Indonesia menjadi tuan rumah sekaligus pemrakarsa utama Konferensi Asia-Afrika (KAA) di Bandung yang melahirkan Dasasila Bandung di tengah memanasnya Perang Dingin antara Blok Barat dan Blok Timur.",
+        question: "Alasan paling konkret yang membuktikan bahwa KAA merupakan keberhasilan nyata Indonesia dalam menjalankan politik luar negeri bebas-aktif adalah...",
         options: [
-          "Perubahan mata pencaharian dipicu oleh faktor internal berupa konflik antarkelompok tani.",
-          "Degradasi dan perubahan kondisi lingkungan alam memaksa masyarakat melakukan adaptasi sosial-ekonomi dengan mengalihkan jenis mata pencaharian sesuai daya dukung ekosistem baru.",
-          "Warga mengganti pekerjaan semata-mata karena meniru gaya hidup wisatawan mancanegara.",
-          "Terjadinya penurunan solidaritas sosial karena seluruh warga bekerja sebagai nelayan tangkap.",
-          "Lingkungan fisik tidak memiliki hubungan sama sekali dengan struktur mata pencaharian penduduk."
+          "Indonesia resmi menandatangani pakta pertahanan militer bersama Uni Soviet dan Amerika Serikat.",
+          "Peran aktif Indonesia menggalang solidaritas anti-kolonialisme untuk membantu mewujudkan kemerdekaan bangsa-bangsa Asia dan Afrika serta memperjuangkan perdamaian dunia sesuai Dasasila Bandung tanpa memihak blok militer mana pun.",
+          "Indonesia berhasil menjual seluruh aset perkebunan nasional kepada negara-negara Eropa Barat.",
+          "KAA mewajibkan seluruh negara peserta untuk menganut sistem Demokrasi Terpimpin ala Soekarno.",
+          "Indonesia memperoleh pinjaman militer tanpa batas melalui perjanjian Mutual Security Act."
         ],
         answer: 1,
-        bahas: "Perubahan lingkungan alam (abrasi, rob, kekeringan) merupakan salah satu faktor eksternal perubahan sosial. Ketika ekosistem agraris berubah menjadi perairan payau, masyarakat melakukan adaptasi mata pencaharian menuju sektor perikanan tambak dan ekowisata agar tetap bertahan."
+        bahas: "Politik bebas-aktif berarti tidak memihak blok militer manapun ('bebas') sekaligus turut aktif menjaga ketertiban dan kemerdekaan dunia ('aktif'). Melalui KAA 1955 dan Dasasila Bandung, Indonesia secara konkret menginspirasi dan mendorong dekolonisasi negara-negara terjajah di Asia dan Afrika serta perdamaian dunia."
       },
       {
         no: 12,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Pola Kerja",
-        narasi: "Pascapandemi, banyak perusahaan bidang teknologi, desain, dan konsultasi mempertahankan sistem kerja jarak jauh (<i>remote work</i>) dengan memanfaatkan platform kolaborasi daring.",
-        question: "Analisis dampak positif penerapan sistem kerja jarak jauh (<i>remote work</i>) bagi pekerja dan struktur sosial-ekonomi adalah...",
+        cog: "C2 • Level 1",
+        topic: "Kabinet Djuanda (Zaken Kabinet)",
+        narasi: "Pada tanggal 9 April 1957, Ir. Djuanda Kartawidjaja diangkat memimpin Kabinet Karya yang dikenal luas dalam sejarah Indonesia dengan sebutan <i>zaken kabinet</i>.",
+        question: "Alasan utama diterapkannya sistem <i>zaken kabinet</i> pada masa Kabinet Djuanda tersebut adalah...",
         options: [
-          "Menghilangkan seluruh batas waktu istirahat sehingga pekerja selalu bekerja selama 24 jam.",
-          "Meningkatkan kemacetan lalu lintas di pusat kota pada jam berangkat kerja.",
-          "Memberikan fleksibilitas kerja, efisiensi biaya transportasi dan sewa ruang kantor, serta membuka peluang kerja lintas wilayah tanpa harus urbanisasi.",
-          "Memutus hubungan kerja sama antardivisi karena tidak ada komunikasi sama sekali.",
-          "Menurunkan produktivitas seluruh perusahaan berbasis teknologi informasi."
+          "Membagi kursi menteri secara merata berdasarkan jumlah kursi partai besar hasil pemilu agar partai puas.",
+          "Menempatkan menteri-menteri yang ahli di bidangnya (the right man in the right place), lepas dari tarik-menarik kepentingan partai politik, guna mengatasi kegagalan kabinet partai yang berumur pendek dan fokus pada pembangunan.",
+          "Menghapus seluruh jabatan presiden dan menggantinya dengan dewan raja-raja daerah.",
+          "Menjadikan seluruh panglima militer asing sebagai menteri luar negeri.",
+          "Membubarkan konstitusi dan menggantinya dengan aturan ekonomi kolonial."
         ],
-        answer: 2,
-        bahas: "Dampak positif utama <i>remote work</i> mencakup efisiensi biaya komuter dan operasional kantor, fleksibilitas untuk mendukung keseimbangan kerja-hidup (<i>work-life balance</i>), serta pemerataan peluang kerja karena individu di daerah dapat bekerja bagi perusahaan di kota besar atau luar negeri."
+        answer: 1,
+        bahas: "<i>Zaken kabinet</i> adalah kabinet yang jajaran menterinya berasal dari kalangan profesional/pakar di bidang masing-masing (<i>the right man in the right place</i>), bukan berdasarkan kuota kompromi partai politik, sehingga diharapkan lebih stabil dan efektif bekerja."
       },
       {
         no: 13,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Struktur Ekonomi",
-        narasi: "Pembangunan kawasan industri garmen dan elektronik di sebuah kabupaten agraris menyebabkan banyak generasi muda desa memilih menjadi buruh pabrik dengan upah bulanan tetap dibandingkan menggarap sawah milik orang tua. Akibatnya, jumlah tenaga kerja usia muda di sektor pertanian menyusut tajam.",
-        question: "Analisis yang tepat mengenai konsekuensi pergeseran struktur ekonomi dari sektor pertanian ke industri tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Sistem Ekonomi Ali-Baba",
+        narasi: "Pada masa Kabinet Ali Sastroamidjojo I, Menteri Perekonomian Iskaq Tjokrohadisurjo meluncurkan Sistem Ekonomi Ali-Baba yang mewajibkan pengusaha non-pribumi ('Baba') bekerja sama serta melatih pengusaha pribumi ('Ali') dengan dukungan fasilitas kredit dan lisensi impor dari pemerintah.",
+        question: "Analisis faktor utama penyebab kegagalan Sistem Ekonomi Ali-Baba tersebut adalah...",
         options: [
-          "Produksi pangan lokal otomatis berlipat ganda karena seluruh anak muda bekerja di pabrik garmen.",
-          "Terjadi transformasi struktur tenaga kerja menuju sektor formal berupah tetap, namun muncul kerentanan regenerasi petani dan ketahanan pangan lokal.",
-          "Sistem upah buruh pabrik digantikan dengan sistem bagi hasil panen padi.",
-          "Masyarakat industri sepenuhnya kembali menganut sistem solidaritas mekanik yang homogen.",
-          "Kepadatan penduduk desa menurun drastis hingga kawasan industri tutup."
+          "Seluruh pengusaha pribumi menolak menerima bantuan modal kredit karena sudah memiliki jaringan ekspor global.",
+          "Terjadinya praktik korupsi dan penjualan lisensi impor ilegal ('Ali-Ali-an'), kurangnya pengalaman manajemen pengusaha pribumi, serta penyalahgunaan fasilitas kredit untuk kepentingan konsumtif.",
+          "Larangan pemerintah pusat terhadap seluruh aktivitas perdagangan antarpulau di Indonesia.",
+          "Tingginya nilai tukar rupiah terhadap dolar Amerika yang membuat barang lokal terlalu mahal.",
+          "Penolakan penuh dari negara-negara peserta Konferensi Asia-Afrika tahun 1955."
         ],
         answer: 1,
-        bahas: "Industrialisasi di wilayah agraris menggeser mata pencaharian dari sektor primer (pertanian) ke sektor sekunder (industri) yang menawarkan kepastian upah. Namun secara struktural, hal ini menimbulkan penuaan tenaga kerja tani dan menyusutnya lahan/regenerasi pertanian."
+        bahas: "Sistem Ali-Baba gagal mencapai target karena pengusaha pribumi yang masih kurang berpengalaman kerap hanya menjadi alat untuk memperoleh lisensi impor lalu menjualnya kembali kepada pengusaha non-pribumi/asing (praktik 'Ali-Ali-an'), disertai korupsi birokrasi dan penggunaan kredit untuk konsumsi, bukan investasi produktif."
       },
       {
         no: 14,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Teknologi",
-        narasi: "Dinas Koperasi bersama komunitas mahasiswa menyelenggarakan pelatihan intensif literasi digital, pembukuan berbasis aplikasi, dan keamanan transaksi daring bagi para pelaku usaha mikro di pasar tradisional.",
-        question: "Analisis pengaruh utama pelatihan teknologi tersebut terhadap pengetahuan dan kapabilitas masyarakat adalah...",
+        cog: "C2 dan C4 • Level 2",
+        topic: "Periodisasi Sistem Demokrasi Indonesia",
+        narasi: `Perhatikan lini masa periodisasi sistem demokrasi di Indonesia berikut (bagian yang ditebalkan menjadi fokus pertanyaan):<div class="timeline-box"><div class="tl-item"><div class="tl-year">1945 – 1959</div><div class="tl-label">Era Awal Kemerdekaan &amp; Parlementer</div></div><div class="tl-item active-bold"><div class="tl-year">1959 – 1966</div><div class="tl-label">Periode Fokus Pertanyaan</div></div><div class="tl-item"><div class="tl-year">1966 – 1998</div><div class="tl-label">Era Pemerintahan Selanjutnya</div></div></div>`,
+        question: "Sistem demokrasi pada kurun waktu yang ditebalkan (1959–1966) beserta faktor utama berakhirnya adalah...",
         options: [
-          "Membuat pelaku usaha tradisional meninggalkan penjualan tatap muka dan menutup kios pasar.",
-          "Meningkatkan kapasitas kognitif, keterampilan praktis pengelolaan usaha modern, serta mengurangi kesenjangan literasi digital antar generasi pelaku usaha.",
-          "Menghilangkan seluruh modal usaha pedagang karena biaya pelatihan sangat mahal.",
-          "Memicu konflik horizontal antara pedagang pasar dan pembeli daring.",
-          "Menggantikan seluruh fungsi koperasi dengan algoritma media sosial."
+          "Demokrasi Liberal; berakhir karena keberhasilan Pemilu 1955 menyusun UUD baru.",
+          "Demokrasi Terpimpin; berakhir akibat ketidakstabilan sosial-politik, krisis ekonomi parah, menguatnya pengaruh komunis (PKI), serta peristiwa G30S/PKI 1965.",
+          "Demokrasi Pancasila Orde Baru; berakhir akibat krisis moneter dan gerakan Reformasi 1998.",
+          "Demokrasi Parlementer RIS; berakhir karena pembubaran negara-negara bagian pada Agustus 1950.",
+          "Demokrasi Reformasi; berakhir akibat dikeluarkannya Dekrit Presiden 5 Juli 1959."
         ],
         answer: 1,
-        bahas: "Pelatihan teknologi mempercepat transfer pengetahuan (<i>knowledge transfer</i>), meningkatkan literasi digital praktis, dan memberdayakan masyarakat agar mampu beradaptasi secara produktif terhadap perubahan teknologi tanpa tertinggal."
+        bahas: "Periode <b>1959–1966</b> (dimulai sejak Dekrit Presiden 5 Juli 1959) adalah masa <b>Demokrasi Terpimpin</b>. Sistem ini runtuh akibat krisis ekonomi berkepanjangan, polarisasi tajam karena menguatnya pengaruh PKI, serta meletusnya peristiwa <b>G30S/PKI</b> tahun 1965."
       },
       {
         no: 15,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Struktur Keluarga",
-        narasi: "Di kawasan perkotaan, keluarga besar yang tinggal dalam satu rumah dengan banyak anak semakin jarang ditemui. Sebagian besar pasangan muda memilih bentuk keluarga inti (ayah, ibu, dan satu atau dua anak) di mana suami dan istri sama-sama bekerja untuk menopang biaya pendidikan dan hunian.",
-        question: "Analisis faktor ekonomi dan pandangan hidup yang mendorong perubahan struktur keluarga tersebut adalah...",
+        cog: "C2 • Level 1",
+        topic: "Tokoh Pemberontakan DI/TII",
+        narasi: "Perhatikan foto arsip tokoh pemimpin pusat gerakan Darul Islam / Tentara Islam Indonesia (DI/TII) yang memproklamasikan berdirinya Negara Islam Indonesia (NII) di Jawa Barat pada 7 Agustus 1949 berikut ini:" + buildArchivalSlot(15, "tokoh_ditii.jpg", "Foto Arsip Tokoh Pemimpin Pusat DI/TII (Jawa Barat)", "Menampilkan potret tokoh pendiri dan imam pusat gerakan DI/TII di Jawa Barat (1949)."),
+        question: "Nama tokoh pemimpin gerakan DI/TII tersebut beserta kesesuaian wilayah pemberontakannya adalah...",
         options: [
-          "Tingginya biaya hidup perkotaan serta pandangan hidup modern yang mengutamakan kemandirian individu, efisiensi ekonomi, dan kualitas pengasuhan.",
-          "Aturan hukum perkotaan yang melarang kakek dan nenek berkomunikasi dengan cucu.",
-          "Rendahnya biaya pendidikan tinggi di kota besar sehingga tidak perlu perencanaan keuangan.",
-          "Kembalinya masyarakat kota ke sistem keluarga luas yang bergantung pada sektor agraris.",
-          "Penolakan total terhadap lembaga perkawinan di seluruh masyarakat modern."
+          "Kahar Muzakkar — pemimpin gerakan DI/TII di wilayah Jawa Barat.",
+          "Sekarmadji Maridjan Kartosoewiryo — pemimpin pusat gerakan DI/TII di wilayah Jawa Barat.",
+          "Teungku Daud Beureueh — pemimpin gerakan DI/TII di wilayah Kalimantan Selatan.",
+          "Ibnu Hadjar — pemimpin gerakan DI/TII di wilayah Aceh.",
+          "Amir Fatah — pemimpin gerakan DI/TII di wilayah Sulawesi Selatan."
         ],
-        answer: 0,
-        bahas: "Faktor ekonomi (tingginya biaya hunian, pendidikan, dan kebutuhan hidup) berpadu dengan perubahan pandangan hidup (rasionalisasi jumlah anak, kesetaraan peran pencari nafkah, dan kemandirian rumah tangga) mendorong pergeseran dari <i>extended family</i> ke <i>nuclear family</i>."
+        answer: 1,
+        bahas: "Pemimpin pusat DI/TII sekaligus proklamator NII di <b>Jawa Barat</b> adalah <b>Sekarmadji Maridjan Kartosoewiryo</b>. Sebagai pemetaan lengkap tokoh DI/TII di daerah lain: <b>Kahar Muzakkar</b> = Sulawesi Selatan, <b>Daud Beureueh</b> = Aceh, <b>Amir Fatah</b> = Jawa Tengah, dan <b>Ibnu Hadjar</b> = Kalimantan Selatan."
       },
       {
         no: 16,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Gaya Hidup",
-        narasi: "Sebagian masyarakat perkotaan rela mengantre berjam-jam dan membayar mahal untuk membeli produk kopi atau ponsel edisi terbaru berlogo merek global tertentu, lalu mengunggahnya ke media sosial, meskipun fungsi dasarnya sama dengan produk lokal yang jauh lebih murah.",
-        question: "Analisis sosiologis yang paling tepat terhadap perubahan gaya hidup dan pola konsumsi masyarakat modern tersebut adalah...",
+        cog: "C2 dan C4 • Level 2",
+        topic: "Pelanggaran Politik Bebas-Aktif (Kabinet Sukiman)",
+        narasi: "Pada tahun 1951–1952, Kabinet Sukiman mendapat kecaman keras dari parlemen dan publik karena kebijakannya dinilai telah menyimpang dari prinsip politik luar negeri bebas-aktif Indonesia hingga akhirnya kabinet tersebut jatuh.",
+        question: "Bukti konkret bentuk pelanggaran politik luar negeri bebas-aktif pada masa Kabinet Sukiman tersebut adalah...",
         options: [
-          "Konsumsi dilakukan murni berdasarkan efisiensi harga dan perhitungan nilai guna biologis.",
-          "Terjadi pergeseran makna konsumsi dari sekadar pemenuhan kebutuhan fungsional menjadi konsumsi simbolik untuk membangun citra diri dan status sosial.",
-          "Masyarakat modern semakin menghindari pengaruh media sosial dalam menentukan pilihan produk.",
-          "Produk lokal tidak memiliki fungsi dasar yang setara dengan produk bermerek global.",
-          "Gaya hidup hemat dan asketis menjadi tren utama di kalangan pengguna media sosial."
+          "Penyelenggaraan Konferensi Asia-Afrika di Bandung pada tahun 1955.",
+          "Penandatanganan perjanjian bantuan ekonomi dan militer Mutual Security Act (MSA) dengan Amerika Serikat yang mengikat Indonesia memihak Blok Barat.",
+          "Pembatalan hasil Konferensi Meja Bundar (KMB) secara sepihak.",
+          "Pembentukan Poros Jakarta–Peking bersama Republik Rakyat Tiongkok.",
+          "Pengiriman Kontingen Garuda I dalam misi perdamaian PBB ke Mesir."
         ],
         answer: 1,
-        bahas: "Dalam masyarakat konsumen modern (seperti dianalisis Jean Baudrillard), barang tidak lagi dikonsumsi semata karena nilai gunanya (<i>use value</i>), melainkan karena nilai tanda/simbolnya (<i>sign value</i>) untuk menunjukkan prestise, identitas, dan gaya hidup."
+        bahas: "Menteri Luar Negeri Achmad Soebardjo dari Kabinet Sukiman menandatangani perjanjian <b>Mutual Security Act (MSA)</b> dengan Duta Besar AS Merle Cochran (1952). Karena bantuan MSA mensyaratkan keberpihakan militer/politik kepada Blok Barat, tindakan ini dianggap melanggar politik bebas-aktif."
       },
       {
         no: 17,
         type: "PG",
-        cog: "C4",
-        topic: "Perubahan Pekerjaan",
-        narasi: "Integrasi perangkat lunak analitik dan mesin otomatis di sektor perbankan serta manufaktur menyebabkan berkurangnya permintaan tenaga administrasi pencatatan manual, sementara permintaan terhadap analis data, teknisi pemeliharaan sistem cerdas, dan pemecah masalah kreatif melonjak tajam.",
-        question: "Berdasarkan kondisi tersebut, analisis pengaruh otomatisasi terhadap kebutuhan keterampilan tenaga kerja adalah...",
+        cog: "C4 dan C5 • Level 3",
+        topic: "Kebijakan Sanering (25 Agustus 1959)",
+        narasi: "Pada tanggal 25 Agustus 1959, pemerintah mengeluarkan kebijakan sanering (Perpu No. 2 Tahun 1959) yang memotong nilai uang kertas pecahan Rp 500 dan Rp 1.000 menjadi sepersepuluhnya (Rp 50 dan Rp 100) serta membekukan 90% simpanan di atas Rp 25.000 untuk menekan laju inflasi. Namun dalam jangka panjang, kebijakan ini gagal menstabilkan perekonomian dan inflasi justru melonjak kembali hingga ratusan persen.",
+        question: "Evaluasi paling tepat mengenai penyebab kegagalan kebijakan sanering 1959 tersebut adalah...",
         options: [
-          "Tenaga kerja tidak lagi memerlukan pendidikan lanjutan karena semua pekerjaan dapat dikerjakan tanpa keahlian.",
-          "Otomatisasi menggeser kebutuhan pasar kerja dari keterampilan rutin-repetitif menuju keterampilan digital, berpikir kritis, dan keahlian teknis non-rutin.",
-          "Perusahaan lebih memprioritaskan tenaga kerja yang menolak penggunaan perangkat komputer.",
-          "Keterampilan komunikasi dan kreativitas manusia sepenuhnya digantikan oleh mesin pencatat.",
-          "Kebutuhan keterampilan di masa depan hanya berfokus pada tenaga fisik tanpa literasi teknologi."
+          "Karena potongan nilai uang terlalu kecil sehingga jumlah uang beredar tidak berubah sama sekali.",
+          "Karena kebijakan tersebut bersifat simptomatis (hanya memangkas uang beredar sesaat) tanpa menyelesaikan akar masalah inflasi, yaitu defisit anggaran belanja negara akibat pembiayaan proyek mercusuar dan konfrontasi politik yang terus ditutup dengan mencetak uang berlebihan.",
+          "Karena masyarakat menolak menggunakan mata uang rupiah dan beralih memakai uang logam Belanda.",
+          "Karena seluruh bank swasta asing memborong uang pecahan Rp 1.000 untuk diekspor ke Eropa.",
+          "Karena Indonesia mengalami surplus anggaran negara yang terlalu besar sehingga harga barang jatuh."
         ],
         answer: 1,
-        bahas: "Otomatisasi menggantikan pekerjaan yang bersifat rutin dan terprediksi, sehingga pasar tenaga kerja menuntut peningkatan keterampilan (<i>upskilling/reskilling</i>) ke arah kompetensi digital, analisis data, pemecahan masalah kompleks, dan kreativitas yang sulit ditiru mesin."
+        bahas: "Sanering 1959 bersifat <b>simptomatis</b> (mengobati gejala, bukan akar penyakit). Karena defisit APBN terus membengkak untuk membiayai proyek-proyek mercusuar, pembebasan Irian Barat, dan konfrontasi Malaysia tanpa penerimaan negara yang sepadan, pemerintah kembali mencetak uang baru sehingga inflasi meledak jauh lebih parah."
       },
       {
         no: 18,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Budaya",
-        narasi: "Interaksi budaya global melalui kuliner, musik, dan mode mendorong lahirnya tren baru di kalangan anak muda Indonesia, seperti hadirnya kafe kopi lokal yang mengadopsi estetika desain Skandinavia dengan menu es kopi gula aren, atau busana batik yang dipotong dengan gaya <i>streetwear</i> modern.",
-        question: "Analisis pengaruh interaksi budaya global terhadap gaya hidup masyarakat pada fenomena tersebut adalah...",
+        cog: "C2 • Level 1",
+        topic: "Kebijakan Ekonomi Masa Demokrasi Liberal",
+        narasi: "Pada masa Demokrasi Liberal, pemerintah meluncurkan program ekonomi yang bertujuan mengubah struktur ekonomi kolonial menjadi ekonomi nasional melalui kanalisasi untuk melahirkan kelas pengusaha pribumi bermodal lemah dengan memberikan fasilitas kredit modal serta bimbingan usaha.",
+        question: "Nama program kebijakan ekonomi beserta tokoh penggagasnya sesuai deskripsi di atas adalah...",
         options: [
-          "Budaya lokal punah secara total tanpa menyisakan unsur tradisional sedikit pun.",
-          "Terjadi glokalisasi atau hibridisasi budaya, di mana unsur budaya global diadaptasi dan dipadukan dengan identitas lokal dalam gaya hidup masyarakat.",
-          "Masyarakat menolak seluruh pengaruh gaya desain dan kuliner dari luar negeri.",
-          "Interaksi budaya global hanya memengaruhi kelompok lanjut usia di wilayah pedalaman.",
-          "Produk lokal kehilangan daya tariknya setelah dikemas dengan sentuhan desain modern."
+          "Sistem Ekonomi Ali-Baba — Iskaq Tjokrohadisurjo",
+          "Sistem Ekonomi Gerakan Benteng — Sumitro Djojohadikusumo",
+          "Kebijakan Gunting Syafruddin — Sjafruddin Prawiranegara",
+          "Deklarasi Ekonomi (Dekon) — Ir. Djuanda",
+          "Nasionalisasi De Javasche Bank — Jusuf Wibisono"
         ],
         answer: 1,
-        bahas: "Perpaduan antara cita rasa/motif lokal (gula aren, batik) dan format/estetika global (kafe modern, <i>streetwear</i>) menunjukkan proses <b>glokalisasi</b> atau hibridisasi budaya, yang memperkaya gaya hidup sekaligus menjaga relevansi budaya lokal."
+        bahas: "<b>Sistem Ekonomi Gerakan Benteng</b> digagas oleh <b>Prof. Dr. Sumitro Djojohadikusumo</b> pada tahun 1950 (Kabinet Natsir) dengan tujuan menumbuhkan wirausaha pribumi agar mampu menggantikan dominasi perusahaan modal asing/kolonial."
       },
       {
         no: 19,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Pendidikan",
-        narasi: "Kemunculan berbagai platform <i>Massive Open Online Courses</i> (MOOCs) seperti Coursera, edX, dan portal pembelajaran terbuka memungkinkan pelajar di daerah mengikuti kuliah pemrograman, manajemen, hingga sains dari universitas ternama dunia secara fleksibel melalui internet.",
-        question: "Analisis perubahan akses pendidikan akibat perkembangan internet dan MOOCs tersebut adalah...",
+        cog: "C2 • Level 1",
+        topic: "Penyelenggaraan KAA 1955",
+        narasi: "Pada masa Demokrasi Liberal, Indonesia meraih prestasi diplomatik gemilang di kancah internasional melalui penyelenggaraan Konferensi Asia-Afrika (KAA) tahun 1955 di Gedung Merdeka, Bandung, yang menghasilkan Dasa Sila Bandung.",
+        question: "Pemerintahan Perdana Menteri yang berhasil menyelenggarakan Konferensi Asia-Afrika tahun 1955 tersebut adalah...",
         options: [
-          "Akses pendidikan tinggi semakin eksklusif dan hanya dapat dinikmati warga ibu kota.",
-          "MOOCs menghilangkan hambatan geografis serta mendemokratisasi akses ilmu pengetahuan global bagi pembelajar sepanjang hayat.",
-          "Seluruh sekolah dasar dan menengah di dunia wajib ditutup karena digantikan kuliah daring.",
-          "Kurikulum internasional hanya dapat diakses oleh mahasiswa yang bermigrasi ke luar negeri.",
-          "Internet mempersempit sumber belajar siswa karena membatasi diskusi lintas negara."
+          "Kabinet Natsir",
+          "Kabinet Sukiman",
+          "Kabinet Wilopo",
+          "Kabinet Ali Sastroamidjojo I",
+          "Kabinet Burhanuddin Harahap"
         ],
-        answer: 1,
-        bahas: "Internet dan MOOCs mendemokratisasi akses pendidikan lintas batas negara, menekan hambatan jarak geografis dan biaya mobilitas fisik, serta mendukung pembelajaran sepanjang hayat (<i>lifelong learning</i>) secara terbuka."
+        answer: 3,
+        bahas: "Konferensi Asia-Afrika (18–24 April 1955) diselenggarakan pada masa pemerintahan Perdana Menteri <b>Ali Sastroamidjojo</b> (<b>Kabinet Ali Sastroamidjojo I</b>)."
       },
       {
         no: 20,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Ekonomi",
-        narasi: "Masuknya investasi asing langsung (<i>Foreign Direct Investment</i> / FDI) di sektor pembangunan pabrik baterai kendaraan listrik membawa aliran modal besar, membuka ribuan lapangan kerja lokal, dan mentransfer teknologi produksi modern. Namun, tanpa regulasi alih teknologi dan kemitraan lokal, keuntungan besar berpotensi ditarik kembali ke negara asal investor serta menekan pelaku industri domestik yang belum siap.",
-        question: "Berdasarkan analisis di atas, pernyataan yang paling tepat menggambarkan dampak investasi asing (FDI) terhadap perekonomian negara tuan rumah adalah...",
+        cog: "C4 • Level 2",
+        topic: "Pidato Nawaksara & Peralihan ke Orde Baru",
+        narasi: "Dalam Sidang Umum IV MPRS pada tanggal 22 Juni 1966, Presiden Soekarno menyampaikan pidato pertanggungjawaban berjudul <i>Nawaksara</i> yang memuat sembilan pokok persoalan bangsa. Namun, MPRS secara resmi menolak pertanggungjawaban tersebut dan meminta Presiden melengkapinya.",
+        question: "Analisis penyebab utama ditolaknya pidato <i>Nawaksara</i> oleh MPRS tersebut adalah...",
         options: [
-          "FDI selalu membawa kerugian mutlak bagi perekonomian negara berkembang tanpa manfaat apa pun.",
-          "FDI berpotensi mempercepat pertumbuhan ekonomi dan alih teknologi, tetapi memerlukan tata kelola kebijakan yang tepat agar tidak memicu ketergantungan modal dan tersingkirnya industri domestik.",
-          "FDI secara otomatis membuat seluruh perusahaan lokal menjadi pemilik modal terbesar di dunia.",
-          "Masuknya FDI berarti negara tuan rumah menutup seluruh perdagangan internasionalnya.",
-          "Investasi asing tidak memiliki kaitan dengan penyerapan tenaga kerja lokal."
+          "Karena Presiden Soekarno menuntut pembubaran MPRS secara langsung di dalam ruang sidang.",
+          "Karena pidato Nawaksara dianggap tidak menjelaskan secara jelas dan tegas peristiwa G30S/PKI serta tanggung jawab Presiden atas kemerosotan ekonomi dan moral bangsa.",
+          "Karena pidato tersebut disampaikan dalam bahasa Belanda dan tidak dimengerti anggota parlemen.",
+          "Karena Soekarno mengumumkan penyerahan kekuasaan kepada PKI di hadapan MPRS.",
+          "Karena jumlah pokok persoalan dalam pidato tersebut kurang dari sembilan poin."
         ],
         answer: 1,
-        bahas: "FDI memiliki dua sisi: di satu sisi mendorong penciptaan lapangan kerja, masuknya devisa, dan transfer teknologi; di sisi lain berisiko menimbulkan repatriasi laba ke negara asal serta tekanan kompetitif bagi industri dalam negeri apabila tidak diimbangi regulasi kemitraan lokal."
+        bahas: "MPRS menolak pidato <i>Nawaksara</i> (dan kemudian <i>Pelengkap Nawaksara</i> tahun 1967) terutama karena dianggap tidak memberikan kejelasan maupun pertanggungjawaban yang tegas mengenai terjadinya peristiwa <b>G30S/PKI</b>, krisis ekonomi, serta dekadensi akhlak/tatanan negara."
       },
       {
         no: 21,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Budaya",
-        narasi: "Di berbagai kota besar di Asia, Eropa, maupun Amerika, pusat perbelanjaan dipenuhi gerai makanan cepat saji internasional yang sama, merek pakaian seragam, standar estetika iklan yang mirip, serta selera musik populer yang serentak menduduki tangga lagu global.",
-        question: "Analisis yang tepat mengenai proses penyeragaman budaya (<i>homogenisasi</i>) dalam fenomena globalisasi tersebut adalah...",
+        cog: "C2 • Level 1",
+        topic: "Konsep Politik Demokrasi Terpimpin",
+        narasi: "Pada masa Demokrasi Terpimpin, Presiden Soekarno mencetuskan suatu gagasan konsep politik yang bertujuan menyatukan dan merangkul seluruh elemen kekuatan masyarakat serta partai politik Indonesia dari tiga golongan besar, yakni golongan nasionalis, golongan agama, dan golongan komunis.",
+        question: "Istilah konsep pemikiran politik Presiden Soekarno yang dimaksud adalah...",
         options: [
-          "Keberagaman budaya daerah semakin menguat dan mendominasi seluruh pusat perbelanjaan dunia.",
-          "Dominasi industri budaya dan korporasi transnasional mendorong penyeragaman pola konsumsi, selera, dan gaya hidup masyarakat lintas negara.",
-          "Masyarakat di setiap negara secara sadar melarang berdirinya gerai makanan cepat saji.",
-          "Homogenisasi budaya hanya terjadi pada bahasa tulis tanpa memengaruhi gaya konsumsi.",
-          "Globalisasi memastikan tidak ada satu pun produk asing yang dikenal di negara lain."
+          "Manipol-USDEK",
+          "NEFO dan OLDEFO",
+          "NASAKOM",
+          "Trikora",
+          "Dwikora"
         ],
-        answer: 1,
-        bahas: "Penyeragaman budaya (<i>homogenisasi</i> atau disebut juga <i>McDonaldization</i> oleh George Ritzer) terjadi ketika standar produk, budaya populer, dan gaya hidup yang diproduksi korporasi global menyebar masif sehingga membuat selera masyarakat di berbagai belahan dunia menjadi seragam."
+        answer: 2,
+        bahas: "<b>NASAKOM</b> merupakan akronim dari <b>Nasionalis, Agama, dan Komunis</b>, yakni doktrin pemersatu tiga aliran ideologi besar yang diterapkan Presiden Soekarno selama masa Demokrasi Terpimpin."
       },
       {
         no: 22,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Budaya",
-        narasi: "Dalam hitungan jam setelah sebuah serial film atau tantangan tarian dari luar negeri dirilis di platform video pendek dan layanan <i>streaming</i>, jutaan remaja di Indonesia langsung menirukan gaya busana, kosakata, dan pola interaksi dari konten tersebut.",
-        question: "Analisis mekanisme penyebaran budaya asing melalui media digital pada fenomena tersebut adalah...",
+        cog: "C4 dan C5 • Level 3",
+        topic: "Arah Politik Luar Negeri Demokrasi Terpimpin",
+        narasi: "Meskipun secara konstitusional tetap menganut politik bebas-aktif, kebijakan luar negeri Indonesia pada masa Demokrasi Terpimpin terlihat condong ke Blok Timur: membeli persenjataan besar-besaran dari Uni Soviet, menjalin kedekatan diplomatik dengan Tiongkok (Poros Jakarta–Peking), serta berkonfrontasi keras dengan blok Barat (anti-Nekolim).",
+        question: "Analisis faktor pendorong utama yang paling tepat menjelaskan pergeseran haluan luar negeri tersebut adalah...",
         options: [
-          "Media digital memperlambat penyebaran budaya asing karena harus melewati sensor surat kabar cetak.",
-          "Algoritma media digital dan konektivitas internet menghapus sekat ruang serta mempercepat difusi budaya asing secara langsung kepada audiens global.",
-          "Penyebaran budaya asing hanya dapat berlangsung melalui pertukaran pelajar secara fisik.",
-          "Remaja meniru budaya asing karena diwajibkan oleh kurikulum sekolah menengah.",
-          "Media digital hanya menyebarkan kesenian tradisional setempat kepada penduduk desa."
+          "Karena UUD 1945 telah diubah menjadi konstitusi negara komunis oleh Dekrit Presiden 5 Juli 1959.",
+          "Strategi pragmatis mengamankan kepentingan nasional—di mana Blok Timur dipandang sebagai sumber dukungan politik, militer, dan ekonomi yang paling siap membantu melawan Belanda di Irian Barat dan proyek nasional—sekaligus merefleksikan aliansi dalam negeri NASAKOM yang melibatkan PKI.",
+          "Karena Amerika Serikat mendesak Indonesia agar membeli kapal penjelajah perang dari Uni Soviet.",
+          "Karena Indonesia ingin menggabungkan wilayahnya ke dalam Federasi Uni Soviet.",
+          "Karena seluruh tokoh agama dan tentara di Indonesia mengadopsi ideologi komunisme."
         ],
         answer: 1,
-        bahas: "Media digital bekerja melalui algoritma rekomendasi dan jaringan tanpa batas teritorial, sehingga mempercepat difusi budaya asing secara <i>real-time</i> dan masif langsung ke ruang pribadi pengguna tanpa perantara tradisional."
+        bahas: "Indonesia tidak menjadi negara komunis. Kecenderungan ke Blok Timur didorong kepentingan strategis nasional (ketika Blok Barat menolak memasok senjata untuk merebut Irian Barat, Uni Soviet bersedia memberikan kredit senjata besar-besaran) sekaligus mencerminkan pengaruh aliansi politik dalam negeri <b>NASAKOM</b> yang melibatkan PKI."
       },
       {
         no: 23,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Pendidikan",
-        narasi: "Dalam persaingan pasar kerja global, lulusan perguruan tinggi lokal tidak hanya bersaing dengan sesama pencari kerja dalam negeri, tetapi juga dengan tenaga kerja terampil dari berbagai negara yang fasih teknologi, berbahasa internasional, dan berdaya inovasi tinggi.",
-        question: "Strategi peningkatan kualitas sumber daya manusia (SDM) yang paling efektif dalam menghadapi globalisasi tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Penyimpangan Kekuasaan Masa Demokrasi Terpimpin",
+        narasi: "Selama berlakunya Demokrasi Terpimpin (1959–1965), mekanisme pengawasan lembaga tinggi negara terhadap presiden menjadi lemah, bahkan Majelis Permusyawaratan Rakyat Sementara (MPRS) cenderung melegitimasi pemusatan kekuasaan di tangan eksekutif.",
+        question: "Kebijakan MPRS yang paling nyata menunjukkan penyimpangan penguatan kekuasaan presiden secara tidak terbatas pada masa Demokrasi Terpimpin adalah...",
         options: [
-          "Membatasi penggunaan komputer dan internet di sekolah agar siswa tidak mengenal persaingan global.",
-          "Menekankan hafalan teori masa lalu tanpa membekali keterampilan abad ke-21.",
-          "Mengintegrasikan penguasaan literasi digital, keterampilan berpikir kritis, bahasa internasional, sertifikasi kompetensi vokasi, dan penguatan karakter lokal.",
-          "Melarang tenaga kerja lokal mempelajari bahasa asing maupun teknologi informasi.",
-          "Menurunkan standar kelulusan pendidikan agar jumlah ijazah meningkat secara instan."
+          "Membatasi masa jabatan presiden paling lama dua kali masa jabatan berturut-turut.",
+          "Menetapkan Ir. Soekarno sebagai Presiden Seumur Hidup melalui TAP MPRS No. III/MPRS/1963.",
+          "Mengembalikan sistem pemerintahan parlementer dengan Perdana Menteri sebagai kepala pemerintahan.",
+          "Menyelenggarakan pemilihan umum multipartai setiap lima tahun sekali.",
+          "Membubarkan Dewan Pertimbangan Agung Sementara dan Front Nasional."
         ],
-        answer: 2,
-        bahas: "Menghadapi kompetisi global membutuhkan SDM yang berdaya saing tinggi (menguasai teknologi digital, bahasa global, inovasi, serta keahlian vokasi) namun tetap berakar kuat pada etika dan karakter kebangsaan."
+        answer: 1,
+        bahas: "Melalui <b>TAP MPRS No. III/MPRS/1963</b>, MPRS mengangkat Ir. Soekarno sebagai <b>Presiden Seumur Hidup</b>. Ketetapan ini merupakan penyimpangan besar terhadap UUD 1945 Pasal 7 yang mengatur masa jabatan presiden selama lima tahun."
       },
       {
         no: 24,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Ekonomi",
-        narasi: "Pemberlakuan perjanjian perdagangan bebas menurunkan tarif bea masuk secara signifikan, sehingga produk tekstil dan elektronik impor yang diproduksi secara massal membanjiri pasar dalam negeri dengan harga jauh lebih murah dibandingkan produk pabrikan lokal.",
-        question: "Analisis dampak perdagangan bebas tersebut terhadap daya saing produk lokal adalah...",
+        cog: "C4 dan C5 • Level 3",
+        topic: "Ancaman G30S/PKI Terhadap Pancasila",
+        narasi: "Dalam kajian sejarah nasional, peristiwa Gerakan 30 September 1965 (G30S/PKI) kerap disebut sebagai bukti nyata bahwa ideologi Pancasila pernah berada di ujung tanduk dan terancam digantikan.",
+        question: "Analisis yang tepat untuk membenarkan pernyataan bahwa G30S/PKI mengancam eksistensi Pancasila adalah...",
         options: [
-          "Produk lokal otomatis menguasai 100% pasar global tanpa perlu perbaikan kualitas.",
-          "Perdagangan bebas menuntut produsen lokal meningkatkan efisiensi dan mutu produk untuk bersaing, namun produk lokal yang kurang inovatif berisiko tersingkir di pasar domestik.",
-          "Harga barang impor menjadi jauh lebih mahal karena bea masuk dinaikkan setinggi-tingginya.",
-          "Konsumen dalam negeri dilarang membeli barang kebutuhan sehari-hari dari pasar.",
-          "Perdagangan bebas hanya memengaruhi ekspor komoditas pertambangan tanpa menyentuh barang konsumsi."
+          "Karena G30S/PKI bertujuan mempercepat penyelenggaraan pemilihan umum yang demokratis.",
+          "Karena apabila gerakan kudeta tersebut berhasil melumpuhkan struktur kepemimpinan TNI AD, maka Presiden dapat dikendalikan oleh kekuatan pemberontak dan PKI akan leluasa mengganti dasar negara Pancasila dengan komunisme.",
+          "Karena peristiwa tersebut hanya merupakan perselisihan upah buruh perkebunan tanpa agenda politik.",
+          "Karena G30S/PKI didukung oleh seluruh negara anggota NATO untuk mempertahankan Pancasila.",
+          "Karena PKI berencana mengembalikan Undang-Undang Dasar Sementara 1950."
         ],
         answer: 1,
-        bahas: "Perdagangan bebas membuka pasar dua arah: di satu sisi mendorong produsen lokal berinovasi dan menembus pasar ekspor, tetapi di sisi lain produk lokal berbiaya produksi tinggi dan bermutu rendah terancam kalah saing oleh serbuan produk impor murah."
+        bahas: "Penculikan dan pembunuhan para perwira tinggi TNI AD (Pahlawan Revolusi) yang menjadi benteng pertahanan anti-komunis bertujuan melumpuhkan komando militer. Jika berhasil, posisi Presiden mudah dikendalikan dan PKI dapat leluasa mengubah ideologi negara Pancasila menjadi komunisme."
       },
       {
         no: 25,
         type: "PG",
-        cog: "C4",
-        topic: "Dampak Globalisasi",
-        narasi: "Seorang siswa di daerah kepulauan kini dapat mengakses ribuan artikel jurnal ilmiah internasional, mengikuti webinar dengan peneliti mancanegara, serta menggunakan kamus dan penerjemah berbasis kecerdasan buatan untuk menyelesaikan tugas riset sekolahnya.",
-        question: "Analisis manfaat utama globalisasi di bidang pendidikan dan informasi berdasarkan ilustrasi di atas adalah...",
+        cog: "C2 dan C4 • Level 2",
+        topic: "Latar Belakang G30S/PKI",
+        narasi: "Pada malam tanggal 30 September hingga dini hari 1 Oktober 1965, terjadi peristiwa penculikan dan pembunuhan terhadap sejumlah perwira tinggi TNI Angkatan Darat di Jakarta dan Yogyakarta yang dipimpin oleh Letkol Untung serta melibatkan tokoh-tokoh PKI.",
+        question: "Latar belakang politik utama terjadinya peristiwa G30S/PKI pada tahun 1965 adalah...",
         options: [
-          "Menyebabkan siswa kehilangan kemampuan membaca buku cetak di perpustakaan daerah.",
-          "Memperluas akses terhadap sumber pengetahuan global secara cepat dan memperkecil kesenjangan informasi antara daerah terpencil dan pusat kota.",
-          "Menghapus peran guru di sekolah karena seluruh interaksi digantikan mesin pencari.",
-          "Membuat seluruh penelitian ilmiah hanya boleh ditulis dalam satu bahasa daerah.",
-          "Membatasi pertukaran data akademik antaruniversitas di berbagai negara."
+          "Upaya TNI AD untuk memisahkan Pulau Jawa dari NKRI.",
+          "Keinginan PKI untuk mengganti ideologi Pancasila dengan komunisme dan menguasai pemerintahan negara.",
+          "Ketidakpuasan petani atas keberhasilan program swasembada beras nasional.",
+          "Keinginan kelompok mahasiswa membentuk kabinet zaken di bawah pimpinan Djuanda.",
+          "Penolakan PKI terhadap pembebasan Irian Barat dari tangan Belanda."
         ],
         answer: 1,
-        bahas: "Salah satu manfaat terbesar globalisasi informasi dan pendidikan adalah terbukanya akses setara terhadap sumber pengetahuan mutakhir secara cepat dan melampaui batas geografis, sehingga memperkecil ketertinggalan informasi."
+        bahas: "Latar belakang utama peristiwa G30S/PKI 1965 adalah ambisi PKI merebut kekuasaan pemerintahan dan mengganti dasar negara Pancasila dengan ideologi komunisme (yang dipicu pula oleh ketegangan dengan TNI AD, isu Dewan Jenderal, dan memburuknya kesehatan Presiden Soekarno)."
       },
       {
         no: 26,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Ekonomi",
-        narasi: "Sebuah koperasi perajin anyaman rotan tradisional ingin memperluas penjualan ke pasar internasional, namun terkendala oleh kemasan yang belum memenuhi standar ekspor, kapasitas produksi terbatas, minimnya penguasaan pemasaran digital lintas negara, serta munculnya produk imitasi pabrik luar negeri yang lebih murah.",
-        question: "Analisis tantangan utama yang dihadapi UMKM lokal dalam persaingan pasar global berdasarkan kasus tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Konfrontasi Pembebasan Irian Barat",
+        narasi: "Karena Belanda terus mengingkari penyelesaian masalah Irian Barat melalui jalur diplomasi bilateral maupun forum PBB, sejak tahun 1957–1958 Indonesia melancarkan konfrontasi menyeluruh di bidang politik, ekonomi, dan militer.",
+        question: "Langkah yang menjadi puncak konfrontasi di bidang ekonomi dalam perjuangan pembebasan Irian Barat tersebut adalah...",
         options: [
-          "Terlalu tingginya modal investasi yang dimiliki UMKM sehingga sulit menentukan jenis usaha.",
-          "Keterbatasan standardisasi mutu, skala produksi, akses pembiayaan, serta penguasaan pemasaran digital dalam menghadapi produk pabrikan global yang lebih efisien.",
-          "Ketidakmampuan pasar internasional menerima produk ramah lingkungan berbahan rotan.",
-          "Terlalu banyaknya tenaga ahli pemasaran digital di dalam struktur organisasi koperasi.",
-          "Kelebihan kapasitas gudang ekspor yang tidak terpakai oleh pelaku UMKM."
+          "Menyerahkan pengelolaan seluruh pelabuhan laut Indonesia kepada maskapai Belanda KPM.",
+          "Menasionalisasikan seluruh perusahaan dan aset milik Belanda di Indonesia melalui UU No. 86 Tahun 1958.",
+          "Membentuk Negara Papua Barat di bawah pengawasan Kerajaan Belanda.",
+          "Membayar ganti rugi utang Hindia Belanda sebesar dua kali lipat dari hasil KMB.",
+          "Mengundang investor swasta Belanda membuka perkebunan baru di Jakarta."
         ],
         answer: 1,
-        bahas: "Dalam persaingan pasar global, UMKM umumnya menghadapi kendala struktural berupa keterbatasan modal dan skala ekonomi, standar kualitas/sertifikasi ekspor, literasi pemasaran digital, serta ancaman produk tiruan yang diproduksi secara massal."
+        bahas: "Setelah membatalkan persetujuan KMB dan melancarkan aksi mogok buruh pada Desember 1957, puncak konfrontasi ekonomi RI terhadap Belanda diwujudkan dengan <b>nasionalisasi seluruh aset dan perusahaan milik Belanda di Indonesia</b> melalui <b>UU No. 86 Tahun 1958</b>."
       },
       {
         no: 27,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Komunikasi",
-        narasi: "Hampir seluruh percakapan harian, penyebaran berita, dan diskusi publik warga kini berlangsung melalui aplikasi pesan instan dan jejaring sosial milik korporasi teknologi global. Komunikasi berlangsung sangat cepat lintas benua, namun algoritma platform kerap mengarahkan pengguna hanya pada informasi yang sesuai selera mereka sehingga memicu ruang gema (<i>echo chamber</i>).",
-        question: "Analisis pengaruh perusahaan teknologi global terhadap pola komunikasi masyarakat berdasarkan narasi tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Peranan UNTEA dalam Masalah Irian Barat",
+        narasi: "Berdasarkan Perjanjian New York tanggal 15 Agustus 1962 antara Indonesia dan Belanda, disepakati pembentukan badan pemerintahan sementara bernama <i>United Nations Temporary Executive Authority</i> (UNTEA) sebelum penyelenggaraan Penentuan Pendapat Rakyat (PEPERA).",
+        question: "Analisis yang tepat mengenai peranan utama UNTEA dalam penyelesaian masalah Irian Barat adalah...",
         options: [
-          "Perusahaan teknologi global hanya memfasilitasi komunikasi surat pos tradisional antarnegara.",
-          "Konektivitas komunikasi menjadi serba instan dan tanpa batas wilayah, namun kendali algoritma berpotensi memicu polarisasi opini dan menyusutnya komunikasi tatap muka yang mendalam.",
-          "Algoritma media sosial menjamin seluruh pengguna selalu membaca sudut pandang yang berimbang.",
-          "Penggunaan aplikasi pesan instan menghentikan seluruh arus pertukaran informasi antarwarga.",
-          "Korporasi teknologi global melarang warganya berinteraksi dengan pengguna dari negara lain."
+          "Menjadi badan militer tetap PBB yang mempertahankan kekuasaan Belanda di Irian Barat selamanya.",
+          "Berperan sebagai badan penengah PBB antara Indonesia dan Belanda yang mengatur masa peralihan administrasi penyerahan Irian Barat dari Belanda ke Indonesia (1 Oktober 1962 – 1 Mei 1963).",
+          "Memimpin operasi militer Trikora di perairan Laut Arafura bersama TNI AL.",
+          "Membagi wilayah Irian Barat menjadi tiga negara bagian di bawah pengawasan Australia.",
+          "Menunda penyerahan Irian Barat kepada Indonesia hingga tahun 1998."
         ],
         answer: 1,
-        bahas: "Platform digital milik perusahaan teknologi global menghadirkan efisiensi komunikasi lintas batas secara instan, sekaligus membawa dampak samping berupa dominasi algoritma yang dapat menciptakan <i>echo chamber</i>, polarisasi sosial, dan berkurangnya kualitas interaksi tatap muka."
+        bahas: "<b>UNTEA</b> bertugas sebagai badan administrasi sementara/penengah dari PBB selama masa transisi penyerahan Irian Barat dari Belanda kepada Indonesia sejak <b>1 Oktober 1962 hingga 1 Mei 1963</b>."
       },
       {
         no: 28,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Budaya",
-        narasi: "Survei minat seni remaja di sebuah kota menunjukkan lebih dari 80% responden rutin mengikuti konser virtual, drama serial, dan komunitas penggemar budaya populer asing, sementara kurang dari 15% yang mengenal jenis kesenian tradisional atau sastra daerahnya sendiri.",
-        question: "Analisis dampak penetrasi budaya populer asing terhadap minat masyarakat pada budaya lokal adalah...",
+        cog: "C4 • Level 2",
+        topic: "Politik Mercusuar Demokrasi Terpimpin",
+        narasi: `Perhatikan kutipan gagasan pembangunan Presiden Soekarno pada awal 1960-an berikut:<div class="quote-box">"Jakarta harus menjadi kebanggaan bangsa Indonesia... Kita bangun Monumen Nasional (Monas), kompleks Gelora Bung Karno, Hotel Indonesia, dan Jembatan Semanggi untuk menyambut Asian Games IV tahun 1962 agar dunia menyaksikan kebesaran bangsa yang baru merdeka!"</div>`,
+        question: "Berdasarkan kutipan tersebut, hakikat dari kebijakan Politik Mercusuar pada masa Demokrasi Terpimpin adalah...",
         options: [
-          "Budaya populer asing secara otomatis membuat seluruh remaja hafal sastra daerahnya.",
-          "Daya tarik kemasan budaya populer asing yang modern dan masif berisiko meminggirkan minat generasi muda terhadap budaya lokal apabila tidak diimbangi pelestarian kreatif.",
-          "Kesenian tradisional dilarang tampil di ruang publik oleh komunitas penggemar budaya asing.",
-          "Penurunan minat pada budaya lokal disebabkan oleh ketiadaan internet di kota besar.",
-          "Generasi muda sepenuhnya menolak mendengarkan musik dan menonton film dari mana pun."
+          "Kebijakan pengetatan anggaran negara dengan menunda seluruh pembangunan fisik di ibu kota.",
+          "Kebijakan pembangunan proyek-proyek prestisius dan monumental untuk meningkatkan martabat serta citra bangsa Indonesia sebagai 'mercusuar' di mata dunia internasional.",
+          "Program transmigrasi besar-besaran penduduk Jakarta ke luar Pulau Jawa.",
+          "Kebijakan swastanisasi gedung olahraga nasional kepada perusahaan konstruksi Belanda.",
+          "Pembangunan menara suar navigasi laut di seluruh pelabuhan kecil di Nusantara."
         ],
         answer: 1,
-        bahas: "Budaya populer asing dikemas dengan industri hiburan modern dan promosi digital yang sangat atraktif. Tanpa inovasi pelestarian dan adaptasi media kreatif pada budaya lokal, generasi muda cenderung mengalami keterasingan terhadap warisan budayanya sendiri."
+        bahas: "<b>Politik Mercusuar</b> adalah kebijakan pembangunan proyek-proyek prestisius berskala megah (Monas, GBK, Hotel Indonesia, Jembatan Semanggi, Masjid Istiqlal) untuk menjadikan Indonesia sebagai 'mercusuar' bagi negara-negara NEFO serta menaikkan prestise bangsa di mata internasional, meskipun menelan biaya sangat besar di tengah inflasi."
       },
       {
         no: 29,
         type: "PG",
-        cog: "C4",
-        topic: "Ketimpangan Global",
-        narasi: "Negara berkembang umumnya mengekspor komoditas mentah (seperti bijih tambang, kayu gelondongan, dan hasil perkebunan) dengan harga relatif rendah ke negara maju, lalu mengimpor kembali produk teknologi, mesin industri, dan barang manufaktur jadi bernilai tambah tinggi dengan harga sangat mahal." + SVG_DEPENDENCY,
-        question: "Menurut Perspektif Teori Ketergantungan (<i>Dependency Theory</i>), analisis penyebab langgengnya ketimpangan ekonomi antara negara maju dan berkembang tersebut adalah...",
+        cog: "C5 • Level 3",
+        topic: "Warisan Positif Politik Mercusuar",
+        narasi: "Meskipun menuai kritik karena menguras kas negara pada dekade 1960-an, sejumlah bangunan fisik hasil Politik Mercusuar Soekarno tetap terawat dan digunakan oleh masyarakat lintas generasi.",
+        question: "Kombinasi warisan positif Politik Mercusuar yang hingga hari ini masih berfungsi vital dan menjadi ikon kebanggaan nasional di ibu kota adalah...",
         options: [
-          "Negara berkembang menolak mengekspor sumber daya alamnya ke pasar internasional.",
-          "Pola pembagian kerja internasional yang tidak setara menempatkan negara berkembang sebagai pemasok bahan mentah murah sehingga nilai tambah dan surplus ekonomi terus terakumulasi di negara maju.",
-          "Negara maju tidak pernah membutuhkan bahan baku maupun tenaga kerja dari luar negeri.",
-          "Harga komoditas bahan mentah selalu lebih mahal dibandingkan teknologi tinggi dan mesin industri.",
-          "Seluruh keuntungan ekspor produk manufaktur negara maju dibagikan secara merata ke negara berkembang."
+          "Benteng Vredeburg, Lawang Sewu, dan Gedung Sate.",
+          "Monumen Nasional (Monas), Kompleks Gelora Bung Karno (GBK), Masjid Istiqlal, dan Jembatan Semanggi.",
+          "Candi Borobudur, Candi Prambanan, dan Keraton Yogyakarta.",
+          "Pelabuhan Sunda Kelapa, Museum Fatahillah, dan Stasiun Jakarta Kota.",
+          "Bendungan Jatiluhur peninggalan VOC dan Balai Kota Batavia."
         ],
         answer: 1,
-        bahas: "<i>Dependency Theory</i> (Teori Ketergantungan) menjelaskan bahwa keterbelakangan negara berkembang (<i>periphery</i>) bukan semata faktor internal, melainkan akibat struktur ekonomi global yang timpang: negara berkembang memasok bahan mentah bernilai rendah sementara negara maju (<i>core</i>) menguasai modal, teknologi, dan keuntungan produk olahan bernilai tambah tinggi."
+        bahas: "Warisan monumental Politik Mercusuar yang hingga kini menjadi ikon kebanggaan nasional dan masih berfungsi aktif bagi publik antara lain <b>Monumen Nasional (Monas)</b>, <b>Gelora Bung Karno (GBK)</b>, <b>Masjid Istiqlal</b>, serta <b>Jembatan Semanggi</b> (dan Hotel Indonesia)."
       },
       {
         no: 30,
         type: "PG",
-        cog: "C4",
-        topic: "Globalisasi Pariwisata",
-        narasi: "Masuknya kunjungan wisatawan mancanegara ke sebuah kawasan desa wisata adat mendorong warga setempat membuka penginapan rumah warga (<i>homestay</i>), jasa pemandu wisata, sanggar tari pertunjukan, serta penjualan kerajinan tenun khas daerah.",
-        question: "Analisis manfaat utama globalisasi pariwisata internasional terhadap perekonomian masyarakat lokal pada kasus tersebut adalah...",
+        cog: "C4 • Level 2",
+        topic: "Dampak Sosial Kebijakan NASAKOM",
+        narasi: "Pada masa Demokrasi Terpimpin, pemerintah mewajibkan pelajaran Manipol-USDEK di sekolah dan lembaga negara, membentuk Front Nasional, serta mendorong organisasi kemasyarakatan untuk berafiliasi dalam kerangka NASAKOM (Nasionalis, Agama, Komunis).",
+        question: "Analisis dampak sosial yang muncul di tengah masyarakat Indonesia akibat penerapan kebijakan tersebut adalah...",
         options: [
-          "Seluruh pendapatan pariwisata hanya dinikmati oleh negara asal wisatawan tanpa menyentuh warga desa.",
-          "Mendorong pertumbuhan ekonomi lokal melalui penciptaan lapangan kerja langsung, peningkatan pendapatan UMKM jasa dan kerajinan, serta insentif pelestarian budaya.",
-          "Menyebabkan warga lokal menghentikan seluruh aktivitas ekonomi kerajinan tangan.",
-          "Mengurangi devisa negara karena wisatawan mancanegara tidak menukarkan mata uang.",
-          "Menghilangkan seluruh peluang usaha penginapan dan kuliner milik penduduk setempat."
+          "Hilangnya seluruh perbedaan pandangan politik sehingga masyarakat hidup tanpa konflik sosial apa pun.",
+          "Terjadinya polarisasi ideologis dan persaingan tajam antara kelompok Nasionalis, Agama, dan Komunis hingga ke tingkat masyarakat desa dan kota.",
+          "Seluruh partai politik dan organisasi massa bergabung menjadi satu organisasi keagamaan tunggal.",
+          "Masyarakat di desa menolak bekerja sama dengan pemerintah daerah dalam bidang pertanian.",
+          "Terbentuknya sistem pemerintahan federasi berdasarkan pembagian tiga agama besar."
         ],
         answer: 1,
-        bahas: "Pariwisata internasional yang dikelola secara partisipatif memberikan efek pengganda (<i>multiplier effect</i>) ekonomi bagi masyarakat lokal, mulai dari penyerapan tenaga kerja sektor jasa, peningkatan omzet UMKM suvenir/kuliner, hingga insentif ekonomi untuk merawat kekayaan budaya lokal."
+        bahas: "Alih-alih menciptakan keharmonisan permanen, politisasi organisasi massa ke dalam blok-blok NASAKOM dan doktrin Manipol-USDEK justru memperdalam <b>polarisasi serta persaingan tajam antara kubu Nasionalis, Agama, dan Komunis</b> di desa maupun kota (seperti ketegangan aksi sepihak di pedesaan)."
       },
 
-      // ===================== SOAL 31 - 35 (BENAR / SALAH) =====================
+      // ===================== SOAL 31 - 35 (PG KOMPLEKS CHECKLIST) =====================
       {
         no: 31,
-        type: "PGK_BS",
-        cog: "C4",
-        topic: "Faktor Perubahan Sosial",
-        narasi: "Perubahan sosial dalam masyarakat didorong oleh berbagai faktor, baik yang berasal dari dalam masyarakat itu sendiri (internal) maupun dari luar masyarakat (eksternal).",
-        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan mengenai faktor pendorong perubahan sosial berikut!",
-        statements: [
-          "Penemuan baru (discovery dan invention) di bidang teknologi informasi mendorong perubahan cara belajar dan pola kerja masyarakat.",
-          "Pertambahan maupun pengurangan jumlah penduduk secara drastis dapat mengubah struktur lembaga ekonomi dan kebutuhan permukiman.",
-          "Kontak dengan kebudayaan lain melalui perdagangan atau media digital memicu proses difusi serta akulturasi budaya.",
-          "Sistem pelapisan sosial yang tertutup kaku (seperti sistem kasta mutlak) merupakan faktor pendorong utama mobilitas dan perubahan sosial cepat.",
-          "Konflik sosial yang terjadi di masyarakat dapat mendorong lahirnya kesepakatan, norma baru, maupun pembaruan struktur kepemimpinan."
+        type: "PGK_CHECK",
+        cog: "C2 dan C4 • Level 2",
+        topic: "Perjuangan Bersenjata di Berbagai Daerah",
+        narasi: "Pasca-Proklamasi 17 Agustus 1945, kedatangan pasukan Sekutu yang diboncengi NICA memicu perlawanan bersenjata rakyat dan TKR/TRI di berbagai wilayah Indonesia.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai perjuangan bersenjata di berbagai daerah! (Pilih tepat 3 jawaban)",
+        options: [
+          "Peristiwa Bandung Lautan Api (Maret 1946) menggunakan taktik bumi hangus di Bandung Selatan agar fasilitas strategis tidak dimanfaatkan oleh Sekutu dan NICA.",
+          "Puputan Margarana (20 November 1946) di Bali dipimpin oleh Letkol I Gusti Ngurah Rai yang bertempur hingga titik darah penghabisan melawan pasukan Belanda.",
+          "Serangan Umum 1 Maret 1949 di Yogyakarta berhasil menduduki ibu kota selama sekitar enam jam untuk membuktikan kepada dunia internasional bahwa TNI dan RI masih eksis.",
+          "Pertempuran Medan Area berlangsung di Semarang dan dipimpin secara langsung oleh Jenderal Soedirman pada akhir tahun 1945.",
+          "Pertempuran Lima Hari di Semarang terjadi pada tahun 1950 untuk mempertahankan negara federal Republik Indonesia Serikat (RIS)."
         ],
-        answer: ["B", "B", "B", "S", "B"],
-        bahas: "1) BENAR (penemuan baru adalah faktor pendorong internal).\n2) BENAR (dinamika demografis mengubah struktur sosial).\n3) BENAR (kontak budaya lain merupakan faktor pendorong eksternal).\n4) SALAH (sistem pelapisan sosial terbuka yang mendorong perubahan, sedangkan pelapisan tertutup kaku menghambat perubahan).\n5) BENAR (konflik sosial dapat memicu penyesuaian norma dan tatanan baru)."
+        answer: [0, 1, 2],
+        bahas: "Pernyataan 1 (Bandung Lautan Api), 2 (Puputan Margarana dipimpin I Gusti Ngurah Rai), dan 3 (Serangan Umum 1 Maret 1949 di Yogyakarta) adalah fakta sejarah yang benar. Pertempuran Medan Area terjadi di Medan/Sumatera Utara (bukan Semarang), dan Pertempuran Lima Hari Semarang terjadi Oktober 1945 melawan tentara Jepang."
       },
       {
         no: 32,
-        type: "PGK_BS",
-        cog: "C4",
-        topic: "Bentuk Perubahan Sosial",
-        narasi: "Sosiologi mengklasifikasikan bentuk-bentuk perubahan sosial berdasarkan kecepatan berlangsungnya (evolusi dan revolusi) serta berdasarkan perencanaannya (direncanakan dan tidak direncanakan).",
-        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai karakteristik bentuk perubahan sosial berikut!",
-        statements: [
-          "Evolusi merupakan perubahan sosial yang berlangsung lambat melalui rentetan penyesuaian kecil dalam jangka waktu panjang tanpa perencanaan terpusat.",
-          "Revolusi Industri di Inggris mengubah sistem produksi agraris-manual menjadi pabrik bermesin dalam waktu relatif cepat dan memengaruhi sendi kehidupan masyarakat.",
-          "Perubahan yang direncanakan (planned change) selalu melibatkan pihak yang menginginkan perubahan atau agen perubahan (agent of change) dengan program terstruktur.",
-          "Bencana alam besar yang memaksa penduduk bermigrasi dan menata ulang struktur permukiman merupakan contoh perubahan sosial yang direncanakan.",
-          "Kebijakan pembangunan jalan tol dan kawasan pendidikan terpadu termasuk perubahan sosial yang direncanakan."
+        type: "PGK_CHECK",
+        cog: "C4 • Level 2",
+        topic: "Strategi Belanda (NICA & Civil Affairs Agreement)",
+        narasi: "Setelah Jepang menyerah kepada Sekutu pada Agustus 1945, Belanda menyusun langkah hukum, sipil, dan militer untuk mengambil alih kembali bekas wilayah Hindia Belanda.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai strategi Belanda mengembalikan kekuasaannya di Indonesia! (Pilih tepat 3 jawaban)",
+        options: [
+          "Melalui Civil Affairs Agreement (CAA) tanggal 24 Agustus 1945, Inggris menyetujui bahwa daerah-daerah yang dibebaskan dari Jepang di Indonesia akan diserahkan kembali kepada administrasi sipil Belanda (NICA).",
+          "Belanda membentuk NICA (Netherlands Indies Civil Administration) di bawah pimpinan H.J. van Mook yang datang membonceng pasukan Sekutu (AFNEI) ke Indonesia.",
+          "Sekutu dan Belanda membebaskan serta mempersenjatai kembali orang-orang Belanda dan serdadu KNIL bekas tawanan perang Jepang untuk memperkuat kendali militer di kota-kota besar.",
+          "Belanda secara sukarela mengakui kemerdekaan penuh Republik Indonesia pada bulan September 1945 di hadapan PBB.",
+          "Van Mook mendirikan NICA untuk membantu mempercepat pemindahan pusat pemerintahan RI dari Jakarta ke Bukittinggi."
         ],
-        answer: ["B", "B", "B", "S", "B"],
-        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (bencana alam menimbulkan perubahan yang tidak direncanakan / unplanned change).\n5) BENAR."
+        answer: [0, 1, 2],
+        bahas: "Tiga strategi Belanda pasca-kapitulasi Jepang ditunjukkan oleh opsi 1 (<i>Civil Affairs Agreement</i> Inggris–Belanda), opsi 2 (NICA pimpinan Van Mook membonceng AFNEI), dan opsi 3 (pembebasan dan persenjataan ulang bekas tawanan perang/serdadu KNIL)."
       },
       {
         no: 33,
-        type: "PGK_BS",
-        cog: "C4",
-        topic: "Dampak Perubahan Sosial",
-        narasi: "Setiap perubahan sosial membawa konsekuensi ganda bagi masyarakat, baik dampak positif berupa kemajuan maupun dampak negatif yang memerlukan pengendalian sosial.",
-        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan analisis dampak positif dan negatif perubahan sosial berikut!",
-        statements: [
-          "Modernisasi layanan transportasi dan kesehatan meningkatkan efisiensi waktu kerja serta kualitas harapan hidup masyarakat.",
-          "Perubahan yang terlalu cepat tanpa kesiapan norma baru dapat memicu kondisi anomie (kekaburan nilai dan norma pedoman perilaku).",
-          "Disorganisasi sosial dapat terjadi ketika unsur-unsur lembaga masyarakat tidak lagi berjalan serasi akibat perubahan mendadak.",
-          "Setiap perubahan sosial dijamin hanya menghasilkan dampak positif bagi seluruh lapisan masyarakat secara merata.",
-          "Industrialisasi yang tidak memperhatikan daya dukung ekosistem dapat menimbulkan pencemaran lingkungan dan konflik agraria."
+        type: "PGK_CHECK",
+        cog: "C4 • Level 2",
+        topic: "Ciri & Pelaksanaan Demokrasi Liberal (1950–1959)",
+        narasi: "Pada kurun waktu 1950–1959, Indonesia menerapkan sistem Demokrasi Liberal berdasarkan Undang-Undang Dasar Sementara (UUDS) 1950.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan kebijakan masa Demokrasi Liberal! (Pilih tepat 3 jawaban)",
+        options: [
+          "Menerapkan sistem pemerintahan parlementer di mana kabinet dipimpin Perdana Menteri dan bertanggung jawab kepada parlemen (DPR) sehingga kabinet sering berganti akibat mosi tidak percaya.",
+          "Pemilu 1955 diselenggarakan dalam dua tahap dengan tujuan memilih anggota DPR serta memilih anggota Dewan Konstituante yang bertugas menyusun UUD tetap.",
+          "Pemerintah meluncurkan kebijakan Ekonomi Gerakan Benteng untuk menumbuhkan pengusaha pribumi melalui fasilitas kredit dan proteksi lisensi impor.",
+          "Sepanjang tahun 1950–1959 tidak pernah terjadi pergantian kabinet karena seluruh menteri diangkat seumur hidup oleh presiden.",
+          "Presiden Soekarno memegang kendali eksekutif penuh tanpa ada jabatan Perdana Menteri sepanjang berlakunya UUDS 1950."
         ],
-        answer: ["B", "B", "B", "S", "B"],
-        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (perubahan sosial sering berdampak tidak merata antar-lapisan dan dapat menimbulkan dampak negatif seperti kesenjangan atau disorganisasi).\n5) BENAR."
+        answer: [0, 1, 2],
+        bahas: "Ciri dan pelaksanaan Demokrasi Liberal (1950–1959) adalah sistem parlementer dengan instabilitas kabinet (7 kali ganti kabinet), terselenggaranya Pemilu 1955 untuk memilih DPR dan Konstituante, serta kebijakan ekonomi nasional seperti Gerakan Benteng."
       },
       {
         no: 34,
-        type: "PGK_BS",
-        cog: "C4",
-        topic: "Hakikat Perubahan Sosial",
-        narasi: "Perubahan sosial merupakan gejala universal yang melekat pada dinamika kehidupan setiap masyarakat manusia.",
-        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan mengenai hakikat perubahan sosial sebagai proses berkelanjutan berikut!",
-        statements: [
-          "Tidak ada satu pun masyarakat di dunia yang berhenti berubah secara mutlak; masyarakat tradisional pun mengalami perubahan meski berjalan lambat.",
-          "Perubahan pada satu lembaga sosial (seperti lembaga ekonomi atau teknologi) cenderung diikuti oleh penyesuaian pada lembaga lain (seperti keluarga dan pendidikan).",
-          "Perubahan sosial bersifat berkesinambungan (continuous) sehingga kondisi masa kini merupakan kelanjutan sekaligus pijakan bagi perubahan masa depan.",
-          "Perubahan yang berlangsung cepat sering memunculkan disorganisasi sementara sebelum masyarakat mencapai keseimbangan baru (reorganisasi).",
-          "Apabila suatu masyarakat sudah mencapai taraf modern, maka proses perubahan sosial di masyarakat tersebut otomatis berhenti selamanya."
+        type: "PGK_CHECK",
+        cog: "C4 • Level 2",
+        topic: "Ciri & Kebijakan Demokrasi Terpimpin (1959–1965)",
+        narasi: "Periode Demokrasi Terpimpin (1959–1965) menandai pemusatan kekuasaan politik di tangan Presiden Soekarno dengan berbagai doktrin politik dalam dan luar negeri.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai ciri, kebijakan, dan penyimpangan Demokrasi Terpimpin! (Pilih tepat 3 jawaban)",
+        options: [
+          "Diawali oleh Dekrit Presiden 5 Juli 1959 yang membubarkan Konstituante, memberlakukan kembali UUD 1945 (UUDS 1950 tidak berlaku), serta membentuk MPRS dan DPAS.",
+          "Menerapkan doktrin NASAKOM di dalam negeri, melaksanakan Politik Mercusuar, serta melancarkan konfrontasi terhadap pembentukan Federasi Malaysia yang dianggap proyek neokolonialisme Inggris.",
+          "Indonesia berperan aktif memprakarsai berdirinya Gerakan Non-Blok (GNB) tahun 1961 sebagai upaya menolak dominasi blok militer Perang Dingin.",
+          "Dekrit Presiden 5 Juli 1959 menetapkan berlakunya kembali UUDS 1950 dan sistem kabinet parlementer.",
+          "Indonesia bergabung menjadi anggota resmi pakta pertahanan militer Blok Barat (SEATO) pada tahun 1963."
         ],
-        answer: ["B", "B", "B", "B", "S"],
-        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (masyarakat modern justru mengalami laju perubahan sosial dan teknologi yang terus berlangsung tanpa henti)."
+        answer: [0, 1, 2],
+        bahas: "Pernyataan 1 (isi Dekrit Presiden 5 Juli 1959), 2 (NASAKOM, Politik Mercusuar, dan konfrontasi Malaysia), serta 3 (Indonesia sebagai salah satu pemrakarsa GNB 1961) benar mengenai Demokrasi Terpimpin."
       },
       {
         no: 35,
-        type: "PGK_BS",
-        cog: "C5",
-        topic: "Faktor Penghambat Perubahan",
-        narasi: "Dalam penerapannya, berbagai inovasi dan program pembaruan sosial sering menghadapi hambatan yang berasal dari dalam maupun luar struktur masyarakat.",
-        question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai faktor penghambat perubahan sosial berikut!",
-        statements: [
-          "Kurangnya hubungan atau isolasi geografis dengan masyarakat lain membatasi masuknya informasi dan ide-ide pembaruan.",
-          "Prasangka negatif terhadap hal-hal baru atau unsur budaya asing membuat masyarakat bersikap curiga dan menutup diri terhadap inovasi.",
-          "Sikap masyarakat yang terlalu mengagungkan tradisi masa lampau secara kaku tanpa ruang kritik dapat menghambat penyesuaian zaman.",
-          "Sikap terbuka terhadap karya orang lain dan sistem pendidikan maju yang menghargai prestasi merupakan faktor penghambat utama perubahan sosial.",
-          "Hambatan ideologis muncul apabila suatu gagasan pembaruan dianggap bertentangan dengan keyakinan dasar atau ideologi masyarakat setempat."
-        ],
-        answer: ["B", "B", "B", "S", "B"],
-        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (sikap terbuka dan pendidikan maju yang menghargai prestasi adalah faktor PENDORONG perubahan sosial, bukan penghambat).\n5) BENAR."
-      },
-
-      // ===================== SOAL 36 - 40 (PG KOMPLEKS CHECKLIST) =====================
-      {
-        no: 36,
         type: "PGK_CHECK",
-        cog: "C4",
-        topic: "Ciri Globalisasi",
-        narasi: "Globalisasi menandai era baru keterhubungan masyarakat dunia secara intensif dalam berbagai bidang kehidupan.",
-        question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan faktor pendorong globalisasi! (Pilih tepat 3 jawaban)",
+        cog: "C4 • Level 2",
+        topic: "Perjuangan Pembebasan Irian Barat",
+        narasi: "Belanda mengingkari janji penyelesaian masalah Irian Barat dalam KMB 1949 sehingga Presiden Soekarno menempuh jalur konfrontasi hingga lahirnya Trikora dan Perjanjian New York.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai rangkaian perjuangan pembebasan Irian Barat! (Pilih tepat 3 jawaban)",
         options: [
-          "Menipisnya batas ruang dan waktu antarnegara sehingga peristiwa di satu belahan dunia dapat segera diketahui dan memengaruhi negara lain.",
-          "Pesatnya kemajuan teknologi informasi, komunikasi digital, serta transportasi modern sebagai motor penggerak utama keterhubungan global.",
-          "Meningkatnya ketergantungan ekonomi, perdagangan, dan pertukaran budaya lintas negara (interdependensi global).",
-          "Terputusnya seluruh jalur perdagangan internasional dan pertukaran informasi antarbenua.",
-          "Setiap negara hanya menggunakan alat transportasi dan komunikasi tradisional tanpa koneksi internet."
+          "Dalam KMB 1949, status wilayah Irian Barat ditunda penyelesaiannya selama satu tahun setelah pengakuan kedaulatan, namun Belanda terus bertahan dengan alasan perbedaan etnis dan kepentingan ekonomi strategisnya di Papua.",
+          "Presiden Soekarno mencanangkan Tri Komando Rakyat (Trikora) pada 19 Desember 1961 yang berisi: gagalkan pembentukan negara boneka Papua, kibarkan Sang Merah Putih di Irian Barat, dan bersiaplah untuk mobilisasi umum.",
+          "Konfrontasi Indonesia–Belanda berakhir melalui Perjanjian New York (15 Agustus 1962) yang turut dipengaruhi tekanan diplomatik Amerika Serikat agar Indonesia tidak semakin jatuh ke pengaruh Uni Soviet.",
+          "Belanda langsung menyerahkan penuh wilayah Irian Barat kepada Indonesia bersamaan dengan penandatanganan KMB pada Desember 1949.",
+          "Konfrontasi militer Trikora resmi diakhiri oleh penandatanganan Perjanjian Linggarjati di Cirebon."
         ],
         answer: [0, 1, 2],
-        bahas: "Ciri dan pendorong utama globalisasi ditunjukkan oleh opsi 1 (kompresi ruang-waktu), opsi 2 (kemajuan TIK dan transportasi), dan opsi 3 (interdependensi ekonomi dan budaya lintas negara)."
+        bahas: "Tiga pernyataan yang benar adalah opsi 1 (penundaan hasil KMB 1949 dan alasan Belanda bertahan), opsi 2 (isi Trikora 19 Desember 1961), dan opsi 3 (Perjanjian New York 15 Agustus 1962 serta peran diplomasi AS di tengah Perang Dingin)."
+      },
+
+      // ===================== SOAL 36 - 40 (BENAR / SALAH) =====================
+      {
+        no: 36,
+        type: "PGK_BS",
+        cog: "C5 dan C6 • Level 3",
+        topic: "Dampak Agresi Militer Belanda II",
+        narasi: "Pada 19 Desember 1948, Belanda melancarkan Agresi Militer II dengan menduduki ibu kota Yogyakarta serta menawan Presiden Soekarno dan Wakil Presiden Hatta, dengan asumsi Republik Indonesia akan segera runtuh.",
+        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan kesimpulan mengenai dampak Agresi Militer Belanda II tersebut!",
+        statements: [
+          "Agresi Militer II justru memicu kecaman keras dunia internasional dan menguatkan dukungan diplomatik terhadap kemerdekaan Indonesia di PBB serta negara-negara Asia.",
+          "Perang gerilya TNI di bawah pimpinan Jenderal Soedirman dan berdirinya PDRI membuktikan bahwa kekuatan militer Belanda bukan satu-satunya faktor penentu.",
+          "Kombinasi perlawanan gerilya di dalam negeri dan tekanan diplomasi internasional mempercepat perundingan (Roem-Royen dan KMB) menuju pengakuan kedaulatan RI.",
+          "Ditangkapnya Presiden Soekarno dan Wapres Hatta di Yogyakarta langsung membuat seluruh pasukan TNI menyerah tanpa syarat kepada Belanda.",
+          "Dewan Keamanan PBB memuji Agresi Militer II sebagai tindakan sah Belanda sehingga menolak menjatuhkan sanksi diplomatik."
+        ],
+        answer: ["B", "B", "B", "S", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (TNI tetap melanjutkan perang gerilya di bawah Jenderal Soedirman dan pemerintahan berjalan lewat PDRI).\n5) SALAH (DK PBB mengecam agresi Belanda dan mengeluarkan resolusi penghentian permusuhan serta pembebasan pemimpin RI)."
       },
       {
         no: 37,
-        type: "PGK_CHECK",
-        cog: "C4",
-        topic: "Dampak Positif Globalisasi",
-        narasi: "Globalisasi membuka beragam peluang kemajuan bagi masyarakat dunia apabila dimanfaatkan secara produktif.",
-        question: "Pilihlah 3 pernyataan yang BENAR mengenai manfaat globalisasi dalam bidang sosial, ekonomi, dan informasi! (Pilih tepat 3 jawaban)",
-        options: [
-          "Terbukanya akses pasar internasional yang lebih luas bagi produk ekspor dan UMKM kreatif dalam negeri.",
-          "Kemudahan memperoleh informasi ilmiah, kursus daring, dan perkembangan teknologi terkini secara cepat lintas negara.",
-          "Meningkatnya solidaritas kemanusiaan serta kesadaran kolektif terhadap isu lingkungan dan hak asasi manusia berskala global.",
-          "Menghilangkan seluruh perbedaan kualitas sumber daya manusia secara otomatis tanpa melalui pendidikan.",
-          "Membuat masyarakat menutup akses informasi kesehatan dan ilmu pengetahuan modern."
+        type: "PGK_BS",
+        cog: "C4 • Level 2",
+        topic: "Tugas dan Peran AFNEI di Indonesia",
+        narasi: "Pasca-kekalahan Jepang pada Agustus 1945, Sekutu mengirimkan pasukan khusus AFNEI (<i>Allied Forces Netherlands East Indies</i>) pimpinan Letjen Sir Philip Christison ke Indonesia.",
+        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai tugas dan peran AFNEI di Indonesia berikut!",
+        statements: [
+          "Menerima penyerahan kekuasaan dari tangan tentara pendudukan Jepang di Indonesia.",
+          "Melucuti senjata tentara Jepang dan memulangkan mereka kembali ke negara asalnya.",
+          "Membebaskan serta mengurus para tawanan perang dan interniran Sekutu (RAPWI).",
+          "Menghimpun keterangan dan bukti kejahatan perang tentara Jepang untuk dituntut di pengadilan militer Sekutu.",
+          "Membantu tentara Jepang mempertahankan wilayah jajahannya dan melarang pemulangan serdadu Jepang."
         ],
-        answer: [0, 1, 2],
-        bahas: "Manfaat globalisasi mencakup aspek ekonomi (opsi 1: perluasan pasar produk lokal), aspek informasi/pendidikan (opsi 2: akses pengetahuan global), dan aspek sosial (opsi 3: solidaritas isu kemanusiaan dan lingkungan global)."
+        answer: ["B", "B", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (tugas AFNEI justru melucuti dan memulangkan tentara Jepang, bukan membantu mereka mempertahankan kekuasaan)."
       },
       {
         no: 38,
-        type: "PGK_CHECK",
-        cog: "C4",
-        topic: "Dampak Negatif Globalisasi",
-        narasi: "Selain membawa kemudahan, derasnya arus budaya global menimbulkan tantangan serius bagi ketahanan budaya masyarakat lokal.",
-        question: "Pilihlah 3 pernyataan yang BENAR mengenai pengaruh negatif globalisasi terhadap identitas dan budaya lokal! (Pilih tepat 3 jawaban)",
-        options: [
-          "Menurunnya minat dan kebanggaan sebagian generasi muda dalam menggunakan bahasa daerah serta melestarikan kesenian tradisional.",
-          "Munculnya krisis identitas budaya akibat gaya hidup konsumtif dan peniruan budaya asing secara mentah-mentah (westernisasi).",
-          "Tergesernya kearifan lokal serta nilai gotong royong oleh kecenderungan individualisme dan homogenisasi budaya global.",
-          "Semakin kokohnya penguasaan sastra daerah di seluruh komunitas daring remaja tanpa upaya pelestarian.",
-          "Hilangnya seluruh produk hiburan asing dari platform media digital nasional."
+        type: "PGK_BS",
+        cog: "C5 • Level 3",
+        topic: "Evaluasi Dampak Negatif Ekonomi Demokrasi Liberal",
+        narasi: "Berbagai kebijakan ekonomi yang silih berganti pada masa Demokrasi Liberal (1950–1959) tidak mampu sepenuhnya memulihkan perekonomian nasional yang terbebani utang KMB dan instabilitas politik.",
+        question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai dampak negatif kebijakan ekonomi pada masa Demokrasi Liberal berikut!",
+        statements: [
+          "Defisit APBN yang membengkak dan ditutup dengan pencetakan uang memicu terjadinya inflasi tinggi yang membebani daya beli rakyat.",
+          "Ketidakstabilan penerimaan ekspor dan krisis anggaran mendorong meningkatnya ketergantungan pada pinjaman luar negeri.",
+          "Kegagalan kabinet mengatasi persoalan ekonomi sering memicu mosi tidak percaya di parlemen yang berujung pada pergantian kabinet berulang kali.",
+          "Kesenjangan pembangunan ekonomi antara pemerintah pusat dan daerah-daerah penghasil devisa di luar Jawa melebar hingga memicu pergolakan daerah.",
+          "Kebijakan ekonomi pada masa Demokrasi Liberal berhasil melunasi seluruh utang luar negeri Indonesia dan menghapus inflasi sebelum tahun 1959."
         ],
-        answer: [0, 1, 2],
-        bahas: "Pengaruh negatif globalisasi terhadap identitas dan budaya lokal meliputi lunturnya bahasa/seni daerah (opsi 1), gaya hidup konsumtif/westernisasi (opsi 2), serta melemahnya kearifan lokal akibat individualisme dan homogenisasi (opsi 3)."
+        answer: ["B", "B", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (inflasi justru tetap tinggi dan defisit anggaran serta beban utang tidak teratasi hingga berakhirnya Demokrasi Liberal)."
       },
       {
         no: 39,
-        type: "PGK_CHECK",
-        cog: "C4",
-        topic: "Globalisasi Ekonomi",
-        narasi: "Globalisasi ekonomi mengintegrasikan pasar produksi, modal, dan konsumsi nasional ke dalam sistem perekonomian dunia.",
-        question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan ancaman globalisasi dalam bidang ekonomi! (Pilih tepat 3 jawaban)",
-        options: [
-          "Terbukanya arus lalu lintas barang, jasa, tenaga kerja ahli, dan investasi modal antarnegara secara bebas.",
-          "Ancaman tersingkirnya UMKM dan industri lokal yang belum efisien akibat serbuan produk impor berharga lebih murah.",
-          "Potensi meningkatnya ketergantungan ekonomi negara berkembang terhadap korporasi multinasional dan modal asing.",
-          "Seluruh negara membatalkan perjanjian perdagangan lintas batas dan kembali ke ekonomi tertutup.",
-          "Setiap negara berkembang otomatis memiliki posisi tawar setara tanpa kesenjangan nilai tambah."
+        type: "PGK_BS",
+        cog: "C4 • Level 2",
+        topic: "Dampak Langsung Peristiwa G30S/PKI",
+        narasi: "Peristiwa Gerakan 30 September 1965 (G30S/PKI) menjadi titik balik besar yang mengubah arah sejarah politik, ideologi, dan kemanusiaan di Indonesia.",
+        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai dampak langsung peristiwa G30S/PKI terhadap tatanan politik Indonesia berikut!",
+        statements: [
+          "Runtuhnya wibawa dan kekuasaan politik Presiden Soekarno secara bertahap hingga dikeluarkannya Supersemar dan pencabutan mandat oleh MPRS.",
+          "Dibubarkan dan dilarangnya Partai Komunis Indonesia (PKI) beserta ajaran komunisme melalui TAP MPRS No. XXV/MPRS/1966.",
+          "Terjadinya peralihan kepemimpinan nasional kepada Jenderal Soeharto yang menandai dimulainya pemerintahan Orde Baru.",
+          "Terjadinya penangkapan dan pembantaian massal terhadap anggota maupun pihak yang dituduh sebagai simpatisan PKI di berbagai wilayah Indonesia.",
+          "PKI ditetapkan oleh MPRS sebagai partai politik tunggal resmi yang memimpin pemerintahan Orde Baru."
         ],
-        answer: [0, 1, 2],
-        bahas: "Karakteristik dan ancaman globalisasi ekonomi ditunjukkan oleh opsi 1 (bebasnya arus barang, jasa, dan modal), opsi 2 (tekanan kompetitif bagi UMKM lokal), dan opsi 3 (risiko ketergantungan pada korporasi multinasional/modal asing)."
+        answer: ["B", "B", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (PKI justru dibubarkan dan dinyatakan sebagai partai terlarang pada 12 Maret 1966 serta dikukuhkan dalam TAP MPRS No. XXV/MPRS/1966)."
       },
       {
         no: 40,
-        type: "PGK_CHECK",
-        cog: "C5",
-        topic: "Strategi Menghadapi Globalisasi",
-        narasi: "Masyarakat dan negara perlu mengambil sikap kritis dan strategis agar tetap berdaulat serta berdaya saing di tengah arus globalisasi.",
-        question: "Pilihlah 3 pernyataan yang BENAR sebagai evaluasi strategi paling tepat dalam menghadapi pengaruh globalisasi! (Pilih tepat 3 jawaban)",
-        options: [
-          "Memperkuat filter nilai budaya bangsa dan kearifan lokal dengan menyaring unsur asing secara selektif (mengambil yang bermanfaat dan menolak yang merusak).",
-          "Meningkatkan kualitas SDM, penguasaan teknologi, serta inovasi produk lokal berstandar global (glokalisasi) agar UMKM mampu bersaing.",
-          "Mengembangkan literasi digital dan pola pikir kritis di masyarakat agar mampu memilah informasi serta mencegah hoaks maupun gaya hidup konsumtif.",
-          "Menutup akses internet secara permanen dan memutus seluruh hubungan diplomatik dengan negara lain.",
-          "Meniru seluruh gaya hidup dan nilai budaya asing tanpa mempertimbangkan norma sosial setempat."
+        type: "PGK_BS",
+        cog: "C4 • Level 2",
+        topic: "Perbandingan Kedaulatan Rakyat: Liberal vs Terpimpin",
+        narasi: "Pelaksanaan prinsip kedaulatan rakyat dan struktur kepartaian mengalami perubahan fundamental saat Indonesia beralih dari Demokrasi Liberal (1950–1959) ke Demokrasi Terpimpin (1959–1965).",
+        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan perbandingan pelaksanaan kedaulatan rakyat antara Demokrasi Liberal dan Demokrasi Terpimpin berikut!",
+        statements: [
+          "Demokrasi Liberal menganut sistem multi-partai yang bebas bersaing di parlemen, sedangkan Demokrasi Terpimpin melakukan pembatasan dan penyederhanaan partai politik (hanya 10 partai yang diakui).",
+          "Pada Demokrasi Liberal, kedaulatan rakyat disalurkan melalui DPR hasil Pemilu 1955 dan mekanisme parlementer, sedangkan pada Demokrasi Terpimpin kekuasaan dan kedaulatan terpusat pada Presiden sebagai Pemimpin Besar Revolusi.",
+          "Pada Demokrasi Liberal, kabinet bertanggung jawab kepada DPR, sedangkan pada Demokrasi Terpimpin menteri-menteri bertanggung jawab langsung kepada Presiden.",
+          "Pada masa Demokrasi Terpimpin, DPR hasil Pemilu 1955 dibubarkan Presiden ketika menolak RAPBN lalu diganti dengan DPR-GR yang anggotanya ditunjuk langsung oleh Presiden.",
+          "Pada masa Demokrasi Liberal, tidak pernah diselenggarakan pemilihan umum nasional sama sekali karena seluruh anggota DPR diangkat oleh Presiden."
         ],
-        answer: [0, 1, 2],
-        bahas: "Strategi tepat menghadapi globalisasi bukanlah isolasi ekstrem (opsi 4) maupun penyerahan total/westernisasi (opsi 5), melainkan sikap selektif berbasis kearifan lokal (opsi 1), peningkatan daya saing SDM dan UMKM/glokalisasi (opsi 2), serta penguatan literasi digital kritis (opsi 3)."
+        answer: ["B", "B", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (pada masa Demokrasi Liberal justru terlaksana Pemilu demokratis pertama tahun 1955 untuk memilih anggota DPR dan Konstituante)."
       }
     ];
 
@@ -1618,11 +1667,21 @@
       document.getElementById("qMeta").innerHTML = `
         <span class="tag tag-num">No. ${q.no}</span>
         <span class="tag tag-type">${typeLabel}</span>
-        <span class="tag tag-cog">Level ${q.cog}</span>
+        <span class="tag tag-cog">${q.cog}</span>
         <span class="tag tag-topic">${q.topic}</span>
       `;
 
-      document.getElementById("qNarasi").innerHTML = q.narasi;
+      // Perbarui narasi dinamis jika berisi slot foto arsip No. 6 / No. 15
+      let narasiHTML = q.narasi;
+      if (q.no === 6) {
+        narasiHTML = "Perhatikan foto arsip kapal perang yang berlabuh di Teluk Jakarta sebagai lokasi perundingan antara delegasi Indonesia dan Belanda berikut ini:" +
+          buildArchivalSlot(6, "uss_renville.jpg", "Kapal Perang USS Renville di Teluk Jakarta (1948)", "Menampilkan kapal pengangkut angkatan laut Amerika Serikat USS Renville yang dijadikan tempat netral perundingan Indonesia–Belanda.");
+      } else if (q.no === 15) {
+        narasiHTML = "Perhatikan foto arsip tokoh pemimpin pusat gerakan Darul Islam / Tentara Islam Indonesia (DI/TII) yang memproklamasikan berdirinya Negara Islam Indonesia (NII) di Jawa Barat pada 7 Agustus 1949 berikut ini:" +
+          buildArchivalSlot(15, "tokoh_ditii.jpg", "Foto Arsip Tokoh Pemimpin Pusat DI/TII (Jawa Barat)", "Menampilkan potret tokoh pendiri dan imam pusat gerakan DI/TII di Jawa Barat (1949).");
+      }
+
+      document.getElementById("qNarasi").innerHTML = narasiHTML;
       document.getElementById("qText").innerHTML = q.question;
 
       const inputArea = document.getElementById("qInputArea");
