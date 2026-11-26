@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asesmen Sosiologi XII — Perubahan Sosial &amp; Globalisasi</title>
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-dark: #064e3b;
+      --primary-light: #d1fae5;
+      --accent: #4338ca;
+      --accent-light: #ede9fe;
+      --bg: #ecfdf5;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #a7f3d0;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --danger: #475569;
+      --danger-bg: #e2e8f0;
+      --info: #4338ca;
+      --info-bg: #e0e7ff;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(4, 120, 87, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .topbar {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 18px 24px;
+      box-shadow: 0 4px 16px rgba(6, 78, 59, 0.22);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      font-weight: 800;
+      color: #a7f3d0;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand p {
+      font-size: 0.82rem;
+      opacity: 0.92;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-btn {
+      background: #fff;
+      color: var(--primary-dark);
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .mode-btn:hover {
+      background: #a7f3d0;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1240px;
+      margin: 24px auto;
+      padding: 0 18px 48px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    /* Progress Bar */
+    .progress-wrap {
+      margin-bottom: 20px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .progress-track {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #14b8a6);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Question Meta */
+    .q-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      letter-spacing: 0.2px;
+    }
+
+    .tag-num {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tag-type {
+      background: #ccfbf1;
+      color: #115e59;
+      border: 1px solid #99f6e4;
+    }
+
+    .tag-cog {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .tag-topic {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+    }
+
+    .q-narasi {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 16px 18px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 18px;
+      font-size: 0.97rem;
+      color: #334155;
+      line-height: 1.85;
+    }
+
+    .q-text {
+      font-size: 1.04rem;
+      color: var(--text);
+      margin-bottom: 20px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    .visual-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 12px 0 4px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(6, 78, 59, 0.05);
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #334155;
+      background: #ecfdf5;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /* Options PG */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      background: #fff;
+      line-height: 1.75;
+    }
+
+    .option-item:hover {
+      border-color: var(--primary);
+      background: var(--bg);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.16);
+    }
+
+    .option-item.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .option-item.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .option-item.selected .option-letter {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .option-item.correct .option-letter {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .option-item.wrong .option-letter {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    /* PGK Benar/Salah Table */
+    .bs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+    }
+
+    .bs-table th {
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 12px 14px;
+      font-size: 0.86rem;
+      text-align: left;
+    }
+
+    .bs-table th.center,
+    .bs-table td.center {
+      text-align: center;
+      width: 82px;
+    }
+
+    .bs-table td {
+      padding: 14px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.95rem;
+      vertical-align: middle;
+      line-height: 1.75;
+    }
+
+    .bs-table tr.row-correct {
+      background: var(--success-bg);
+    }
+
+    .bs-table tr.row-wrong {
+      background: var(--danger-bg);
+    }
+
+    .bs-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .bs-btn.active-b {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .bs-btn.active-s {
+      background: #334155;
+      color: #fff;
+      border-color: #334155;
+    }
+
+    /* PGK Checklist */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.18s;
+      background: #fff;
+      line-height: 1.75;
+    }
+
+    .check-item:hover {
+      border-color: var(--primary);
+      background: var(--bg);
+    }
+
+    .check-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .check-item.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .check-item.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid #94a3b8;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .check-item.selected .check-box {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* Pembahasan Box */
+    .bahas-box {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #f0fdf4;
+      border: 1.5px solid #6ee7b7;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .bahas-box.show {
+      display: block;
+    }
+
+    .bahas-title {
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.98rem;
+    }
+
+    .bahas-key {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .bahas-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.9;
+    }
+
+    /* Action Footer */
+    .q-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: #f1f5f9;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+    }
+
+    .btn-bahas {
+      background: var(--accent-light);
+      color: #4c1d95;
+      border-color: #a78bfa;
+    }
+
+    .btn-bahas:hover:not(:disabled) {
+      background: #ddd6fe;
+    }
+
+    .btn-finish {
+      background: #0f766e;
+      color: #fff;
+      border-color: #0f766e;
+    }
+
+    .btn-finish:hover:not(:disabled) {
+      background: #115e59;
+    }
+
+    /* Sidebar Navigator */
+    .sidebar-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .nav-btn {
+      height: 38px;
+      border-radius: 9px;
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.15s;
+      color: var(--text);
+    }
+
+    .nav-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .nav-btn.current {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.25);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .nav-btn.answered {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .nav-btn.eval-correct {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .nav-btn.eval-wrong {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    .summary-banner {
+      display: none;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #064e3b, #047857);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-banner.show {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .score-big {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #a7f3d0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">SOS</div>
+        <div>
+          <h1>Asesmen Sosiologi — Perubahan Sosial &amp; Globalisasi</h1>
+          <p>Latihan &amp; Pembahasan Berbasis Kisi-Kisi • 40 Soal (PG, Benar/Salah, Checklist)</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <span class="pill" id="answeredCount">Terjawab: 0 / 40</span>
+        <button class="mode-btn" id="toggleAutoBahas" onclick="toggleModeBahas()">
+          Mode Bahas Langsung: OFF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div>
+      <!-- Hasil Akhir Banner -->
+      <section class="summary-banner" id="summaryBanner">
+        <div>
+          <div style="font-size:0.85rem; opacity:0.9; font-weight:600;">HASIL EVALUASI ASESMEN SOSIOLOGI</div>
+          <div class="score-big" id="finalScoreText">0 / 100</div>
+          <div style="font-size:0.9rem; margin-top:4px;" id="finalDetailText">Benar: 0 dari 40 soal</div>
+        </div>
+        <div class="btn-group">
+          <button class="btn" onclick="resetQuiz()">Ulangi Latihan</button>
+          <button class="btn btn-bahas" onclick="showAllBahasMode()">Buka Semua Pembahasan</button>
+        </div>
+      </section>
+
+      <!-- Card Soal Utama -->
+      <section class="card" id="questionCard">
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span id="progressLabel">Soal 1 dari 40</span>
+            <span id="progressPercent">2.5%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="q-meta" id="qMeta"></div>
+        <div class="q-narasi" id="qNarasi"></div>
+        <div class="q-text" id="qText"></div>
+
+        <div id="qInputArea"></div>
+
+        <!-- Fitur Bahas -->
+        <div class="bahas-box" id="bahasBox">
+          <div class="bahas-title">📘 Pembahasan Soal</div>
+          <div class="bahas-key" id="bahasKey"></div>
+          <div class="bahas-text" id="bahasText"></div>
+        </div>
+
+        <div class="q-footer">
+          <div class="btn-group">
+            <button class="btn" id="prevBtn" onclick="goTo(currentIndex - 1)">← Sebelumnya</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="goTo(currentIndex + 1)">Selanjutnya →</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-bahas" id="bahasBtn" onclick="toggleBahas()">💡 Bahas Soal Ini</button>
+            <button class="btn btn-finish" onclick="finishQuiz()">✅ Selesai &amp; Nilai</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar Navigasi -->
+    <aside class="card sidebar-card">
+      <h3>Navigasi Soal (1–40)</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#fff; border:1.5px solid #cbd5e1;"></i> Belum</span>
+        <span><i class="dot" style="background:var(--primary);"></i> Dijawab</span>
+        <span><i class="dot" style="background:var(--success);"></i> Benar</span>
+        <span><i class="dot" style="background:var(--danger);"></i> Salah</span>
+      </div>
+      <div class="nav-grid" id="navGrid"></div>
+      <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">
+        <strong>Struktur Kisi-Kisi:</strong><br />
+        • No. 1–30: Pilihan Ganda (PG)<br />
+        • No. 31–35: Benar / Salah<br />
+        • No. 36–40: PG Kompleks (Checklist 3 jawaban)
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const SVG_CULTURAL_LAG = `
+      <div class="visual-box">
+        <svg width="470" height="175" viewBox="0 0 470 175" style="width:100%; max-width:470px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrLag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L7,3 z" fill="#047857"/>
+            </marker>
+          </defs>
+          <line x1="45" y1="140" x2="435" y2="140" stroke="#334155" stroke-width="1.6" marker-end="url(#arrLag)"/>
+          <line x1="45" y1="140" x2="45" y2="20" stroke="#334155" stroke-width="1.6" marker-end="url(#arrLag)"/>
+          <text x="412" y="156" font-size="11" font-weight="bold" fill="#334155">Waktu</text>
+          <text x="12" y="18" font-size="11" font-weight="bold" fill="#334155">Perkembangan</text>
+          <!-- Kurva Budaya Material (cepat) -->
+          <path d="M 45 125 Q 200 95 405 32" fill="none" stroke="#047857" stroke-width="3"/>
+          <text x="275" y="40" font-size="11.5" font-weight="bold" fill="#064e3b">Budaya Material (Teknologi AI &amp; Digital)</text>
+          <!-- Kurva Budaya Nonmaterial (lambat) -->
+          <path d="M 45 125 Q 230 120 405 98" fill="none" stroke="#4338ca" stroke-width="2.8" stroke-dasharray="6 4"/>
+          <text x="225" y="128" font-size="11.5" font-weight="bold" fill="#4338ca">Budaya Nonmaterial (Etika, Norma &amp; Regulasi)</text>
+          <!-- Zona Kesenjangan -->
+          <line x1="365" y1="44" x2="365" y2="102" stroke="#0f766e" stroke-width="2"/>
+          <rect x="255" y="60" width="102" height="26" rx="6" fill="#d1fae5" stroke="#047857"/>
+          <text x="306" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#064e3b">Cultural Lag</text>
+        </svg>
+        <div class="visual-caption"><b>Penjelasan Grafik (William F. Ogburn):</b> Garis utuh menunjukkan laju budaya material (teknologi) yang melaju pesat, sedangkan garis putus-putus menunjukkan budaya nonmaterial (norma, etika, hukum) yang menyesuaikan jauh lebih lambat sehingga memicu kesenjangan (<i>cultural lag</i>).</div>
+      </div>
+    `;
+
+    const SVG_DURKHEIM = `
+      <div class="visual-box">
+        <svg width="480" height="125" viewBox="0 0 480 125" style="width:100%; max-width:480px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="16" width="142" height="90" rx="10" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
+          <text x="83" y="40" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#064e3b">Solidaritas Mekanik</text>
+          <text x="83" y="59" text-anchor="middle" font-size="10" fill="#334155">Masyarakat homogen</text>
+          <text x="83" y="75" text-anchor="middle" font-size="10" fill="#334155">Kesadaran kolektif kuat</text>
+          <text x="83" y="91" text-anchor="middle" font-size="10" fill="#334155">Hukum bersifat represif</text>
+
+          <line x1="158" y1="61" x2="188" y2="61" stroke="#047857" stroke-width="2.2"/>
+          <polygon points="186,56 196,61 186,66" fill="#047857"/>
+
+          <rect x="198" y="24" width="104" height="74" rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
+          <text x="250" y="48" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#312e81">Faktor Pendorong</text>
+          <text x="250" y="65" text-anchor="middle" font-size="10" fill="#334155">Kepadatan moral &amp;</text>
+          <text x="250" y="81" text-anchor="middle" font-size="10" fill="#334155">pembagian kerja (?)</text>
+
+          <line x1="306" y1="61" x2="334" y2="61" stroke="#047857" stroke-width="2.2"/>
+          <polygon points="332,56 342,61 332,66" fill="#047857"/>
+
+          <rect x="344" y="16" width="124" height="90" rx="10" fill="#064e3b"/>
+          <text x="406" y="40" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fff">Solidaritas Organik</text>
+          <text x="406" y="59" text-anchor="middle" font-size="10" fill="#a7f3d0">Heterogen &amp; kompleks</text>
+          <text x="406" y="75" text-anchor="middle" font-size="10" fill="#a7f3d0">Saling bergantung</text>
+          <text x="406" y="91" text-anchor="middle" font-size="10" fill="#a7f3d0">Hukum bersifat restitutif</text>
+        </svg>
+        <div class="visual-caption"><b>Penjelasan Bagan:</b> Transformasi tipe solidaritas sosial dalam teori perubahan sosial Émile Durkheim dari masyarakat sederhana ke masyarakat industri modern.</div>
+      </div>
+    `;
+
+    const SVG_DEPENDENCY = `
+      <div class="visual-box">
+        <svg width="470" height="135" viewBox="0 0 470 135" style="width:100%; max-width:470px; height:auto; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <rect x="16" y="20" width="165" height="92" rx="10" fill="#064e3b"/>
+          <text x="98" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Negara Maju (Core)</text>
+          <text x="98" y="64" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Pemilik modal &amp; teknologi tinggi</text>
+          <text x="98" y="81" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Ekspor produk industri mahal</text>
+          <text x="98" y="98" text-anchor="middle" font-size="10.2" fill="#a7f3d0">Mengakumulasi surplus nilai</text>
+
+          <line x1="186" y1="45" x2="280" y2="45" stroke="#4338ca" stroke-width="2.2"/>
+          <polygon points="278,40 288,45 278,50" fill="#4338ca"/>
+          <text x="237" y="36" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#312e81">Barang Manufaktur Mahal</text>
+
+          <line x1="288" y1="88" x2="194" y2="88" stroke="#047857" stroke-width="2.2"/>
+          <polygon points="196,83 186,88 196,93" fill="#047857"/>
+          <text x="237" y="104" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#064e3b">Bahan Mentah &amp; Upah Murah</text>
+
+          <rect x="290" y="20" width="165" height="92" rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
+          <text x="372" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#312e81">Negara Berkembang (Periphery)</text>
+          <text x="372" y="64" text-anchor="middle" font-size="10.2" fill="#334155">Ekspor komoditas mentah murah</text>
+          <text x="372" y="81" text-anchor="middle" font-size="10.2" fill="#334155">Bergantung pada modal/utang</text>
+          <text x="372" y="98" text-anchor="middle" font-size="10.2" fill="#334155">Nilai tambah tertahan di luar</text>
+        </svg>
+        <div class="visual-caption"><b>Penjelasan Bagan (Teori Ketergantungan):</b> Pola pertukaran tidak setara antara negara pusat (<i>core</i>) dan negara pinggiran (<i>periphery</i>) dalam ekonomi global.</div>
+      </div>
+    `;
+
+    const QUESTIONS = [
+      // ===================== SOAL 1 - 30 (PILIHAN GANDA) =====================
+      {
+        no: 1,
+        type: "PG",
+        cog: "C4",
+        topic: "Cultural Lag",
+        narasi: "Pemerintah daerah membangun infrastruktur jaringan internet berkecepatan tinggi dan membagikan perangkat pembelajaran digital hingga ke pelosok desa. Namun, setelah fasilitas tersedia, muncul lonjakan kasus penyebaran hoaks, perundungan siber, serta penyalahgunaan data pribadi karena warga belum memiliki kesadaran etika digital dan regulasi perlindungan data yang memadai." + SVG_CULTURAL_LAG,
+        question: "Berdasarkan analisis sosiologis terhadap fenomena di atas, penyebab utama terjadinya ketimpangan tersebut adalah...",
+        options: [
+          "Budaya nonmaterial berkembang jauh lebih cepat dibandingkan budaya material sehingga masyarakat mengalami disorganisasi.",
+          "Kecepatan adopsi teknologi fisik (budaya material) tidak diimbangi dengan kesiapan norma, etika, dan aturan hukum (budaya nonmaterial).",
+          "Masyarakat menolak seluruh fasilitas internet karena masih berpegang teguh pada isolasi geografis.",
+          "Terjadinya asimilasi budaya secara menyeluruh antara masyarakat kota dan desa.",
+          "Hilangnya seluruh lembaga pendidikan formal akibat penggunaan perangkat digital."
+        ],
+        answer: 1,
+        bahas: "Fenomena tersebut merupakan contoh klasik <i>cultural lag</i> (kesenjangan budaya) menurut William F. Ogburn, yaitu kondisi ketika unsur budaya material (perangkat digital dan internet) berubah sangat cepat, sedangkan unsur budaya nonmaterial (etika bermedia, kesadaran hukum, dan norma sosial) tertinggal sehingga menimbulkan masalah sosial."
+      },
+      {
+        no: 2,
+        type: "PG",
+        cog: "C4",
+        topic: "Teori Perubahan Sosial",
+        narasi: "Masyarakat desa tradisional awalnya memiliki pekerjaan yang seragam sebagai petani dengan ikatan kekerabatan erat serta kesadaran kolektif yang kuat. Seiring pertumbuhan penduduk dan masuknya kawasan jasa serta industri, warga mulai menekuni profesi yang sangat beragam (teknisi, akuntan, kurir, guru, pedagang) sehingga mereka tidak lagi bisa memenuhi kebutuhannya sendiri dan saling bergantung secara fungsional." + SVG_DURKHEIM,
+        question: "Menurut teori Émile Durkheim, faktor pendorong utama terjadinya pergeseran dari solidaritas mekanik menuju solidaritas organik pada ilustrasi tersebut adalah...",
+        options: [
+          "Menguatnya hukum yang bersifat represif untuk menghukum setiap perbedaan profesi.",
+          "Kembalinya masyarakat pada pola hidup agraris yang serba seragam.",
+          "Meningkatnya kepadatan penduduk dan spesialisasi pembagian kerja (division of labor) dalam masyarakat.",
+          "Penghapusan seluruh norma hukum tertulis yang digantikan oleh adat istiadat lisan.",
+          "Berhentinya interaksi sosial antarwarga karena setiap profesi bekerja secara terpisah tanpa ketergantungan."
+        ],
+        answer: 2,
+        bahas: "Menurut Émile Durkheim, meningkatnya kepadatan penduduk dan interaksi sosial mendorong diferensiasi serta pembagian kerja (<i>division of labor</i>) yang semakin terspesialisasi. Hal inilah yang menggeser solidaritas mekanik (berbasis kesamaan) menuju solidaritas organik (berbasis ketergantungan fungsional antarspesialisasi)."
+      },
+      {
+        no: 3,
+        type: "PG",
+        cog: "C4",
+        topic: "Faktor Penghambat Perubahan",
+        narasi: "Sebuah pemerintah kota merancang sistem perizinan usaha daring yang transparan, bebas pungutan liar, dan dapat diselesaikan dalam dua hari. Akan tetapi, rencana pembaruan tersebut mendapat penolakan keras dari sekelompok oknum perantara dan pejabat lama yang selama ini menikmati keuntungan finansial serta pengaruh dari birokrasi tatap muka yang berbelit.",
+        question: "Analisis yang tepat mengenai pengaruh faktor <i>vested interest</i> dalam kasus penolakan perubahan sosial tersebut adalah...",
+        options: [
+          "Perubahan ditolak karena kelompok yang diuntungkan oleh sistem lama merasa hak istimewa dan kepentingannya terancam oleh sistem baru.",
+          "Masyarakat umum menolak sistem daring karena prasangka terhadap budaya asing.",
+          "Penolakan terjadi semata-mata karena pemerintah kota kekurangan tenaga ahli teknologi.",
+          "Kelompok perantara mendorong perubahan cepat agar memperoleh status sosial baru.",
+          "Adat istiadat leluhur melarang penggunaan komputer dalam pelayanan publik."
+        ],
+        answer: 0,
+        bahas: "<i>Vested interest</i> adalah kepentingan yang telah tertanam kuat pada kelompok atau elite tertentu yang memperoleh keuntungan ekonomi, kekuasaan, atau status dari tatanan lama. Mereka cenderung menghambat perubahan sosial karena khawatir sistem baru akan menghapus keistimewaan tersebut."
+      },
+      {
+        no: 4,
+        type: "PG",
+        cog: "C4",
+        topic: "Bentuk Perubahan Sosial",
+        narasi: "Pemerintah melaksanakan program perluasan akses listrik tenaga surya dan digitalisasi administrasi kependudukan di wilayah kepulauan terluar selama lima tahun. Program ini berhasil mempercepat layanan publik dan mendorong munculnya usaha ekonomi kreatif warga, namun juga memunculkan tantangan baru berupa meningkatnya sampah elektronik dan ketergantungan pada gawai.",
+        question: "Berdasarkan bentuk dan dampaknya, analisis yang tepat mengenai perubahan sosial dalam narasi di atas adalah...",
+        options: [
+          "Perubahan tidak direncanakan (unplanned change) yang seluruh dampaknya bersifat negatif.",
+          "Perubahan cepat (revolusi) yang menghapus seluruh struktur pemerintahan desa.",
+          "Perubahan yang direncanakan (planned change) yang menghasilkan dampak positif sesuai tujuan sekaligus dampak ikutan yang tidak terduga.",
+          "Perubahan kecil yang hanya memengaruhi gaya berpakaian warga tanpa menyentuh lembaga ekonomi.",
+          "Perubahan regres yang mengembalikan masyarakat ke pola hidup prasejarah."
+        ],
+        answer: 2,
+        bahas: "Program pemerintah tersebut merupakan perubahan sosial yang direncanakan (<i>planned change</i> / <i>intended change</i>) karena dirancang secara sadar oleh agen perubahan. Seperti umumnya perubahan terencana, di samping mencapai target peningkatan layanan dan ekonomi, muncul pula dampak ikutan (<i>unintended consequences</i>) berupa sampah elektronik yang perlu dikelola."
+      },
+      {
+        no: 5,
+        type: "PG",
+        cog: "C3",
+        topic: "Perubahan Sosial",
+        narasi: "Dalam satu dekade terakhir, banyak toko ritel mengganti sebagian kasir manual dengan mesin pembayaran mandiri (<i>self-checkout</i>) berbasis QRIS. Pada saat yang sama, bermunculan profesi baru seperti spesialis pemasaran digital, pengelola toko daring, dan kurir logistik berbasis aplikasi.",
+        question: "Pernyataan yang tepat untuk mengidentifikasi perubahan pola pekerjaan akibat perkembangan teknologi tersebut adalah...",
+        options: [
+          "Teknologi selalu menghilangkan seluruh jenis pekerjaan manusia tanpa menciptakan peluang baru.",
+          "Pekerjaan yang bersifat rutin manual mulai digantikan sistem digital, sementara pekerjaan baru berbasis layanan daring dan teknologi informasi bermunculan.",
+          "Masyarakat kembali menggunakan sistem barter tradisional di pasar ritel modern.",
+          "Semua kurir logistik harus menguasai keterampilan bertani untuk bertahan hidup.",
+          "Perubahan teknologi hanya berdampak pada sektor pertanian subsisten."
+        ],
+        answer: 1,
+        bahas: "Perkembangan teknologi digital mengubah pola pekerjaan: tugas-tugas transaksional rutin mulai terotomatisasi (seperti kasir manual ke <i>self-checkout</i>/QRIS), namun di sisi lain melahirkan beragam profesi baru di ekosistem ekonomi digital."
+      },
+      {
+        no: 6,
+        type: "PG",
+        cog: "C4",
+        topic: "Dampak Perubahan Sosial",
+        narasi: "Sebuah perusahaan manufaktur besar mengganti 60% tenaga operator pabrik berpendidikan menengah dengan lengan robot otomatis dan sistem kendali berbasis kecerdasan buatan. Akibatnya, ratusan buruh lama kehilangan pekerjaan karena keterampilannya tidak sesuai lagi dengan kebutuhan industri, sementara laba perusahaan serta gaji segelintir insinyur otomasi meningkat tajam.",
+        question: "Berdasarkan analisis dampak otomatisasi di atas, keterkaitan antara pengangguran struktural dan kesenjangan sosial yang terjadi adalah...",
+        options: [
+          "Otomatisasi mempersempit kesenjangan pendapatan karena seluruh buruh otomatis naik jabatan menjadi insinyur.",
+          "Pengangguran terjadi hanya sementara karena buruh dapat langsung mengoperasikan robot tanpa pelatihan.",
+          "Ketidakcocokan keterampilan tenaga kerja lama dengan teknologi baru memicu pengangguran struktural yang sekaligus memperlebar jurang ekonomi antara pemilik modal/tenaga ahli dan pekerja rendah keterampilan.",
+          "Perusahaan mengalami kebangkrutan akibat tingginya upah pekerja manual.",
+          "Kesenjangan sosial berkurang karena semua barang industri dibagikan secara gratis."
+        ],
+        answer: 2,
+        bahas: "Otomatisasi menuntut keahlian teknis tinggi. Ketika pekerja berketerampilan rendah tidak terserap oleh struktur ekonomi baru, terjadilah <b>pengangguran struktural</b>. Pada saat bersamaan, pemilik modal dan tenaga ahli menikmati lonjakan produktivitas dan pendapatan, sehingga <b>kesenjangan sosial ekonomi</b> semakin melebar."
+      },
+      {
+        no: 7,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Pola Konsumsi",
+        narasi: "Kehadiran lokapasar (<i>e-commerce</i>), fitur siaran langsung penjualan, notifikasi promo kilat (<i>flash sale</i>), dan opsi pembayaran tunda (<i>paylater</i>) membuat banyak pengguna gawai membeli barang bukan karena kebutuhan mendesak, melainkan karena dorongan impulsif dan rasa takut tertinggal tren (FOMO).",
+        question: "Analisis yang paling tepat mengenai perubahan perilaku konsumsi masyarakat akibat teknologi digital tersebut adalah...",
+        options: [
+          "Teknologi digital mendorong masyarakat bersikap hemat dan menunda seluruh pembelian barang sekunder.",
+          "Kemudahan akses belanja dan skema kredit instan menggeser pola konsumsi dari pemenuhan nilai guna rasional menjadi konsumsi impulsif dan konsumtif.",
+          "Masyarakat hanya membeli barang kebutuhan pokok melalui pasar tradisional.",
+          "Fitur paylater menghilangkan risiko lilitan utang konsumtif di kalangan generasi muda.",
+          "Siaran langsung penjualan mengurangi interaksi antara penjual dan pembeli secara mutlak."
+        ],
+        answer: 1,
+        bahas: "Teknologi digital mempermudah transaksi hingga menghapus hambatan fisik belanja. Kombinasi promo kilat, algoritma personalisasi, dan <i>paylater</i> merangsang perilaku konsumtif dan pembelian impulsif yang lebih mengutamakan kepuasan psikologis/tren daripada kebutuhan fungsional."
+      },
+      {
+        no: 8,
+        type: "PG",
+        cog: "C4",
+        topic: "Dampak Perubahan Sosial",
+        narasi: "Sebelumnya, warga Desa Sukamaju menggantungkan hidup sepenuhnya pada panen padi dua kali setahun, sehingga kondisi ekonomi mereka sangat rentan saat kemarau panjang. Kini, warga mengembangkan diversifikasi pekerjaan melalui pengolahan keripik hasil kebun, pengelolaan desa wisata edukasi, dan usaha penginapan warga (<i>homestay</i>).",
+        question: "Dampak paling signifikan dari diversifikasi pekerjaan tersebut terhadap kondisi ekonomi masyarakat desa adalah...",
+        options: [
+          "Menurunnya pendapatan keluarga karena warga terpecah fokusnya dari sektor pertanian.",
+          "Meningkatnya ketergantungan warga pada bantuan pangan dari pemerintah pusat.",
+          "Terbentuknya ketahanan ekonomi keluarga yang lebih stabil karena adanya ragam sumber pendapatan di luar musim panen.",
+          "Hilangnya seluruh tradisi gotong royong akibat berdirinya usaha wisata.",
+          "Berkurangnya jumlah penduduk desa karena semua warga pindah menjadi pegawai negeri."
+        ],
+        answer: 2,
+        bahas: "Diversifikasi pekerjaan memperluas basis ekonomi masyarakat. Ketika sumber pendapatan tidak lagi bertumpu pada satu sektor yang rentan cuaca (pertanian musiman), rumah tangga memiliki ketahanan ekonomi yang lebih baik dan peluang peningkatan kesejahteraan."
+      },
+      {
+        no: 9,
+        type: "PG",
+        cog: "C4",
+        topic: "Kesetaraan Gender",
+        narasi: "Pemerintah dan sektor swasta menerapkan kebijakan kesetaraan gender berupa jaminan kesamaan upah untuk pekerjaan setara, perlindungan hak cuti melahirkan, penyediaan ruang laktasi di kantor, serta seleksi jabatan manajerial berbasis kompetensi tanpa diskriminasi gender.",
+        question: "Analisis pengaruh kebijakan kesetaraan gender tersebut terhadap partisipasi perempuan dalam dunia kerja adalah...",
+        options: [
+          "Menurunkan minat perempuan untuk berkarier di sektor formal karena aturan perusahaan menjadi rumit.",
+          "Menghilangkan hambatan struktural dan bias gender sehingga partisipasi perempuan di sektor formal serta posisi pengambil keputusan meningkat.",
+          "Memaksa seluruh perempuan meninggalkan peran keluarga demi bekerja lembur di kantor.",
+          "Membatasi perempuan hanya pada sektor pekerjaan domestik dan informal.",
+          "Menghapus perbedaan kompetensi individu dalam proses rekrutmen tenaga kerja."
+        ],
+        answer: 1,
+        bahas: "Kebijakan afirmatif dan perlindungan hak reproduksi di tempat kerja mengatasi hambatan struktural yang selama ini membatasi perempuan. Dampaknya, partisipasi kerja perempuan meningkat secara kuantitatif maupun kualitatif (hingga tingkat manajerial)."
+      },
+      {
+        no: 10,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Transportasi",
+        narasi: "Beroperasinya jaringan transportasi massal terintegrasi seperti KRL, LRT, dan bus rapid transit yang menghubungkan kawasan penyangga dengan pusat bisnis kota membuat waktu tempuh antarkota menyusut drastis dengan biaya lebih terjangkau.",
+        question: "Analisis perubahan pola mobilitas masyarakat akibat perkembangan transportasi umum massal tersebut adalah...",
+        options: [
+          "Masyarakat penyangga berhenti bekerja di pusat kota karena jarak terasa semakin jauh.",
+          "Terjadi peningkatan mobilitas sirkuler harian (komuter) dengan jangkauan kerja lebih luas dan efisiensi waktu serta biaya perjalanan.",
+          "Seluruh penduduk desa berpindah secara permanen ke pusat kota sehingga kawasan penyangga kosong.",
+          "Penggunaan kendaraan pribadi meningkat dua kali lipat karena tarif transportasi umum sangat mahal.",
+          "Interaksi ekonomi antara wilayah penyangga dan pusat kota terputus sepenuhnya."
+        ],
+        answer: 1,
+        bahas: "Transportasi massal yang cepat, murah, dan terintegrasi mendorong tingginya mobilitas ulang-alik harian (komuter). Pekerja dapat tinggal di wilayah penyangga namun mengakses lapangan kerja di pusat kota tanpa harus bermigrasi permanen."
+      },
+      {
+        no: 11,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Mata Pencaharian",
+        narasi: "Abrasi pantai dan kenaikan permukaan air laut yang merendam ratusan hektare sawah di pesisir utara Jawa membuat petani tidak lagi dapat menanam padi secara produktif. Sebagian warga kemudian beradaptasi dengan mengembangkan budidaya kepiting bakau, tambak ikan bandeng, serta wisata konservasi mangrove.",
+        question: "Analisis sosiologis mengenai perubahan mata pencaharian masyarakat pada kasus di atas adalah...",
+        options: [
+          "Perubahan mata pencaharian dipicu oleh faktor internal berupa konflik antarkelompok tani.",
+          "Degradasi dan perubahan kondisi lingkungan alam memaksa masyarakat melakukan adaptasi sosial-ekonomi dengan mengalihkan jenis mata pencaharian sesuai daya dukung ekosistem baru.",
+          "Warga mengganti pekerjaan semata-mata karena meniru gaya hidup wisatawan mancanegara.",
+          "Terjadinya penurunan solidaritas sosial karena seluruh warga bekerja sebagai nelayan tangkap.",
+          "Lingkungan fisik tidak memiliki hubungan sama sekali dengan struktur mata pencaharian penduduk."
+        ],
+        answer: 1,
+        bahas: "Perubahan lingkungan alam (abrasi, rob, kekeringan) merupakan salah satu faktor eksternal perubahan sosial. Ketika ekosistem agraris berubah menjadi perairan payau, masyarakat melakukan adaptasi mata pencaharian menuju sektor perikanan tambak dan ekowisata agar tetap bertahan."
+      },
+      {
+        no: 12,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Pola Kerja",
+        narasi: "Pascapandemi, banyak perusahaan bidang teknologi, desain, dan konsultasi mempertahankan sistem kerja jarak jauh (<i>remote work</i>) dengan memanfaatkan platform kolaborasi daring.",
+        question: "Analisis dampak positif penerapan sistem kerja jarak jauh (<i>remote work</i>) bagi pekerja dan struktur sosial-ekonomi adalah...",
+        options: [
+          "Menghilangkan seluruh batas waktu istirahat sehingga pekerja selalu bekerja selama 24 jam.",
+          "Meningkatkan kemacetan lalu lintas di pusat kota pada jam berangkat kerja.",
+          "Memberikan fleksibilitas kerja, efisiensi biaya transportasi dan sewa ruang kantor, serta membuka peluang kerja lintas wilayah tanpa harus urbanisasi.",
+          "Memutus hubungan kerja sama antardivisi karena tidak ada komunikasi sama sekali.",
+          "Menurunkan produktivitas seluruh perusahaan berbasis teknologi informasi."
+        ],
+        answer: 2,
+        bahas: "Dampak positif utama <i>remote work</i> mencakup efisiensi biaya komuter dan operasional kantor, fleksibilitas untuk mendukung keseimbangan kerja-hidup (<i>work-life balance</i>), serta pemerataan peluang kerja karena individu di daerah dapat bekerja bagi perusahaan di kota besar atau luar negeri."
+      },
+      {
+        no: 13,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Struktur Ekonomi",
+        narasi: "Pembangunan kawasan industri garmen dan elektronik di sebuah kabupaten agraris menyebabkan banyak generasi muda desa memilih menjadi buruh pabrik dengan upah bulanan tetap dibandingkan menggarap sawah milik orang tua. Akibatnya, jumlah tenaga kerja usia muda di sektor pertanian menyusut tajam.",
+        question: "Analisis yang tepat mengenai konsekuensi pergeseran struktur ekonomi dari sektor pertanian ke industri tersebut adalah...",
+        options: [
+          "Produksi pangan lokal otomatis berlipat ganda karena seluruh anak muda bekerja di pabrik garmen.",
+          "Terjadi transformasi struktur tenaga kerja menuju sektor formal berupah tetap, namun muncul kerentanan regenerasi petani dan ketahanan pangan lokal.",
+          "Sistem upah buruh pabrik digantikan dengan sistem bagi hasil panen padi.",
+          "Masyarakat industri sepenuhnya kembali menganut sistem solidaritas mekanik yang homogen.",
+          "Kepadatan penduduk desa menurun drastis hingga kawasan industri tutup."
+        ],
+        answer: 1,
+        bahas: "Industrialisasi di wilayah agraris menggeser mata pencaharian dari sektor primer (pertanian) ke sektor sekunder (industri) yang menawarkan kepastian upah. Namun secara struktural, hal ini menimbulkan penuaan tenaga kerja tani dan menyusutnya lahan/regenerasi pertanian."
+      },
+      {
+        no: 14,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Teknologi",
+        narasi: "Dinas Koperasi bersama komunitas mahasiswa menyelenggarakan pelatihan intensif literasi digital, pembukuan berbasis aplikasi, dan keamanan transaksi daring bagi para pelaku usaha mikro di pasar tradisional.",
+        question: "Analisis pengaruh utama pelatihan teknologi tersebut terhadap pengetahuan dan kapabilitas masyarakat adalah...",
+        options: [
+          "Membuat pelaku usaha tradisional meninggalkan penjualan tatap muka dan menutup kios pasar.",
+          "Meningkatkan kapasitas kognitif, keterampilan praktis pengelolaan usaha modern, serta mengurangi kesenjangan literasi digital antar generasi pelaku usaha.",
+          "Menghilangkan seluruh modal usaha pedagang karena biaya pelatihan sangat mahal.",
+          "Memicu konflik horizontal antara pedagang pasar dan pembeli daring.",
+          "Menggantikan seluruh fungsi koperasi dengan algoritma media sosial."
+        ],
+        answer: 1,
+        bahas: "Pelatihan teknologi mempercepat transfer pengetahuan (<i>knowledge transfer</i>), meningkatkan literasi digital praktis, dan memberdayakan masyarakat agar mampu beradaptasi secara produktif terhadap perubahan teknologi tanpa tertinggal."
+      },
+      {
+        no: 15,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Struktur Keluarga",
+        narasi: "Di kawasan perkotaan, keluarga besar yang tinggal dalam satu rumah dengan banyak anak semakin jarang ditemui. Sebagian besar pasangan muda memilih bentuk keluarga inti (ayah, ibu, dan satu atau dua anak) di mana suami dan istri sama-sama bekerja untuk menopang biaya pendidikan dan hunian.",
+        question: "Analisis faktor ekonomi dan pandangan hidup yang mendorong perubahan struktur keluarga tersebut adalah...",
+        options: [
+          "Tingginya biaya hidup perkotaan serta pandangan hidup modern yang mengutamakan kemandirian individu, efisiensi ekonomi, dan kualitas pengasuhan.",
+          "Aturan hukum perkotaan yang melarang kakek dan nenek berkomunikasi dengan cucu.",
+          "Rendahnya biaya pendidikan tinggi di kota besar sehingga tidak perlu perencanaan keuangan.",
+          "Kembalinya masyarakat kota ke sistem keluarga luas yang bergantung pada sektor agraris.",
+          "Penolakan total terhadap lembaga perkawinan di seluruh masyarakat modern."
+        ],
+        answer: 0,
+        bahas: "Faktor ekonomi (tingginya biaya hunian, pendidikan, dan kebutuhan hidup) berpadu dengan perubahan pandangan hidup (rasionalisasi jumlah anak, kesetaraan peran pencari nafkah, dan kemandirian rumah tangga) mendorong pergeseran dari <i>extended family</i> ke <i>nuclear family</i>."
+      },
+      {
+        no: 16,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Gaya Hidup",
+        narasi: "Sebagian masyarakat perkotaan rela mengantre berjam-jam dan membayar mahal untuk membeli produk kopi atau ponsel edisi terbaru berlogo merek global tertentu, lalu mengunggahnya ke media sosial, meskipun fungsi dasarnya sama dengan produk lokal yang jauh lebih murah.",
+        question: "Analisis sosiologis yang paling tepat terhadap perubahan gaya hidup dan pola konsumsi masyarakat modern tersebut adalah...",
+        options: [
+          "Konsumsi dilakukan murni berdasarkan efisiensi harga dan perhitungan nilai guna biologis.",
+          "Terjadi pergeseran makna konsumsi dari sekadar pemenuhan kebutuhan fungsional menjadi konsumsi simbolik untuk membangun citra diri dan status sosial.",
+          "Masyarakat modern semakin menghindari pengaruh media sosial dalam menentukan pilihan produk.",
+          "Produk lokal tidak memiliki fungsi dasar yang setara dengan produk bermerek global.",
+          "Gaya hidup hemat dan asketis menjadi tren utama di kalangan pengguna media sosial."
+        ],
+        answer: 1,
+        bahas: "Dalam masyarakat konsumen modern (seperti dianalisis Jean Baudrillard), barang tidak lagi dikonsumsi semata karena nilai gunanya (<i>use value</i>), melainkan karena nilai tanda/simbolnya (<i>sign value</i>) untuk menunjukkan prestise, identitas, dan gaya hidup."
+      },
+      {
+        no: 17,
+        type: "PG",
+        cog: "C4",
+        topic: "Perubahan Pekerjaan",
+        narasi: "Integrasi perangkat lunak analitik dan mesin otomatis di sektor perbankan serta manufaktur menyebabkan berkurangnya permintaan tenaga administrasi pencatatan manual, sementara permintaan terhadap analis data, teknisi pemeliharaan sistem cerdas, dan pemecah masalah kreatif melonjak tajam.",
+        question: "Berdasarkan kondisi tersebut, analisis pengaruh otomatisasi terhadap kebutuhan keterampilan tenaga kerja adalah...",
+        options: [
+          "Tenaga kerja tidak lagi memerlukan pendidikan lanjutan karena semua pekerjaan dapat dikerjakan tanpa keahlian.",
+          "Otomatisasi menggeser kebutuhan pasar kerja dari keterampilan rutin-repetitif menuju keterampilan digital, berpikir kritis, dan keahlian teknis non-rutin.",
+          "Perusahaan lebih memprioritaskan tenaga kerja yang menolak penggunaan perangkat komputer.",
+          "Keterampilan komunikasi dan kreativitas manusia sepenuhnya digantikan oleh mesin pencatat.",
+          "Kebutuhan keterampilan di masa depan hanya berfokus pada tenaga fisik tanpa literasi teknologi."
+        ],
+        answer: 1,
+        bahas: "Otomatisasi menggantikan pekerjaan yang bersifat rutin dan terprediksi, sehingga pasar tenaga kerja menuntut peningkatan keterampilan (<i>upskilling/reskilling</i>) ke arah kompetensi digital, analisis data, pemecahan masalah kompleks, dan kreativitas yang sulit ditiru mesin."
+      },
+      {
+        no: 18,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Budaya",
+        narasi: "Interaksi budaya global melalui kuliner, musik, dan mode mendorong lahirnya tren baru di kalangan anak muda Indonesia, seperti hadirnya kafe kopi lokal yang mengadopsi estetika desain Skandinavia dengan menu es kopi gula aren, atau busana batik yang dipotong dengan gaya <i>streetwear</i> modern.",
+        question: "Analisis pengaruh interaksi budaya global terhadap gaya hidup masyarakat pada fenomena tersebut adalah...",
+        options: [
+          "Budaya lokal punah secara total tanpa menyisakan unsur tradisional sedikit pun.",
+          "Terjadi glokalisasi atau hibridisasi budaya, di mana unsur budaya global diadaptasi dan dipadukan dengan identitas lokal dalam gaya hidup masyarakat.",
+          "Masyarakat menolak seluruh pengaruh gaya desain dan kuliner dari luar negeri.",
+          "Interaksi budaya global hanya memengaruhi kelompok lanjut usia di wilayah pedalaman.",
+          "Produk lokal kehilangan daya tariknya setelah dikemas dengan sentuhan desain modern."
+        ],
+        answer: 1,
+        bahas: "Perpaduan antara cita rasa/motif lokal (gula aren, batik) dan format/estetika global (kafe modern, <i>streetwear</i>) menunjukkan proses <b>glokalisasi</b> atau hibridisasi budaya, yang memperkaya gaya hidup sekaligus menjaga relevansi budaya lokal."
+      },
+      {
+        no: 19,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Pendidikan",
+        narasi: "Kemunculan berbagai platform <i>Massive Open Online Courses</i> (MOOCs) seperti Coursera, edX, dan portal pembelajaran terbuka memungkinkan pelajar di daerah mengikuti kuliah pemrograman, manajemen, hingga sains dari universitas ternama dunia secara fleksibel melalui internet.",
+        question: "Analisis perubahan akses pendidikan akibat perkembangan internet dan MOOCs tersebut adalah...",
+        options: [
+          "Akses pendidikan tinggi semakin eksklusif dan hanya dapat dinikmati warga ibu kota.",
+          "MOOCs menghilangkan hambatan geografis serta mendemokratisasi akses ilmu pengetahuan global bagi pembelajar sepanjang hayat.",
+          "Seluruh sekolah dasar dan menengah di dunia wajib ditutup karena digantikan kuliah daring.",
+          "Kurikulum internasional hanya dapat diakses oleh mahasiswa yang bermigrasi ke luar negeri.",
+          "Internet mempersempit sumber belajar siswa karena membatasi diskusi lintas negara."
+        ],
+        answer: 1,
+        bahas: "Internet dan MOOCs mendemokratisasi akses pendidikan lintas batas negara, menekan hambatan jarak geografis dan biaya mobilitas fisik, serta mendukung pembelajaran sepanjang hayat (<i>lifelong learning</i>) secara terbuka."
+      },
+      {
+        no: 20,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Ekonomi",
+        narasi: "Masuknya investasi asing langsung (<i>Foreign Direct Investment</i> / FDI) di sektor pembangunan pabrik baterai kendaraan listrik membawa aliran modal besar, membuka ribuan lapangan kerja lokal, dan mentransfer teknologi produksi modern. Namun, tanpa regulasi alih teknologi dan kemitraan lokal, keuntungan besar berpotensi ditarik kembali ke negara asal investor serta menekan pelaku industri domestik yang belum siap.",
+        question: "Berdasarkan analisis di atas, pernyataan yang paling tepat menggambarkan dampak investasi asing (FDI) terhadap perekonomian negara tuan rumah adalah...",
+        options: [
+          "FDI selalu membawa kerugian mutlak bagi perekonomian negara berkembang tanpa manfaat apa pun.",
+          "FDI berpotensi mempercepat pertumbuhan ekonomi dan alih teknologi, tetapi memerlukan tata kelola kebijakan yang tepat agar tidak memicu ketergantungan modal dan tersingkirnya industri domestik.",
+          "FDI secara otomatis membuat seluruh perusahaan lokal menjadi pemilik modal terbesar di dunia.",
+          "Masuknya FDI berarti negara tuan rumah menutup seluruh perdagangan internasionalnya.",
+          "Investasi asing tidak memiliki kaitan dengan penyerapan tenaga kerja lokal."
+        ],
+        answer: 1,
+        bahas: "FDI memiliki dua sisi: di satu sisi mendorong penciptaan lapangan kerja, masuknya devisa, dan transfer teknologi; di sisi lain berisiko menimbulkan repatriasi laba ke negara asal serta tekanan kompetitif bagi industri dalam negeri apabila tidak diimbangi regulasi kemitraan lokal."
+      },
+      {
+        no: 21,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Budaya",
+        narasi: "Di berbagai kota besar di Asia, Eropa, maupun Amerika, pusat perbelanjaan dipenuhi gerai makanan cepat saji internasional yang sama, merek pakaian seragam, standar estetika iklan yang mirip, serta selera musik populer yang serentak menduduki tangga lagu global.",
+        question: "Analisis yang tepat mengenai proses penyeragaman budaya (<i>homogenisasi</i>) dalam fenomena globalisasi tersebut adalah...",
+        options: [
+          "Keberagaman budaya daerah semakin menguat dan mendominasi seluruh pusat perbelanjaan dunia.",
+          "Dominasi industri budaya dan korporasi transnasional mendorong penyeragaman pola konsumsi, selera, dan gaya hidup masyarakat lintas negara.",
+          "Masyarakat di setiap negara secara sadar melarang berdirinya gerai makanan cepat saji.",
+          "Homogenisasi budaya hanya terjadi pada bahasa tulis tanpa memengaruhi gaya konsumsi.",
+          "Globalisasi memastikan tidak ada satu pun produk asing yang dikenal di negara lain."
+        ],
+        answer: 1,
+        bahas: "Penyeragaman budaya (<i>homogenisasi</i> atau disebut juga <i>McDonaldization</i> oleh George Ritzer) terjadi ketika standar produk, budaya populer, dan gaya hidup yang diproduksi korporasi global menyebar masif sehingga membuat selera masyarakat di berbagai belahan dunia menjadi seragam."
+      },
+      {
+        no: 22,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Budaya",
+        narasi: "Dalam hitungan jam setelah sebuah serial film atau tantangan tarian dari luar negeri dirilis di platform video pendek dan layanan <i>streaming</i>, jutaan remaja di Indonesia langsung menirukan gaya busana, kosakata, dan pola interaksi dari konten tersebut.",
+        question: "Analisis mekanisme penyebaran budaya asing melalui media digital pada fenomena tersebut adalah...",
+        options: [
+          "Media digital memperlambat penyebaran budaya asing karena harus melewati sensor surat kabar cetak.",
+          "Algoritma media digital dan konektivitas internet menghapus sekat ruang serta mempercepat difusi budaya asing secara langsung kepada audiens global.",
+          "Penyebaran budaya asing hanya dapat berlangsung melalui pertukaran pelajar secara fisik.",
+          "Remaja meniru budaya asing karena diwajibkan oleh kurikulum sekolah menengah.",
+          "Media digital hanya menyebarkan kesenian tradisional setempat kepada penduduk desa."
+        ],
+        answer: 1,
+        bahas: "Media digital bekerja melalui algoritma rekomendasi dan jaringan tanpa batas teritorial, sehingga mempercepat difusi budaya asing secara <i>real-time</i> dan masif langsung ke ruang pribadi pengguna tanpa perantara tradisional."
+      },
+      {
+        no: 23,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Pendidikan",
+        narasi: "Dalam persaingan pasar kerja global, lulusan perguruan tinggi lokal tidak hanya bersaing dengan sesama pencari kerja dalam negeri, tetapi juga dengan tenaga kerja terampil dari berbagai negara yang fasih teknologi, berbahasa internasional, dan berdaya inovasi tinggi.",
+        question: "Strategi peningkatan kualitas sumber daya manusia (SDM) yang paling efektif dalam menghadapi globalisasi tersebut adalah...",
+        options: [
+          "Membatasi penggunaan komputer dan internet di sekolah agar siswa tidak mengenal persaingan global.",
+          "Menekankan hafalan teori masa lalu tanpa membekali keterampilan abad ke-21.",
+          "Mengintegrasikan penguasaan literasi digital, keterampilan berpikir kritis, bahasa internasional, sertifikasi kompetensi vokasi, dan penguatan karakter lokal.",
+          "Melarang tenaga kerja lokal mempelajari bahasa asing maupun teknologi informasi.",
+          "Menurunkan standar kelulusan pendidikan agar jumlah ijazah meningkat secara instan."
+        ],
+        answer: 2,
+        bahas: "Menghadapi kompetisi global membutuhkan SDM yang berdaya saing tinggi (menguasai teknologi digital, bahasa global, inovasi, serta keahlian vokasi) namun tetap berakar kuat pada etika dan karakter kebangsaan."
+      },
+      {
+        no: 24,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Ekonomi",
+        narasi: "Pemberlakuan perjanjian perdagangan bebas menurunkan tarif bea masuk secara signifikan, sehingga produk tekstil dan elektronik impor yang diproduksi secara massal membanjiri pasar dalam negeri dengan harga jauh lebih murah dibandingkan produk pabrikan lokal.",
+        question: "Analisis dampak perdagangan bebas tersebut terhadap daya saing produk lokal adalah...",
+        options: [
+          "Produk lokal otomatis menguasai 100% pasar global tanpa perlu perbaikan kualitas.",
+          "Perdagangan bebas menuntut produsen lokal meningkatkan efisiensi dan mutu produk untuk bersaing, namun produk lokal yang kurang inovatif berisiko tersingkir di pasar domestik.",
+          "Harga barang impor menjadi jauh lebih mahal karena bea masuk dinaikkan setinggi-tingginya.",
+          "Konsumen dalam negeri dilarang membeli barang kebutuhan sehari-hari dari pasar.",
+          "Perdagangan bebas hanya memengaruhi ekspor komoditas pertambangan tanpa menyentuh barang konsumsi."
+        ],
+        answer: 1,
+        bahas: "Perdagangan bebas membuka pasar dua arah: di satu sisi mendorong produsen lokal berinovasi dan menembus pasar ekspor, tetapi di sisi lain produk lokal berbiaya produksi tinggi dan bermutu rendah terancam kalah saing oleh serbuan produk impor murah."
+      },
+      {
+        no: 25,
+        type: "PG",
+        cog: "C4",
+        topic: "Dampak Globalisasi",
+        narasi: "Seorang siswa di daerah kepulauan kini dapat mengakses ribuan artikel jurnal ilmiah internasional, mengikuti webinar dengan peneliti mancanegara, serta menggunakan kamus dan penerjemah berbasis kecerdasan buatan untuk menyelesaikan tugas riset sekolahnya.",
+        question: "Analisis manfaat utama globalisasi di bidang pendidikan dan informasi berdasarkan ilustrasi di atas adalah...",
+        options: [
+          "Menyebabkan siswa kehilangan kemampuan membaca buku cetak di perpustakaan daerah.",
+          "Memperluas akses terhadap sumber pengetahuan global secara cepat dan memperkecil kesenjangan informasi antara daerah terpencil dan pusat kota.",
+          "Menghapus peran guru di sekolah karena seluruh interaksi digantikan mesin pencari.",
+          "Membuat seluruh penelitian ilmiah hanya boleh ditulis dalam satu bahasa daerah.",
+          "Membatasi pertukaran data akademik antaruniversitas di berbagai negara."
+        ],
+        answer: 1,
+        bahas: "Salah satu manfaat terbesar globalisasi informasi dan pendidikan adalah terbukanya akses setara terhadap sumber pengetahuan mutakhir secara cepat dan melampaui batas geografis, sehingga memperkecil ketertinggalan informasi."
+      },
+      {
+        no: 26,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Ekonomi",
+        narasi: "Sebuah koperasi perajin anyaman rotan tradisional ingin memperluas penjualan ke pasar internasional, namun terkendala oleh kemasan yang belum memenuhi standar ekspor, kapasitas produksi terbatas, minimnya penguasaan pemasaran digital lintas negara, serta munculnya produk imitasi pabrik luar negeri yang lebih murah.",
+        question: "Analisis tantangan utama yang dihadapi UMKM lokal dalam persaingan pasar global berdasarkan kasus tersebut adalah...",
+        options: [
+          "Terlalu tingginya modal investasi yang dimiliki UMKM sehingga sulit menentukan jenis usaha.",
+          "Keterbatasan standardisasi mutu, skala produksi, akses pembiayaan, serta penguasaan pemasaran digital dalam menghadapi produk pabrikan global yang lebih efisien.",
+          "Ketidakmampuan pasar internasional menerima produk ramah lingkungan berbahan rotan.",
+          "Terlalu banyaknya tenaga ahli pemasaran digital di dalam struktur organisasi koperasi.",
+          "Kelebihan kapasitas gudang ekspor yang tidak terpakai oleh pelaku UMKM."
+        ],
+        answer: 1,
+        bahas: "Dalam persaingan pasar global, UMKM umumnya menghadapi kendala struktural berupa keterbatasan modal dan skala ekonomi, standar kualitas/sertifikasi ekspor, literasi pemasaran digital, serta ancaman produk tiruan yang diproduksi secara massal."
+      },
+      {
+        no: 27,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Komunikasi",
+        narasi: "Hampir seluruh percakapan harian, penyebaran berita, dan diskusi publik warga kini berlangsung melalui aplikasi pesan instan dan jejaring sosial milik korporasi teknologi global. Komunikasi berlangsung sangat cepat lintas benua, namun algoritma platform kerap mengarahkan pengguna hanya pada informasi yang sesuai selera mereka sehingga memicu ruang gema (<i>echo chamber</i>).",
+        question: "Analisis pengaruh perusahaan teknologi global terhadap pola komunikasi masyarakat berdasarkan narasi tersebut adalah...",
+        options: [
+          "Perusahaan teknologi global hanya memfasilitasi komunikasi surat pos tradisional antarnegara.",
+          "Konektivitas komunikasi menjadi serba instan dan tanpa batas wilayah, namun kendali algoritma berpotensi memicu polarisasi opini dan menyusutnya komunikasi tatap muka yang mendalam.",
+          "Algoritma media sosial menjamin seluruh pengguna selalu membaca sudut pandang yang berimbang.",
+          "Penggunaan aplikasi pesan instan menghentikan seluruh arus pertukaran informasi antarwarga.",
+          "Korporasi teknologi global melarang warganya berinteraksi dengan pengguna dari negara lain."
+        ],
+        answer: 1,
+        bahas: "Platform digital milik perusahaan teknologi global menghadirkan efisiensi komunikasi lintas batas secara instan, sekaligus membawa dampak samping berupa dominasi algoritma yang dapat menciptakan <i>echo chamber</i>, polarisasi sosial, dan berkurangnya kualitas interaksi tatap muka."
+      },
+      {
+        no: 28,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Budaya",
+        narasi: "Survei minat seni remaja di sebuah kota menunjukkan lebih dari 80% responden rutin mengikuti konser virtual, drama serial, dan komunitas penggemar budaya populer asing, sementara kurang dari 15% yang mengenal jenis kesenian tradisional atau sastra daerahnya sendiri.",
+        question: "Analisis dampak penetrasi budaya populer asing terhadap minat masyarakat pada budaya lokal adalah...",
+        options: [
+          "Budaya populer asing secara otomatis membuat seluruh remaja hafal sastra daerahnya.",
+          "Daya tarik kemasan budaya populer asing yang modern dan masif berisiko meminggirkan minat generasi muda terhadap budaya lokal apabila tidak diimbangi pelestarian kreatif.",
+          "Kesenian tradisional dilarang tampil di ruang publik oleh komunitas penggemar budaya asing.",
+          "Penurunan minat pada budaya lokal disebabkan oleh ketiadaan internet di kota besar.",
+          "Generasi muda sepenuhnya menolak mendengarkan musik dan menonton film dari mana pun."
+        ],
+        answer: 1,
+        bahas: "Budaya populer asing dikemas dengan industri hiburan modern dan promosi digital yang sangat atraktif. Tanpa inovasi pelestarian dan adaptasi media kreatif pada budaya lokal, generasi muda cenderung mengalami keterasingan terhadap warisan budayanya sendiri."
+      },
+      {
+        no: 29,
+        type: "PG",
+        cog: "C4",
+        topic: "Ketimpangan Global",
+        narasi: "Negara berkembang umumnya mengekspor komoditas mentah (seperti bijih tambang, kayu gelondongan, dan hasil perkebunan) dengan harga relatif rendah ke negara maju, lalu mengimpor kembali produk teknologi, mesin industri, dan barang manufaktur jadi bernilai tambah tinggi dengan harga sangat mahal." + SVG_DEPENDENCY,
+        question: "Menurut Perspektif Teori Ketergantungan (<i>Dependency Theory</i>), analisis penyebab langgengnya ketimpangan ekonomi antara negara maju dan berkembang tersebut adalah...",
+        options: [
+          "Negara berkembang menolak mengekspor sumber daya alamnya ke pasar internasional.",
+          "Pola pembagian kerja internasional yang tidak setara menempatkan negara berkembang sebagai pemasok bahan mentah murah sehingga nilai tambah dan surplus ekonomi terus terakumulasi di negara maju.",
+          "Negara maju tidak pernah membutuhkan bahan baku maupun tenaga kerja dari luar negeri.",
+          "Harga komoditas bahan mentah selalu lebih mahal dibandingkan teknologi tinggi dan mesin industri.",
+          "Seluruh keuntungan ekspor produk manufaktur negara maju dibagikan secara merata ke negara berkembang."
+        ],
+        answer: 1,
+        bahas: "<i>Dependency Theory</i> (Teori Ketergantungan) menjelaskan bahwa keterbelakangan negara berkembang (<i>periphery</i>) bukan semata faktor internal, melainkan akibat struktur ekonomi global yang timpang: negara berkembang memasok bahan mentah bernilai rendah sementara negara maju (<i>core</i>) menguasai modal, teknologi, dan keuntungan produk olahan bernilai tambah tinggi."
+      },
+      {
+        no: 30,
+        type: "PG",
+        cog: "C4",
+        topic: "Globalisasi Pariwisata",
+        narasi: "Masuknya kunjungan wisatawan mancanegara ke sebuah kawasan desa wisata adat mendorong warga setempat membuka penginapan rumah warga (<i>homestay</i>), jasa pemandu wisata, sanggar tari pertunjukan, serta penjualan kerajinan tenun khas daerah.",
+        question: "Analisis manfaat utama globalisasi pariwisata internasional terhadap perekonomian masyarakat lokal pada kasus tersebut adalah...",
+        options: [
+          "Seluruh pendapatan pariwisata hanya dinikmati oleh negara asal wisatawan tanpa menyentuh warga desa.",
+          "Mendorong pertumbuhan ekonomi lokal melalui penciptaan lapangan kerja langsung, peningkatan pendapatan UMKM jasa dan kerajinan, serta insentif pelestarian budaya.",
+          "Menyebabkan warga lokal menghentikan seluruh aktivitas ekonomi kerajinan tangan.",
+          "Mengurangi devisa negara karena wisatawan mancanegara tidak menukarkan mata uang.",
+          "Menghilangkan seluruh peluang usaha penginapan dan kuliner milik penduduk setempat."
+        ],
+        answer: 1,
+        bahas: "Pariwisata internasional yang dikelola secara partisipatif memberikan efek pengganda (<i>multiplier effect</i>) ekonomi bagi masyarakat lokal, mulai dari penyerapan tenaga kerja sektor jasa, peningkatan omzet UMKM suvenir/kuliner, hingga insentif ekonomi untuk merawat kekayaan budaya lokal."
+      },
+
+      // ===================== SOAL 31 - 35 (BENAR / SALAH) =====================
+      {
+        no: 31,
+        type: "PGK_BS",
+        cog: "C4",
+        topic: "Faktor Perubahan Sosial",
+        narasi: "Perubahan sosial dalam masyarakat didorong oleh berbagai faktor, baik yang berasal dari dalam masyarakat itu sendiri (internal) maupun dari luar masyarakat (eksternal).",
+        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan mengenai faktor pendorong perubahan sosial berikut!",
+        statements: [
+          "Penemuan baru (discovery dan invention) di bidang teknologi informasi mendorong perubahan cara belajar dan pola kerja masyarakat.",
+          "Pertambahan maupun pengurangan jumlah penduduk secara drastis dapat mengubah struktur lembaga ekonomi dan kebutuhan permukiman.",
+          "Kontak dengan kebudayaan lain melalui perdagangan atau media digital memicu proses difusi serta akulturasi budaya.",
+          "Sistem pelapisan sosial yang tertutup kaku (seperti sistem kasta mutlak) merupakan faktor pendorong utama mobilitas dan perubahan sosial cepat.",
+          "Konflik sosial yang terjadi di masyarakat dapat mendorong lahirnya kesepakatan, norma baru, maupun pembaruan struktur kepemimpinan."
+        ],
+        answer: ["B", "B", "B", "S", "B"],
+        bahas: "1) BENAR (penemuan baru adalah faktor pendorong internal).\n2) BENAR (dinamika demografis mengubah struktur sosial).\n3) BENAR (kontak budaya lain merupakan faktor pendorong eksternal).\n4) SALAH (sistem pelapisan sosial terbuka yang mendorong perubahan, sedangkan pelapisan tertutup kaku menghambat perubahan).\n5) BENAR (konflik sosial dapat memicu penyesuaian norma dan tatanan baru)."
+      },
+      {
+        no: 32,
+        type: "PGK_BS",
+        cog: "C4",
+        topic: "Bentuk Perubahan Sosial",
+        narasi: "Sosiologi mengklasifikasikan bentuk-bentuk perubahan sosial berdasarkan kecepatan berlangsungnya (evolusi dan revolusi) serta berdasarkan perencanaannya (direncanakan dan tidak direncanakan).",
+        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan mengenai karakteristik bentuk perubahan sosial berikut!",
+        statements: [
+          "Evolusi merupakan perubahan sosial yang berlangsung lambat melalui rentetan penyesuaian kecil dalam jangka waktu panjang tanpa perencanaan terpusat.",
+          "Revolusi Industri di Inggris mengubah sistem produksi agraris-manual menjadi pabrik bermesin dalam waktu relatif cepat dan memengaruhi sendi kehidupan masyarakat.",
+          "Perubahan yang direncanakan (planned change) selalu melibatkan pihak yang menginginkan perubahan atau agen perubahan (agent of change) dengan program terstruktur.",
+          "Bencana alam besar yang memaksa penduduk bermigrasi dan menata ulang struktur permukiman merupakan contoh perubahan sosial yang direncanakan.",
+          "Kebijakan pembangunan jalan tol dan kawasan pendidikan terpadu termasuk perubahan sosial yang direncanakan."
+        ],
+        answer: ["B", "B", "B", "S", "B"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (bencana alam menimbulkan perubahan yang tidak direncanakan / unplanned change).\n5) BENAR."
+      },
+      {
+        no: 33,
+        type: "PGK_BS",
+        cog: "C4",
+        topic: "Dampak Perubahan Sosial",
+        narasi: "Setiap perubahan sosial membawa konsekuensi ganda bagi masyarakat, baik dampak positif berupa kemajuan maupun dampak negatif yang memerlukan pengendalian sosial.",
+        question: "Tentukan status kebenaran (Benar/Salah) 5 pernyataan analisis dampak positif dan negatif perubahan sosial berikut!",
+        statements: [
+          "Modernisasi layanan transportasi dan kesehatan meningkatkan efisiensi waktu kerja serta kualitas harapan hidup masyarakat.",
+          "Perubahan yang terlalu cepat tanpa kesiapan norma baru dapat memicu kondisi anomie (kekaburan nilai dan norma pedoman perilaku).",
+          "Disorganisasi sosial dapat terjadi ketika unsur-unsur lembaga masyarakat tidak lagi berjalan serasi akibat perubahan mendadak.",
+          "Setiap perubahan sosial dijamin hanya menghasilkan dampak positif bagi seluruh lapisan masyarakat secara merata.",
+          "Industrialisasi yang tidak memperhatikan daya dukung ekosistem dapat menimbulkan pencemaran lingkungan dan konflik agraria."
+        ],
+        answer: ["B", "B", "B", "S", "B"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (perubahan sosial sering berdampak tidak merata antar-lapisan dan dapat menimbulkan dampak negatif seperti kesenjangan atau disorganisasi).\n5) BENAR."
+      },
+      {
+        no: 34,
+        type: "PGK_BS",
+        cog: "C4",
+        topic: "Hakikat Perubahan Sosial",
+        narasi: "Perubahan sosial merupakan gejala universal yang melekat pada dinamika kehidupan setiap masyarakat manusia.",
+        question: "Nilailah kebenaran (Benar/Salah) 5 pernyataan mengenai hakikat perubahan sosial sebagai proses berkelanjutan berikut!",
+        statements: [
+          "Tidak ada satu pun masyarakat di dunia yang berhenti berubah secara mutlak; masyarakat tradisional pun mengalami perubahan meski berjalan lambat.",
+          "Perubahan pada satu lembaga sosial (seperti lembaga ekonomi atau teknologi) cenderung diikuti oleh penyesuaian pada lembaga lain (seperti keluarga dan pendidikan).",
+          "Perubahan sosial bersifat berkesinambungan (continuous) sehingga kondisi masa kini merupakan kelanjutan sekaligus pijakan bagi perubahan masa depan.",
+          "Perubahan yang berlangsung cepat sering memunculkan disorganisasi sementara sebelum masyarakat mencapai keseimbangan baru (reorganisasi).",
+          "Apabila suatu masyarakat sudah mencapai taraf modern, maka proses perubahan sosial di masyarakat tersebut otomatis berhenti selamanya."
+        ],
+        answer: ["B", "B", "B", "B", "S"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) BENAR.\n5) SALAH (masyarakat modern justru mengalami laju perubahan sosial dan teknologi yang terus berlangsung tanpa henti)."
+      },
+      {
+        no: 35,
+        type: "PGK_BS",
+        cog: "C5",
+        topic: "Faktor Penghambat Perubahan",
+        narasi: "Dalam penerapannya, berbagai inovasi dan program pembaruan sosial sering menghadapi hambatan yang berasal dari dalam maupun luar struktur masyarakat.",
+        question: "Evaluasilah kebenaran (Benar/Salah) 5 pernyataan mengenai faktor penghambat perubahan sosial berikut!",
+        statements: [
+          "Kurangnya hubungan atau isolasi geografis dengan masyarakat lain membatasi masuknya informasi dan ide-ide pembaruan.",
+          "Prasangka negatif terhadap hal-hal baru atau unsur budaya asing membuat masyarakat bersikap curiga dan menutup diri terhadap inovasi.",
+          "Sikap masyarakat yang terlalu mengagungkan tradisi masa lampau secara kaku tanpa ruang kritik dapat menghambat penyesuaian zaman.",
+          "Sikap terbuka terhadap karya orang lain dan sistem pendidikan maju yang menghargai prestasi merupakan faktor penghambat utama perubahan sosial.",
+          "Hambatan ideologis muncul apabila suatu gagasan pembaruan dianggap bertentangan dengan keyakinan dasar atau ideologi masyarakat setempat."
+        ],
+        answer: ["B", "B", "B", "S", "B"],
+        bahas: "1) BENAR.\n2) BENAR.\n3) BENAR.\n4) SALAH (sikap terbuka dan pendidikan maju yang menghargai prestasi adalah faktor PENDORONG perubahan sosial, bukan penghambat).\n5) BENAR."
+      },
+
+      // ===================== SOAL 36 - 40 (PG KOMPLEKS CHECKLIST) =====================
+      {
+        no: 36,
+        type: "PGK_CHECK",
+        cog: "C4",
+        topic: "Ciri Globalisasi",
+        narasi: "Globalisasi menandai era baru keterhubungan masyarakat dunia secara intensif dalam berbagai bidang kehidupan.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan faktor pendorong globalisasi! (Pilih tepat 3 jawaban)",
+        options: [
+          "Menipisnya batas ruang dan waktu antarnegara sehingga peristiwa di satu belahan dunia dapat segera diketahui dan memengaruhi negara lain.",
+          "Pesatnya kemajuan teknologi informasi, komunikasi digital, serta transportasi modern sebagai motor penggerak utama keterhubungan global.",
+          "Meningkatnya ketergantungan ekonomi, perdagangan, dan pertukaran budaya lintas negara (interdependensi global).",
+          "Terputusnya seluruh jalur perdagangan internasional dan pertukaran informasi antarbenua.",
+          "Setiap negara hanya menggunakan alat transportasi dan komunikasi tradisional tanpa koneksi internet."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Ciri dan pendorong utama globalisasi ditunjukkan oleh opsi 1 (kompresi ruang-waktu), opsi 2 (kemajuan TIK dan transportasi), dan opsi 3 (interdependensi ekonomi dan budaya lintas negara)."
+      },
+      {
+        no: 37,
+        type: "PGK_CHECK",
+        cog: "C4",
+        topic: "Dampak Positif Globalisasi",
+        narasi: "Globalisasi membuka beragam peluang kemajuan bagi masyarakat dunia apabila dimanfaatkan secara produktif.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai manfaat globalisasi dalam bidang sosial, ekonomi, dan informasi! (Pilih tepat 3 jawaban)",
+        options: [
+          "Terbukanya akses pasar internasional yang lebih luas bagi produk ekspor dan UMKM kreatif dalam negeri.",
+          "Kemudahan memperoleh informasi ilmiah, kursus daring, dan perkembangan teknologi terkini secara cepat lintas negara.",
+          "Meningkatnya solidaritas kemanusiaan serta kesadaran kolektif terhadap isu lingkungan dan hak asasi manusia berskala global.",
+          "Menghilangkan seluruh perbedaan kualitas sumber daya manusia secara otomatis tanpa melalui pendidikan.",
+          "Membuat masyarakat menutup akses informasi kesehatan dan ilmu pengetahuan modern."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Manfaat globalisasi mencakup aspek ekonomi (opsi 1: perluasan pasar produk lokal), aspek informasi/pendidikan (opsi 2: akses pengetahuan global), dan aspek sosial (opsi 3: solidaritas isu kemanusiaan dan lingkungan global)."
+      },
+      {
+        no: 38,
+        type: "PGK_CHECK",
+        cog: "C4",
+        topic: "Dampak Negatif Globalisasi",
+        narasi: "Selain membawa kemudahan, derasnya arus budaya global menimbulkan tantangan serius bagi ketahanan budaya masyarakat lokal.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai pengaruh negatif globalisasi terhadap identitas dan budaya lokal! (Pilih tepat 3 jawaban)",
+        options: [
+          "Menurunnya minat dan kebanggaan sebagian generasi muda dalam menggunakan bahasa daerah serta melestarikan kesenian tradisional.",
+          "Munculnya krisis identitas budaya akibat gaya hidup konsumtif dan peniruan budaya asing secara mentah-mentah (westernisasi).",
+          "Tergesernya kearifan lokal serta nilai gotong royong oleh kecenderungan individualisme dan homogenisasi budaya global.",
+          "Semakin kokohnya penguasaan sastra daerah di seluruh komunitas daring remaja tanpa upaya pelestarian.",
+          "Hilangnya seluruh produk hiburan asing dari platform media digital nasional."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Pengaruh negatif globalisasi terhadap identitas dan budaya lokal meliputi lunturnya bahasa/seni daerah (opsi 1), gaya hidup konsumtif/westernisasi (opsi 2), serta melemahnya kearifan lokal akibat individualisme dan homogenisasi (opsi 3)."
+      },
+      {
+        no: 39,
+        type: "PGK_CHECK",
+        cog: "C4",
+        topic: "Globalisasi Ekonomi",
+        narasi: "Globalisasi ekonomi mengintegrasikan pasar produksi, modal, dan konsumsi nasional ke dalam sistem perekonomian dunia.",
+        question: "Pilihlah 3 pernyataan yang BENAR mengenai karakteristik dan ancaman globalisasi dalam bidang ekonomi! (Pilih tepat 3 jawaban)",
+        options: [
+          "Terbukanya arus lalu lintas barang, jasa, tenaga kerja ahli, dan investasi modal antarnegara secara bebas.",
+          "Ancaman tersingkirnya UMKM dan industri lokal yang belum efisien akibat serbuan produk impor berharga lebih murah.",
+          "Potensi meningkatnya ketergantungan ekonomi negara berkembang terhadap korporasi multinasional dan modal asing.",
+          "Seluruh negara membatalkan perjanjian perdagangan lintas batas dan kembali ke ekonomi tertutup.",
+          "Setiap negara berkembang otomatis memiliki posisi tawar setara tanpa kesenjangan nilai tambah."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Karakteristik dan ancaman globalisasi ekonomi ditunjukkan oleh opsi 1 (bebasnya arus barang, jasa, dan modal), opsi 2 (tekanan kompetitif bagi UMKM lokal), dan opsi 3 (risiko ketergantungan pada korporasi multinasional/modal asing)."
+      },
+      {
+        no: 40,
+        type: "PGK_CHECK",
+        cog: "C5",
+        topic: "Strategi Menghadapi Globalisasi",
+        narasi: "Masyarakat dan negara perlu mengambil sikap kritis dan strategis agar tetap berdaulat serta berdaya saing di tengah arus globalisasi.",
+        question: "Pilihlah 3 pernyataan yang BENAR sebagai evaluasi strategi paling tepat dalam menghadapi pengaruh globalisasi! (Pilih tepat 3 jawaban)",
+        options: [
+          "Memperkuat filter nilai budaya bangsa dan kearifan lokal dengan menyaring unsur asing secara selektif (mengambil yang bermanfaat dan menolak yang merusak).",
+          "Meningkatkan kualitas SDM, penguasaan teknologi, serta inovasi produk lokal berstandar global (glokalisasi) agar UMKM mampu bersaing.",
+          "Mengembangkan literasi digital dan pola pikir kritis di masyarakat agar mampu memilah informasi serta mencegah hoaks maupun gaya hidup konsumtif.",
+          "Menutup akses internet secara permanen dan memutus seluruh hubungan diplomatik dengan negara lain.",
+          "Meniru seluruh gaya hidup dan nilai budaya asing tanpa mempertimbangkan norma sosial setempat."
+        ],
+        answer: [0, 1, 2],
+        bahas: "Strategi tepat menghadapi globalisasi bukanlah isolasi ekstrem (opsi 4) maupun penyerahan total/westernisasi (opsi 5), melainkan sikap selektif berbasis kearifan lokal (opsi 1), peningkatan daya saing SDM dan UMKM/glokalisasi (opsi 2), serta penguatan literasi digital kritis (opsi 3)."
+      }
+    ];
+
+    // State Aplikasi
+    let currentIndex = 0;
+    let userAnswers = new Array(QUESTIONS.length).fill(null);
+    let bahasVisible = new Array(QUESTIONS.length).fill(false);
+    let autoBahasMode = false;
+    let isEvaluated = false;
+
+    // Inisialisasi jawaban default untuk PGK B/S dan Checklist
+    QUESTIONS.forEach((q, idx) => {
+      if (q.type === "PGK_BS") {
+        userAnswers[idx] = new Array(q.statements.length).fill(null);
+      } else if (q.type === "PGK_CHECK") {
+        userAnswers[idx] = [];
+      }
+    });
+
+    function isQuestionAnswered(idx) {
+      const q = QUESTIONS[idx];
+      const ans = userAnswers[idx];
+      if (q.type === "PG") return ans !== null;
+      if (q.type === "PGK_BS") return Array.isArray(ans) && ans.every(v => v !== null);
+      if (q.type === "PGK_CHECK") return Array.isArray(ans) && ans.length > 0;
+      return false;
+    }
+
+    function isQuestionCorrect(idx) {
+      const q = QUESTIONS[idx];
+      const ans = userAnswers[idx];
+      if (q.type === "PG") return ans === q.answer;
+      if (q.type === "PGK_BS") {
+        return Array.isArray(ans) && q.answer.every((val, i) => ans[i] === val);
+      }
+      if (q.type === "PGK_CHECK") {
+        if (!Array.isArray(ans) || ans.length !== q.answer.length) return false;
+        const sortedA = [...ans].sort((a, b) => a - b);
+        const sortedB = [...q.answer].sort((a, b) => a - b);
+        return sortedA.every((val, i) => val === sortedB[i]);
+      }
+      return false;
+    }
+
+    function renderNav() {
+      const grid = document.getElementById("navGrid");
+      grid.innerHTML = "";
+      let answeredTotal = 0;
+
+      QUESTIONS.forEach((q, idx) => {
+        const answered = isQuestionAnswered(idx);
+        if (answered) answeredTotal++;
+
+        const btn = document.createElement("button");
+        btn.className = "nav-btn";
+        btn.textContent = q.no;
+
+        if (idx === currentIndex) btn.classList.add("current");
+        if (isEvaluated) {
+          btn.classList.add(isQuestionCorrect(idx) ? "eval-correct" : "eval-wrong");
+        } else if (answered) {
+          btn.classList.add("answered");
+        }
+
+        btn.onclick = () => goTo(idx);
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("answeredCount").textContent = `Terjawab: ${answeredTotal} / ${QUESTIONS.length}`;
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentIndex];
+      const total = QUESTIONS.length;
+
+      // Progress
+      document.getElementById("progressLabel").textContent = `Soal ${q.no} dari ${total}`;
+      const pct = ((currentIndex + 1) / total) * 100;
+      document.getElementById("progressPercent").textContent = `${pct.toFixed(1)}%`;
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      // Meta tags
+      const typeLabel =
+        q.type === "PG" ? "Pilihan Ganda" :
+        q.type === "PGK_BS" ? "Benar / Salah" :
+        "PG Kompleks (Checklist)";
+
+      document.getElementById("qMeta").innerHTML = `
+        <span class="tag tag-num">No. ${q.no}</span>
+        <span class="tag tag-type">${typeLabel}</span>
+        <span class="tag tag-cog">Level ${q.cog}</span>
+        <span class="tag tag-topic">${q.topic}</span>
+      `;
+
+      document.getElementById("qNarasi").innerHTML = q.narasi;
+      document.getElementById("qText").innerHTML = q.question;
+
+      const inputArea = document.getElementById("qInputArea");
+      inputArea.innerHTML = "";
+
+      const showCorrection = isEvaluated || bahasVisible[currentIndex];
+
+      if (q.type === "PG") {
+        const list = document.createElement("div");
+        list.className = "options-list";
+        const letters = ["A", "B", "C", "D", "E"];
+
+        q.options.forEach((opt, i) => {
+          const item = document.createElement("div");
+          item.className = "option-item";
+          const selected = userAnswers[currentIndex] === i;
+          if (selected) item.classList.add("selected");
+
+          if (showCorrection) {
+            if (i === q.answer) item.classList.add("correct");
+            else if (selected && i !== q.answer) item.classList.add("wrong");
+          }
+
+          item.innerHTML = `
+            <span class="option-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          `;
+          item.onclick = () => selectPG(i);
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      } else if (q.type === "PGK_BS") {
+        const table = document.createElement("table");
+        table.className = "bs-table";
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Pernyataan</th>
+              <th class="center">Benar</th>
+              <th class="center">Salah</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        `;
+        const tbody = table.querySelector("tbody");
+
+        q.statements.forEach((stmt, i) => {
+          const tr = document.createElement("tr");
+          const curVal = userAnswers[currentIndex][i];
+
+          if (showCorrection && curVal !== null) {
+            tr.className = curVal === q.answer[i] ? "row-correct" : "row-wrong";
+          }
+
+          tr.innerHTML = `
+            <td><strong>${i + 1}.</strong> ${stmt}</td>
+            <td class="center">
+              <button class="bs-btn ${curVal === 'B' ? 'active-b' : ''}" onclick="selectBS(${i}, 'B')">B</button>
+            </td>
+            <td class="center">
+              <button class="bs-btn ${curVal === 'S' ? 'active-s' : ''}" onclick="selectBS(${i}, 'S')">S</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+        inputArea.appendChild(table);
+      } else if (q.type === "PGK_CHECK") {
+        const list = document.createElement("div");
+        list.className = "options-list";
+
+        q.options.forEach((opt, i) => {
+          const item = document.createElement("div");
+          item.className = "check-item";
+          const selected = userAnswers[currentIndex].includes(i);
+          if (selected) item.classList.add("selected");
+
+          if (showCorrection) {
+            if (q.answer.includes(i)) item.classList.add("correct");
+            else if (selected && !q.answer.includes(i)) item.classList.add("wrong");
+          }
+
+          item.innerHTML = `
+            <span class="check-box">${selected ? "✓" : ""}</span>
+            <span>${opt}</span>
+          `;
+          item.onclick = () => toggleCheck(i);
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      }
+
+      // Pembahasan box
+      const bahasBox = document.getElementById("bahasBox");
+      const shouldShowBahas = bahasVisible[currentIndex] || autoBahasMode;
+      if (shouldShowBahas) {
+        bahasBox.classList.add("show");
+        document.getElementById("bahasKey").textContent = formatAnswerKey(q);
+        document.getElementById("bahasText").innerHTML = q.bahas.replace(/\n/g, "<br/>");
+      } else {
+        bahasBox.classList.remove("show");
+      }
+
+      // Tombol prev/next
+      document.getElementById("prevBtn").disabled = currentIndex === 0;
+      document.getElementById("nextBtn").disabled = currentIndex === total - 1;
+      document.getElementById("bahasBtn").textContent = shouldShowBahas ? "🙈 Sembunyikan Bahas" : "💡 Bahas Soal Ini";
+
+      renderNav();
+    }
+
+    function formatAnswerKey(q) {
+      const letters = ["A", "B", "C", "D", "E"];
+      if (q.type === "PG") {
+        return `Kunci Jawaban: ${letters[q.answer]}`;
+      }
+      if (q.type === "PGK_BS") {
+        return `Kunci Jawaban: ${q.answer.map((v, i) => `${i + 1}.${v === 'B' ? 'Benar' : 'Salah'}`).join(" | ")}`;
+      }
+      if (q.type === "PGK_CHECK") {
+        return `Kunci Jawaban: Pernyataan nomor ${q.answer.map(i => i + 1).join(", ")}`;
+      }
+    }
+
+    function selectPG(optionIdx) {
+      userAnswers[currentIndex] = optionIdx;
+      if (autoBahasMode) bahasVisible[currentIndex] = true;
+      renderQuestion();
+    }
+
+    function selectBS(stmtIdx, val) {
+      userAnswers[currentIndex][stmtIdx] = val;
+      if (autoBahasMode && isQuestionAnswered(currentIndex)) bahasVisible[currentIndex] = true;
+      renderQuestion();
+    }
+
+    function toggleCheck(optIdx) {
+      const arr = userAnswers[currentIndex];
+      const pos = arr.indexOf(optIdx);
+      if (pos === -1) arr.push(optIdx);
+      else arr.splice(pos, 1);
+      if (autoBahasMode) bahasVisible[currentIndex] = true;
+      renderQuestion();
+    }
+
+    function toggleBahas() {
+      bahasVisible[currentIndex] = !bahasVisible[currentIndex];
+      renderQuestion();
+    }
+
+    function toggleModeBahas() {
+      autoBahasMode = !autoBahasMode;
+      const btn = document.getElementById("toggleAutoBahas");
+      btn.textContent = `Mode Bahas Langsung: ${autoBahasMode ? "ON" : "OFF"}`;
+      if (autoBahasMode) {
+        bahasVisible[currentIndex] = true;
+      }
+      renderQuestion();
+    }
+
+    function goTo(idx) {
+      if (idx < 0 || idx >= QUESTIONS.length) return;
+      currentIndex = idx;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function finishQuiz() {
+      isEvaluated = true;
+      let correctCount = 0;
+      QUESTIONS.forEach((_, idx) => {
+        if (isQuestionCorrect(idx)) correctCount++;
+        bahasVisible[idx] = true;
+      });
+
+      const score = Math.round((correctCount / QUESTIONS.length) * 100);
+      document.getElementById("finalScoreText").textContent = `${score} / 100`;
+      document.getElementById("finalDetailText").textContent = `Benar: ${correctCount} dari ${QUESTIONS.length} soal`;
+      document.getElementById("summaryBanner").classList.add("show");
+
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showAllBahasMode() {
+      bahasVisible = bahasVisible.map(() => true);
+      renderQuestion();
+    }
+
+    function resetQuiz() {
+      isEvaluated = false;
+      currentIndex = 0;
+      bahasVisible.fill(false);
+      QUESTIONS.forEach((q, idx) => {
+        if (q.type === "PG") userAnswers[idx] = null;
+        else if (q.type === "PGK_BS") userAnswers[idx] = new Array(q.statements.length).fill(null);
+        else userAnswers[idx] = [];
+      });
+      document.getElementById("summaryBanner").classList.remove("show");
+      renderQuestion();
+    }
+
+    // Render awal
+    renderQuestion();
+  </script>
+</body>
+</html>
