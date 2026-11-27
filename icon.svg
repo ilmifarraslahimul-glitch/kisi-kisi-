@@ -1,15 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="112" fill="#4338ca"/>
-  <rect x="116" y="136" width="280" height="240" rx="48" fill="#312e81"/>
-  <circle cx="204" cy="226" r="44" fill="#ffffff"/>
-  <circle cx="308" cy="226" r="44" fill="#ffffff"/>
-  <circle cx="204" cy="226" r="46" fill="none" stroke="#18181b" stroke-width="10"/>
-  <circle cx="308" cy="226" r="46" fill="none" stroke="#18181b" stroke-width="10"/>
-  <circle cx="208" cy="226" r="18" fill="#18181b"/>
-  <circle cx="304" cy="226" r="18" fill="#18181b"/>
-  <circle cx="214" cy="218" r="6" fill="#ffffff"/>
-  <circle cx="310" cy="218" r="6" fill="#ffffff"/>
-  <polygon points="242,254 270,254 256,278" fill="#fbbf24"/>
-  <path d="M168 326 Q212 308 256 330 Q300 308 344 326 L344 388 Q300 370 256 392 Q212 370 168 388 Z" fill="#ffffff" stroke="#18181b" stroke-width="10" stroke-linejoin="round"/>
-  <line x1="256" y1="330" x2="256" y2="392" stroke="#18181b" stroke-width="9"/>
+  <rect width="512" height="512" rx="112" fill="#4b6778"/>
+  <g transform="translate(56, -24) scale(1.1)">
+    <path d="M 142 212 C 132 184, 168 175, 178 202 Z" fill="#f0f4f3" stroke="#1e1e1e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M 276 205 C 288 176, 326 186, 310 222 Z" fill="#f0f4f3" stroke="#1e1e1e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M 55 480 C 66 310, 128 202, 225 192 C 322 198, 372 260, 382 480 Z" fill="#f0f4f3" stroke="#1e1e1e" stroke-width="5"/>
+    <path d="M 275 204 C 335 225, 368 278, 378 480 L 385 480 C 378 265, 326 212, 275 204 Z" fill="#d5e2df"/>
+    <ellipse cx="145" cy="279" rx="9" ry="5.5" fill="#1e1e1e"/>
+    <ellipse cx="236" cy="282" rx="9" ry="5.5" fill="#1e1e1e"/>
+    <line x1="112" y1="273" x2="177" y2="274" stroke="#1e1e1e" stroke-width="4" stroke-linecap="round"/>
+    <line x1="209" y1="276" x2="277" y2="277" stroke="#1e1e1e" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="166" cy="306" rx="23" ry="10" fill="#1e1e1e"/>
+    <path d="M 164 290 C 115 292, 92 328, 112 372" fill="none" stroke="#1e1e1e" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M 157 379 C 168 377, 179 378, 190 383" fill="none" stroke="#1e1e1e" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
 </svg>
